@@ -1,5 +1,8 @@
 .new-arrivals{
     margin-top: 10%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .head{
@@ -7,4 +10,98 @@
     font-size: 48px;
     opacity: 0;
     animation: fadeIn 0.5s forwards 1s;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 1s ease, opacity 1s ease;
+    margin-bottom: 10%;
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+
+.pro-image{
+    width: 200px;
+    height: auto;
+}
+
+.pro-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    height: 400px;
+    width: 250px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items:center;
+    justify-content:space-around;
+
+}
+
+.add-to-cart{
+    font-size: 15px;
+    padding: 10px;
+    background-color: rgb(255, 227, 127);
+    color: #000;
+    font-weight: bold;
+    border-radius: 15px;
+    border: none;
+}
+
+.add-to-cart:hover {
+    animation: pulse 1s infinite;
+    cursor: pointer;
+} 
+
+.best-selling {
+    overflow: hidden;
+    width: 100%;
+    margin: 5% auto;
+}
+
+.best-selling-div {
+    display: flex;
+    width: calc(250px * 12); /* Width of a single product * total number of products */
+    animation: scroll 15s linear infinite;
+}
+
+.product {
+    min-width: 250px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    margin: 0 20px;
+}
+
+.product img {
+    width: 200px;
+    height: auto;
+}
+
+/* Continuous scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move halfway through the entire width to loop */
+    }
 }
