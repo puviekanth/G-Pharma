@@ -7,6 +7,8 @@ function NewArrivals(){
         <section className='new-arrivals'>
             <h1 className='head'>New Arrivals</h1>
         </section>
+    <div className='pro-container'>
+        </div>
 
     );
 }
