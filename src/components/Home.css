@@ -1,0 +1,220 @@
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick/slick-theme.css';
+
+.banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url("./images/daniel-frank-wKbWAMlHgNo-unsplash.jpg");
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards 0.5s;;
+}
+
+.with-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner h1 {
+    font-size: 64px;
+    font-weight: 600;
+    margin-top: 10%;
+    margin-left: 2%;
+    color: #fff;
+    font-style: bold;
+}
+
+.logo {
+    margin-top: 8%;
+    height: 300px;
+    width: 300px;
+    margin-right: 2%;
+}
+
+.small-phrase {
+    font-size: 24px;
+    margin-left: 2%;
+    color: #fff;
+}
+
+.shop {
+    border-radius: 20px;
+    padding: 15px;
+    width: 100px;
+    font-size: 20px;
+    margin-left: 2%;
+    margin-top: 2%;
+    background-color: rgb(255, 227, 127);
+    color: #000;
+    font-weight: bold;
+    font-size: 24px;
+    position: relative;
+    transition: all 0.3s ease;
+     
+}
+
+ .shop:hover {
+    animation: pulse 1s infinite;
+    cursor: pointer;
+} 
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 227, 127, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(255, 227, 127, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 227, 127, 0);
+    }
+}
+
+.promo {
+    width: 100%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.small-phrase {
+    margin-top: -2.5%;
+}
+
+.promo {
+    width: 100%;
+    height: auto;
+    margin-top: 5%;
+}
+
+.promo-image {
+    width: 100%;
+    height: auto;
+}
+
+
+
+
+
+/*about*/
+.about{
+    margin-top: 20%;
+    font-size: 40px;
+    font-style: bold;
+    margin-right: 40%;
+   
+
+}
+
+.about-section{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.content{
+    max-width: 700px;
+    margin-right: 05%;
+    margin-left: 9%;
+    justify-content: center;
+}
+
+.about-content{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: center;
+}
+
+.about-pic{
+    width: 400px;
+    height: auto;
+    margin-top: 15%;
+}
+
+.about-with-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.about-readmore{
+    background-color: rgba(241, 210, 143, 0.993);
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    margin-right: 10%;
+    margin-top: 20%;
+    
+}
+
+.about-readmore:hover {
+    animation: pulse 1s infinite;
+    cursor: pointer;
+}
+
+
+/* About Section Animations */
+@keyframes slideInLeft {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.about-pic {
+    width: 400px;
+    height: auto;
+    margin-top: 15%;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.about-readmore {
+    background-color: rgba(241, 210, 143, 0.993);
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 18px;
+    color: #000;
+    font-weight: bold;
+    border: none;
+    margin-right: 10%;
+    margin-top: 20%;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 1s ease, opacity 1s ease;
+}
+
+.in-view .about-pic {
+    animation: slideInLeft 1s forwards;
+}
+
+.in-view .about-readmore {
+    animation: slideInUp 1s forwards;
+}
+
+
+
+
+
