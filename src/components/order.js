@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+
+function OrderManagement(){
 const OrderManagement = () => {
     const [orders, setOrders] = useState([
         { id: 1, customer: 'John Doe', status: 'Pending' },
@@ -40,5 +42,6 @@ const OrderManagement = () => {
         </div>
     );
 };
+}
 
 export default OrderManagement;
