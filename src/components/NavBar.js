@@ -12,7 +12,7 @@ function Navbar() {
         <img src={logo} alt="Logo" /><h2>Genuine Pharmacy</h2>
       </div>
       <ul className="navbar-links">
-        <li className="navbar-item"><a href="/">Home</a></li>
+        <li className="navbar-item"><a href="/Home">Home</a></li>
         <li className="navbar-item"><a href="/about">Shop</a></li>
         <li className="navbar-item"><a href="/services">About Us</a></li>
         <li className="navbar-item"><a href="/contact">Contact Us</a></li>

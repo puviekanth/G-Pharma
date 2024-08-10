@@ -13,7 +13,7 @@ function Navbar() {
       </div>
       <ul className="navbar-links">
         
-        <li className="navbar-item"><a href="/">Home</a></li>
+        <li className="navbar-item"><a href="/Home">Home</a></li>
         <li className="navbar-item dropdown">
           <a href="/shop" className="dropdown-toggle">Shop</a>
           <ul className="dropdown-menu">
@@ -30,7 +30,7 @@ function Navbar() {
         <li className="navbar-item"><a href="/contact">Contact Us</a></li>
         <li className="navbar-item" ><a href="/profile">Profile</a></li>
         <li className="navbar-item"><a href="/cart">Cart</a></li>
-        <li className='navButton'><a href="/cart"><button className='prescription'>Add Prescription</button></a></li>
+        <li className='navButton'><a href="/Order"><button className='prescription'>Add Prescription</button></a></li>
       </ul>
     </nav>
   );

@@ -4,9 +4,14 @@
   align-items: center;
   background-color: #000;
   padding: 1rem;
+  position: fixed; /* Make the navbar fixed */
+  top: 0; /* Stick to the top of the page */
+  left: 0; /* Stick to the left side */
+  width: 98%; /* Make sure it spans the entire width */
+  z-index: 1000; /* Ensure it stays above other content */
 }
 
-.navbar-logo{
+.navbar-logo {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,13 +36,13 @@
 }
 
 .navbar-item {
-  margin-right: 20px;
+  margin-right: 10px;
   position: relative;
   padding: 10px;
   color: #fff;
 }
 
-.navbar-item:hover{
+.navbar-item:hover {
   border: 1px dashed #fff;
 }
 
@@ -54,6 +59,7 @@
   padding: 10px 15px;
   border-radius: 5px;
   cursor: pointer;
+  margin-right: 10%;
 }
 
 .dropdown {

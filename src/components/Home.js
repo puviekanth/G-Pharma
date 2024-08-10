@@ -9,6 +9,8 @@ import './Home.css';
 import AboutLogo from './images/about.jpg'
 import { useEffect } from 'react'
 import NewArrivals from './NewArrivals' 
+import Order from './order.js'
+import Footer from './Footer.js'
 
 function Home() {
     const settings = {
@@ -68,7 +70,7 @@ function Home() {
                 <h1 className='about'>About Us</h1>
                 <h3 className='content'>Genuine Pharmacy has been dedicated to serving the community with high-quality
                 healthcare products. Our mission is to deliver life-enhancing products to your
-                doorstep, ensuring that your health is our priority.</h3>
+                doorstep, ensuring that your health is our priority.<br></br>With present busy schedules and traffic situations to customers, we have established our  “Online Pharmacy” service. Customers can log in to “Genuine Pharmacy pharmacy online” Upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs, from our “Pharmacy Online service”.</h3>
                 <button className='about-readmore'>Read More >> </button>
             </div>
             </div>
@@ -91,6 +93,7 @@ function Home() {
            
 
             < NewArrivals />
+            < Footer />
             
            
         </>
