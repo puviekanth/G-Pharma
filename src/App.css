@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 50;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,21 +36,52 @@
     transform: rotate(360deg);
   }
 }
-/* src/App.css */
-.App {
-  text-align: center;
-}
 
-.App-header {
-  background-color: #282c34;
-  padding: 5px;
-  color: white;
+cart-page
+{
+	margin: 80px auto;
 }
-
-main {
+table
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+th
+{
+	text-align: left;
+	padding: 5px;
+	color: #fff;
+	background: #282c34;
+	font-weight: normal;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 20px;
+  border: 1px solid #f4f1f1;
+  border-radius: 8px;
+  background-color: #080808;
+  
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.info {
+  margin-bottom: 10px;
   display: flex;
-  justify-content: left;
-  flex-direction: column;
-  align-items: left;
+  justify-content: space-between;
+}
+
+.label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.value {
+  font-style: italic;
+  color: #fff;
 }

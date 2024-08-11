@@ -1,19 +1,20 @@
-// src/App.js
-import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import OrderManagement from './order';
+import Profile from './profile.js';
 
 function App() {
+
     return (
-        <div className="App">
-            <header className="App-header">
-                <h1>Pharmacy Order Management</h1>
-            </header>
-            <main>
-                <OrderManagement />
-            </main>
-        </div>
-    );
+      <div className="App">
+          <header className="App-header">
+              <h1>Pharmacy Order Management</h1>
+          </header>
+          <main>
+              <Profile />
+          </main>
+      </div>
+  );
+  
 }
 
-export default App;
+export default Profile;
