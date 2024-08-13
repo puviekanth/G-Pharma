@@ -26,11 +26,11 @@ function Navbar() {
             <li><a href="/shop/sexual-wellness">Sexual Wellness</a></li>
           </ul>
         </li>
-        <li className="navbar-item"><a href="/services">About Us</a></li>
-        <li className="navbar-item"><a href="/contact">Contact Us</a></li>
+        <li className="navbar-item"><a href="/About">About Us</a></li>
+        <li className="navbar-item"><a href="/Contact">Contact Us</a></li>
         <li className="navbar-item" ><a href="/profile">Profile</a></li>
         <li className="navbar-item"><a href="/cart">Cart</a></li>
-        <li className='navButton'><a href="/Order"><button className='prescription'>Add Prescription</button></a></li>
+        <li className='navButton'><a href="/Login"><button className='prescription'>Add Prescription</button></a></li>
       </ul>
     </nav>
   );

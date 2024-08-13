@@ -1,10 +1,11 @@
 // src/components/Login.js
 
 import React, { useState } from 'react';
-import './Login.css';
+import './Login.css'
 import logoImage from './images/Screenshot 2024-08-02 203142.png';
-import SignUp from './SignUp'
+
 import NavBar from './NavBar';
+
 
 
 function Login() {

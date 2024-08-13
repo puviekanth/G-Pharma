@@ -1,0 +1,41 @@
+.about-us-section{
+    font-family:   'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #000;
+}
+
+.image-container {
+    margin-top: 5%;
+    width: 30%; /* Adjust width based on your layout */
+    height: 20%; /* Adjust height based on your layout */
+    overflow: hidden;
+    position: relative;
+}
+
+.transition-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Makes sure the image covers the entire container */
+    transition: opacity 2s ease-in-out; /* Smooth transition effect */
+}
+.about-content{
+    width: 50%;
+    margin-left: 20px;
+    margin-top: 5%;
+}
+.about-us-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.with-heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.topic{
+    color: #000;
+    font-size: 48px;
+    margin-top: 15%;
+}

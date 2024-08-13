@@ -17,19 +17,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 300px;
+  height: 60vh;
   width: 300px;
-  background-color: rgba(128, 126, 126, 0.562); 
-  padding: 50px;
+  background-color: rgba(182, 180, 180, 0.562); 
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.473);
   margin-left: 10%;
   opacity: 0; /* Start hidden for fade-in effect */
   animation: fadeIn 1s forwards 1s; /* 1s delay */
+  margin-top: 5%;
 }
 
 .login-form h2 {
-  margin-bottom: 80px;
+  margin-bottom: 60px;
 }
 
 .login-form label {
@@ -42,7 +43,7 @@
 .email-input,
 .password-input {
   padding: 8px;
-  font-size: 22px;
+  font-size: 18px;
   width: 100%;
   margin-bottom: 10px;
   border: 1px solid #ccc;
@@ -74,22 +75,22 @@
 }
 
 .genuine {
-  font-size: 80px;
+  font-size: 48px;
   opacity: 0; /* Start hidden for fade-in effect */
   animation: fadeIn 1s forwards 0.5s; /* 0.5s delay */
 }
 
 .pharmacy {
-  font-size: 50px;
+  font-size: 30px;
   text-align: center;
   opacity: 0; /* Start hidden for fade-in effect */
   animation: fadeIn 1s forwards 0.5s; /* 0.5s delay */
 }
 
 .logo {
-  height: 200px;
-  width: 200px;
-  margin-left: 24%;
+  height: 100px;
+  width: 100px;
+  margin-left: 31%;
   opacity: 0; /* Start hidden for fade-in effect */
   animation: fadeIn 1s forwards 0.5s; /* 0.5s delay */
 }

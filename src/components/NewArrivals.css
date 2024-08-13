@@ -1,5 +1,5 @@
 .new-arrivals{
-    margin-top: 10%;
+    margin-top: 2%;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin-left: 5%;
     margin-right: 5%;
@@ -71,7 +71,7 @@
 .best-selling {
     overflow: hidden;
     width: 100%;
-    margin: 5% auto;
+    margin: 2% auto;
 }
 
 .best-selling-div {
@@ -250,9 +250,67 @@
   .img-product:hover{
     width: 400px;
     height: auto;
-    
+  }
+
+  .news-img {
+    position: relative;
+    width: 100%;
+    height: 40vh; 
+    background-image: url('C:/Users/puvie/genuine-pharmacy/src/components/images/young-handsome-physician-medical-robe-with-stethoscope.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    margin-top: 10%;
+}
+
+.newsletter-div {
+    text-align: center;
+    margin-top: 12%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin: 3%;
+    padding: 20px;
+    /* background: rgba(255, 255, 255, 0.8);  */
+}
+
+
+  .newsletter-div h3{
+    font-size: 25px;
   }
   
+  .newsletter-form{
+    width: 30%;
+  }
+
+  .newsletter-form input{
+    font-size: 16px;
+    padding: 10px;
+    background-color: #f1f1f1;
+  }
+
+  .newsletter-form button {
+    border-radius: 20px;
+    padding: 10px;
+    width: 100px;
+    font-size: 14px;
+    margin-left: 2%;
+    margin-top: 2%;
+    background-color: rgb(255, 227, 127);
+    color: #000;
+    margin-bottom: 5%;
+    border: none;
+    position: relative;
+    transition: all 0.3s ease;
+     
+}
+
+.newsletter-form button:hover {
+    animation: pulse 1s infinite;
+    cursor: pointer;
+} 
   
  
 
