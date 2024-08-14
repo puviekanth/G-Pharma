@@ -48,8 +48,8 @@ function Footer() {
             <div className='about-block'>
                 <h3>About Us</h3>
                 <p>Genuine Pharmacy has been dedicated to serving the community with high-quality
-                healthcare products. </p>
-                <br></br><br></br>
+                healthcare products. Customer can upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs.</p>
+                <br></br>
                 <h3>Why Us ?</h3>
                 <p>Our mission is to deliver life-enhancing products to your
                 doorstep, ensuring that your health is our priority.</p>

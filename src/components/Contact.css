@@ -1,0 +1,128 @@
+.contact-us{
+    /* display: flex;
+    flex-direction: column; */
+    justify-content: center;
+    align-items: baseline;
+    margin-top: 10%;
+    margin-left: 3%;
+    
+}
+
+.contact-us-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-us-topic{
+    font-size: 40px;
+    
+}
+
+.mobile{
+    width: 20px;
+    height: auto;
+}
+
+.phone{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone h4{
+    margin-left: 10px;
+}
+
+.phone h4 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.phone h4 a:hover{
+    text-decoration: underline;
+}
+
+.email{
+    width: 20px;
+    height: auto;
+}
+
+.mail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mail h4{
+    margin-left: 10px;
+}
+.mail h4 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.mail h4 a:hover{
+    text-decoration: underline;
+}
+
+.name-input{
+    width: 350px;
+    padding:10px;
+    margin-bottom: 10%;
+}
+
+.email-input{
+    width: 350px;
+    padding: 10px;
+}
+.subject-input{
+    width: 400px;
+    padding: 10px;
+}
+.message-input{
+    width: 400px;
+    height: 200px;
+    padding: 10px;
+    text-align: start;
+}
+
+form input{
+    margin-bottom: 20px;
+   
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+    margin-left: 5%;
+    opacity: 1; 
+    transform: translateY(20px); 
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
+}
+
+
+
+.contact-form button{
+    border-radius: 20px;
+    padding: 10px;
+    width: 100px;
+    font-size: 14px;
+    margin-left: 2%;
+    margin-top: 2%;
+    background-color: rgb(255, 227, 127);
+    color: #000;
+    
+    
+    position: relative;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.contact-form button:hover{
+    animation: pulse 1s infinite;
+    cursor: pointer;
+}
+

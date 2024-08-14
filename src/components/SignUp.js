@@ -3,7 +3,7 @@ import './SignUp.css';
 import logoImage from './images/Screenshot 2024-08-02 203142.png';
 import Navbar from './NavBar';
 
-function Login() {
+function SignUp(){
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -166,4 +166,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

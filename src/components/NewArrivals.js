@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef , useState } from 'react';
 import './NewArrivals.css';
 import Product1 from './images/Glutanex-Tablets-100.jpeg';
 import Product2 from './images/Eventone-C-Cream-300x300.jpg';
@@ -13,35 +13,47 @@ import SexualWellness from './images/Sew-1.jpg'
 import Wheel from './images/Wheel-1.jpg'
 import Sethescope from './images/Littman-1.jpg'
 import Pressure from './images/Rossmax-1.jpg'
-import Order from './order'
+import Newsimg from './images/young-handsome-physician-medical-robe-with-stethoscope.jpg'
+
+
 
 
 function NewArrivals() {
     const countersRef = useRef(null);
     const hasAnimated = useRef(false);
 
+    const [email, setEmail] = useState('');
+  
 
-    useEffect(() => {
-        const deliverySection = document.querySelector('.delivery');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log('Email:', email);
+    
+  };
+
+
+    // useEffect(() => {
+    //     const deliverySection = document.querySelector('.delivery');
         
 
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    deliverySection.classList.add('in-view');
-                }
-            },
-            {
-                threshold: 0.75, // Trigger when 50% of the section is in view
-            }
-        );
+    //     const observer = new IntersectionObserver(
+    //         ([entry]) => {
+    //             if (entry.isIntersecting) {
+    //                 deliverySection.classList.add('in-view');
+    //             }
+    //         },
+    //         {
+    //             threshold: 0.75, // Trigger when 50% of the section is in view
+    //         }
+    //     );
 
-        observer.observe(deliverySection);
+    //     observer.observe(deliverySection);
 
-        return () => {
-            observer.unobserve(deliverySection);
-        };
-    }, []);
+    //     return () => {
+    //         observer.unobserve(deliverySection);
+    //     };
+    // }, []);
 
 
     useEffect(() => {
@@ -120,13 +132,30 @@ function NewArrivals() {
             </section>
 
 
-            <div className='delivery'>
+            {/* <div className='delivery'>
                 <div className='delivery-with-img'>
                 <h4> <b>100% Secure & Fast</b> delivery at your doorstep</h4>
                 <img src={ Delivery} alt=''></img>
                 </div>
                 <button className='readmore'>Read More</button>
-            </div>
+            </div> */}
+            <div className='news-img'>
+    <div className='newsletter-div'>
+        <h3>Subscribe to Newsletter for more updates!</h3>
+        <form className='newsletter-form' onSubmit={handleSubmit}>
+            <input
+                type="email"
+                className='email-input'
+                placeholder='Email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+            />
+            <button type='submit'>Send</button>
+        </form>
+    </div>
+</div>
+
 
 
             <section className='best-selling'>
@@ -171,27 +200,27 @@ function NewArrivals() {
                 <div className='product-types-container'>
                     <div className='individual-products'>
                         <h3 className='prod-name'>Skin Care</h3>
-                        <a href='/Order'><img src={ Skincare } className='img-product'></img></a>
+                        <a href='/Order'><img src={ Skincare } className='img-product' alt=''></img></a>
                     </div>
                     <div className='individual-products'>
                         <h3 className='prod-name'>Multivitamin</h3>
-                        <img src={ Multivitamin } className='img-product'></img>
+                        <img src={ Multivitamin } className='img-product' alt=''></img>
                     </div>
                     <div className='individual-products'>
                         <h3 className='prod-name'>Sexual Wellness</h3>
-                        <img src={ SexualWellness } className='img-product'></img>
+                        <img src={ SexualWellness } className='img-product' alt=''></img>
                     </div>
                     <div className='individual-products'>
                         <h3 className='prod-name'>Supports</h3>
-                        <img src={ Wheel } className='img-product'></img>
+                        <img src={ Wheel } className='img-product' alt=''></img>
                     </div>
                     <div className='individual-products'>
                         <h3 className='prod-name'>Machines</h3>
-                        <img src={ Pressure } className='img-product'></img>
+                        <img src={ Pressure } className='img-product' alt=''></img>
                     </div>
                     <div className='individual-products'>
                         <h3 className='prod-name'>Instruments</h3>
-                        <img src={ Sethescope } className='img-product'></img>
+                        <img src={ Sethescope } className='img-product' alt=''></img>
                     </div>
                 </div>
             </section>
