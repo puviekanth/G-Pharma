@@ -1,5 +1,5 @@
 
-import NavBar from './HomeNavbar'
+import NavBar from './NavBar'
 import Footer from './Footer'
 import About1 from './images/about.jpg'
 import About2 from './images/about1.jpg'
@@ -15,7 +15,7 @@ function About(){
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-        }, 10000); 
+        }, 5000); 
 
         return () => clearInterval(interval);
     }, [images.length]);
