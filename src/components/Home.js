@@ -4,7 +4,7 @@ import Logo from './images/Screenshot 2024-08-02 203142.png';
 import Promo1 from './images/Hedone-1924.jpg';
 import Promo2 from './images/Baby_Carelink_l.jpg';
 import Promo3 from './images/Diabetasol_LL.jpg';
-import NavBar from './HomeNavbar';
+import NavBar from './NavBar';
 import './Home.css';
 import AboutLogo from './images/about.jpg'
 import { useEffect } from 'react'

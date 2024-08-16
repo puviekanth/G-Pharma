@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import './Contact.css';
-import Navbar from './HomeNavbar';
+import Navbar from './NavBar';
 import Footer from './Footer';
+import Phone from './images/telephone.png'
+import Location from './images/placeholder.png'
 
 function Contact(){
     const [email, setEmail] = useState('');
@@ -51,8 +53,13 @@ function Contact(){
                 <div className='contents'>
                     <h1 className='contact-us-topic'>Contact Us</h1>
                     <h2>Genuine Pharmacy</h2><br></br>
-                    <h4 className='contact'>081 2202381</h4>
-                    <h4>43/B William Gopallawa Mawatha, Kandy 20000</h4>
+                    <div className='with-phone'>
+                    <img src={ Phone} alt='' className='phone-logo'></img>
+                    <h4 className='contact'><a href='tel:0812 202 381'>081 2202381</a></h4>
+                    </div>
+                    <div className='with-location'>
+                    <img src={Location} alt='' className='location-logo'></img><h4 className='address'><a href='https://www.google.com/maps/place/Genuine+Pharmacy/@7.2885016,80.6322843,15z/data=!4m6!3m5!1s0x3ae368829b6cc3ef:0x6a8da5ebc0a5dbbd!8m2!3d7.2885016!4d80.6322843!16s%2Fg%2F11c807yvq9?entry=ttu'>43/B, Willium Gopallawa Mw, Kandy, Sri Lanka.</a></h4>
+                    </div>
                     <div className='map-container'>
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15830.3211175174!2d80.6322843!3d7.2885016!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae368829b6cc3ef%3A0x6a8da5ebc0a5dbbd!2sGenuine%20Pharmacy!5e0!3m2!1sen!2slk!4v1723483175250!5m2!1sen!2slk" 
@@ -65,7 +72,8 @@ function Contact(){
                         </iframe>
                     </div>
                 </div>
-                
+                <div className='con-form'>
+                    <h2 className='form-topic'>Send Your Message !</h2>
                 <form onSubmit={handleSubmit} className='contact-form'>
                     <input
                         type="text"
@@ -110,7 +118,30 @@ function Contact(){
                     <button type="submit" className='send-button'>Send</button>
                 </form>
                 </div>
+                </div>
             </section>
+
+            <section className='contact-others'>
+                <h1>Contact Our Branches</h1>
+                <div className='branches'>
+                    <div className='avisawella'>
+                        <div className='branch-logo'>
+                        <a href='tel:0812 202 381'><img src={Phone} alt='' className='phone-logo-branch'></img></a>
+                        <h3>Avisawella Branch</h3>
+                        <p>Contact Number : <a href='tel:0812 202 381'>081 1234567</a></p>
+                        </div>
+                    </div>
+                    <div className='udapussullawa'>
+                   
+                        <div className='branch-logo'>
+                        <a href='tel:0812 202 381'><img src={Phone} alt='' className='phone-logo-branch'></img></a>
+                        <h3>Udapussallawa Branch</h3>
+                        <p>Contact Number : <a href='tel:0812 202 381'>081 1122334</a></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <Footer/>
         </>
     );
