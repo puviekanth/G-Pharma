@@ -5,6 +5,10 @@ import Signup from './components/SignUp';
 import Home from './components/Home';
 import About from './components/about';
 import Contact from './components/Contact'
+import Profile from './components/Profile'
+import Shop from './components/Shop'
+import Ayurvedic from './components/ayurvedic'
+import Beauty from './components/beauty'
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
         <Route path="/SignUp" element={<Signup />} />
         <Route path="/About" element={<About />} />
         <Route path="/Contact" element={<Contact />} />
+        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Shop" element={<Shop />} />
+        <Route path="/Shop/ayurvedic" element={<Ayurvedic />} />
+        <Route path="/Shop/beauty" element={<Beauty />} />
       </Routes>
     </Router>
   );
