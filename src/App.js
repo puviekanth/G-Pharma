@@ -9,6 +9,12 @@ import Profile from './components/Profile'
 import Shop from './components/Shop'
 import Ayurvedic from './components/ayurvedic'
 import Beauty from './components/beauty'
+import Baby from './components/baby'
+import Machine from './components/machines'
+import Instrument from './components/instruments'
+import Vetneray from './components/vetneray'
+import Skin from './components/skin'
+import Sexual from './components/sexual'
 
 function App() {
   return (
@@ -26,6 +32,13 @@ function App() {
         <Route path="/Shop" element={<Shop />} />
         <Route path="/Shop/ayurvedic" element={<Ayurvedic />} />
         <Route path="/Shop/beauty" element={<Beauty />} />
+        <Route path="/Shop/baby" element={<Beauty />} />
+        <Route path="/Shop/multivitamins" element={<Baby />} />
+        <Route path="/Shop/machines" element={<Machine />} />
+        <Route path="/Shop/instruments" element={<Instrument />} />
+        <Route path="/Shop/vetenary" element={<Vetneray />} />
+        <Route path="/Shop/skincare" element={<Skin />} />
+        <Route path="/Shop/sexual-wellness" element={<Sexual />} />
       </Routes>
     </Router>
   );

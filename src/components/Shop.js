@@ -54,7 +54,6 @@ function Shop() {
             <li><a href="/Shop/multivitamins">Multivitamins</a></li>
             <li><a href="/Shop/machines">Medical Machines</a></li>
             <li><a href="/Shop/instruments">Medical Instruments</a></li>
-            <li><a href="/Shop/personal">Personal Care</a></li>
             <li><a href="/Shop/vetenary">Veternary Care</a></li>
             <li><a href="/Shop/skincare">Skincare Products</a></li>
             <li><a href="/Shop/sexual-wellness">Sexual Wellness</a></li>
