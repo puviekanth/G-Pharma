@@ -31,14 +31,13 @@ function Navbar() {
           <a href="/shop" className="dropdown-toggle">Shop</a>
           <ul className="dropdown-menu">
           <li><a href="/Shop/ayurvedic">Ayurvedic Products</a></li>
-            <li><a href="/Shop/beauty-products">Beauty Products</a></li>
+            <li><a href="/Shop/beaut">Beauty Products</a></li>
             <li><a href="/Shop/supports">Body Supports</a></li>
-            <li><a href="/Shop/baby-care">Baby Care</a></li>
+            <li><a href="/Shop/baby">Baby Care</a></li>
             <li><a href="/Shop/multivitamins">Multivitamins</a></li>
             <li><a href="/Shop/machines">Medical Machines</a></li>
             <li><a href="/Shop/instruments">Medical Instruments</a></li>
-            <li><a href="/Shop/personal-care">Personal Care</a></li>
-            <li><a href="/Shop/vetenary-care">Veternary Care</a></li>
+            <li><a href="/Shop/vetenary">Veternary Care</a></li>
             <li><a href="/Shop/skincare">Skincare Products</a></li>
             <li><a href="/Shop/sexual-wellness">Sexual Wellness</a></li>
           </ul>
