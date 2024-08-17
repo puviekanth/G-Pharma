@@ -50,10 +50,10 @@ function Home() {
 
 
 
-
     return (
         <>
             <NavBar />
+            <section className='body'>
             <section className='banner'>
                 <div className='with-logo'>
                     <h1>YOUR HEALTH,<br></br>YOUR WEALTH.</h1>
@@ -71,7 +71,7 @@ function Home() {
                 <h3 className='content'>Genuine Pharmacy has been dedicated to serving the community with high-quality
                 healthcare products. Our mission is to deliver life-enhancing products to your
                 doorstep, ensuring that your health is our priority.<br></br><br></br>With present busy schedules and traffic situations to customers, we have established our  “Online Pharmacy” service. Customers can log in to “Genuine Pharmacy pharmacy online” Upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs, from our “Pharmacy Online service”.</h3>
-                <button className='about-readmore'>Read More >> </button>
+                <a href='/About'><button className='about-readmore'>Read more ></button></a>
             </div>
             </div>
             </section>
@@ -89,6 +89,7 @@ function Home() {
                     </div>
                     {/* Add more slides as needed */}
                 </Slider>
+            </section>
             </section>
            
 

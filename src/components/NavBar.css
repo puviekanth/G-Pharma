@@ -2,13 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #000;
+  background-color: rgb(235, 232, 226);
+  color: #000;
   padding: 1rem;
   position: fixed; /* Make the navbar fixed */
   top: 0; /* Stick to the top of the page */
   left: 0; /* Stick to the left side */
   width: 98%; /* Make sure it spans the entire width */
   z-index: 1000; /* Ensure it stays above other content */
+  
 }
 
 .navbar-logo {
@@ -23,7 +25,7 @@
 }
 
 .navbar-logo h2 {
-  color: white;
+  color: #000;
   display: inline-block;
 }
 
@@ -39,18 +41,23 @@
   margin-right: 10px;
   position: relative;
   padding: 10px;
-  color: #fff;
+  color: #000;
 }
 
 .navbar-item:hover {
-  border: 1px dashed #fff;
+  border: 1px dashed #000;
 }
 
 .navbar-item a {
-  color: white;
+  color: #000;
   text-decoration: none;
   padding: 8px 12px;
 }
+
+.navbar-item.active {
+  border: 2px solid #000; /* Customize the border style and color */
+}
+
 
 .navButton .prescription {
   background-color: rgb(255, 227, 127);
@@ -82,7 +89,7 @@
 
 .dropdown-menu li {
   list-style: none;
-  padding: 8px 16px;
+  padding: 5px 2px;
 }
 
 .dropdown-menu li a {
