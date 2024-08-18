@@ -171,5 +171,9 @@
     margin-left: 5%;
     margin-right: 5%;
   }
+  .container a{
+    text-decoration: none;
+    color:#000;
+  }
 
 

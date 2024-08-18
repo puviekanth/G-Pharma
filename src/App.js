@@ -15,6 +15,9 @@ import Instrument from './components/instruments'
 import Vetneray from './components/vetneray'
 import Skin from './components/skin'
 import Sexual from './components/sexual'
+import Cart from './components/cart'
+import Payment from './components/Payment'
+import Individual from './components/individual'
 
 function App() {
   return (
@@ -39,6 +42,9 @@ function App() {
         <Route path="/Shop/vetenary" element={<Vetneray />} />
         <Route path="/Shop/skincare" element={<Skin />} />
         <Route path="/Shop/sexual-wellness" element={<Sexual />} />
+        <Route path="/Cart" element={<Cart />} />
+        <Route path="/Payment" element={<Payment />} />
+        <Route path="/Individual" element={<Individual />} />
       </Routes>
     </Router>
   );

@@ -50,7 +50,7 @@ function Navbar() {
         </li>
         <li className={`navbar-item ${activeLink === '/Profile' ? 'active' : ''}`}>
           <a href="/Profile">Profile</a></li>
-        <li className={`navbar-item ${activeLink === '/cart' ? 'active' : ''}`}>
+        <li className={`navbar-item ${activeLink === '/Cart' ? 'active' : ''}`}>
           <a href="/cart">Cart</a></li>
         <li className="navButton">
           {isLoggedIn ? (

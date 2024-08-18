@@ -84,12 +84,14 @@ function Shop() {
                 <section className='products'>
                     <div className='container'>
                         {filteredProducts.map(product => (
-                            <div className='pro-container' key={product.id}>
+                           <a href='./Individual'>
+                             <div className='pro-container' key={product.id}>
                                 <img src={product.image} alt={product.name} className='pro-image' />
                                 <h3 className='pro-name'>{product.name}</h3>
                                 <h4>Rs. {product.price.toLocaleString()}</h4>
                                 <button className='add-to-cart'>Add to Cart</button>
                             </div>
+                           </a>
                         ))}
                     </div>
                 </section>
