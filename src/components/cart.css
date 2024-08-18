@@ -1,0 +1,74 @@
+.cart-section{
+    margin-top: 10%;
+    margin-left: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.cart-pro-img{
+    width: 100px;
+    height: auto;
+}
+.quantity-input{
+    width: 42px;
+    padding: 5px;
+}
+td:hover{
+    background:inherit;
+}
+th,td{
+    border-right: none;
+    border-left: none;
+}
+.total{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(246, 244, 244);
+    border-radius: 15px;
+    padding: 10px;
+}
+.sub-table{
+    width: 300px;
+}
+.cart-products a{
+    text-decoration: none;
+    color: #000;
+}
+.cart-products a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.pay-btn{
+    margin-top: 30px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border:none;
+    background-color: rgb(255, 227, 127);;
+    border-radius: 25px;
+}
+.pay-btn a{
+    text-decoration: none;
+    color: #000;
+}
+.pay-btn:hover{
+    cursor: pointer;
+    animation:pulse 1s infinite;
+}
+.update-div{
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+}
+.update-btn{
+    padding: 15px;
+    background-color: rgb(255, 227, 127);;
+    margin-top: 5%;
+    border: none;
+    border-radius: 15px;
+}
+.update-btn:hover{
+    cursor: pointer;
+    animation:pulse 1s infinite;
+}

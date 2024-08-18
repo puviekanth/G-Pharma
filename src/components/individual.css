@@ -1,0 +1,24 @@
+.details-with-img{
+    margin-top: 10%;
+}
+.main-img{
+    width: 400px;
+    height: auto;
+    margin-left: 15%;
+}
+.sub-img{
+    width: 150px;
+    height: auto;
+}
+.other-imgs{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    width: 600px;
+}
+.imgs{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content:center;
+}
