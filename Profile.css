@@ -1,0 +1,19 @@
+.container {
+   margin-top: 10%;
+   text-align: left;
+   flex-direction: column;
+  }
+  .heading{
+    text-align: left;
+  }
+  .value .info .label{
+    text-align: left;
+    display: block;
+  }
+  
+ .sec{
+    font-family:   'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #000;
+}
+
+  
