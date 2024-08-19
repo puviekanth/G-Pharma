@@ -18,6 +18,7 @@ import Sexual from './components/sexual'
 import Cart from './components/cart'
 import Payment from './components/Payment'
 import Individual from './components/individual'
+import Prescription from './components/Prescription'
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Payment" element={<Payment />} />
         <Route path="/Individual" element={<Individual />} />
+        <Route path='/Add-prescription' element={<Prescription />} />
       </Routes>
     </Router>
   );
