@@ -54,11 +54,13 @@ function Navbar() {
           <a href="/cart">Cart</a></li>
         <li className="navButton">
           {isLoggedIn ? (
-            <a href="/add-prescription"><button className="prescription">Add Prescription</button></a>
+            <a href="/Add-prescription"><button className="prescription">Add Prescription</button></a>
           ) : (
             <a href="/Login"><button className="prescription">Login</button></a>
           )}
         </li>
+        <li className={`navbar-item ${activeLink === '/Add-prescription' ? 'active' : ''}`}>
+          <a href="/Add-prescription">Upload Prescription</a></li>
       </ul>
     </nav>
   );
