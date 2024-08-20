@@ -39,6 +39,11 @@ function Prescription() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Files to upload:", selectedImgs);
+    console.log("The name is :",name);
+    console.log("The email is : ",email);
+    console.log("The contact is : ",contact);
+    console.log("The address is : ",address);
+    
   };
 
   return (
@@ -142,6 +147,7 @@ Partial Prescription images will not be processed.</label>
             <li><b>Please double-check your mobile phone number before submitting the prescription. One of our pharmacists will contact you to confirm your order.</b></li>
             <li><b>Your prescription must be a valid prescription from a registered medical practitioner.</b></li>
           </ul>
+          <button className='submit btn' type='submit' />
         </div>
       </section>
       <Footer />
