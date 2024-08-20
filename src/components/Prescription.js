@@ -43,7 +43,7 @@ function Prescription() {
     console.log("The email is : ",email);
     console.log("The contact is : ",contact);
     console.log("The address is : ",address);
-    
+    console.log("The allergy is : ",allergy)
   };
 
   return (
@@ -136,6 +136,7 @@ Partial Prescription images will not be processed.</label>
               <label>Note down all the allergies if you have any.</label>
               <textarea type='text' className='allery-input' value={allergy} onChange={(e)=>{setAllergy(e.target.value)}} placeholder='Yes, enter your allergies' cols={40}/>
             </div>
+            <button className='submit-btn' type='submit' >Upload</button>
           </form>
         </div>
 
@@ -147,7 +148,7 @@ Partial Prescription images will not be processed.</label>
             <li><b>Please double-check your mobile phone number before submitting the prescription. One of our pharmacists will contact you to confirm your order.</b></li>
             <li><b>Your prescription must be a valid prescription from a registered medical practitioner.</b></li>
           </ul>
-          <button className='submit btn' type='submit' />
+          
         </div>
       </section>
       <Footer />
