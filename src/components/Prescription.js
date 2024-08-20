@@ -16,6 +16,10 @@ function Prescription() {
   const [specialNotes, setSpecialNotes] = useState('');
   const [duration, setDuration] = useState('');
 
+  const handleOptionChange = (event) => {
+    setAllergy(event.target.value);
+  };
+
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
     if (files.length > 5) {
@@ -71,17 +75,18 @@ Partial Prescription images will not be processed.</label>
               <label>Enter Your Name</label>
               <input type="text" className="name-input" value={name} onChange={(e) => setName(e.target.value)} required />
               </div>
-              <div className='sets'>
+            </div>
+            <div className='sets'>
               <label>Enter Your Email</label>
               <input type='email' className='email-input' value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
-            </div>
             <div className='contact-duration'>
               <div className='sets'>
                 <label>Enter your Contant</label>
                 <input type='text' className='contact-input' value={contact} onChange={(e) => setContact(e.target.value)} required /> 
               </div>
-              <div className='sets'>
+            </div>
+            <div className='sets'>
                 <label>Number of Days you want the medicine for</label>
                 <select value={duration} onChange={handleSelectChange} className='duration-input' required>
                   <option value="" disabled>Select an Option</option>
@@ -94,10 +99,37 @@ Partial Prescription images will not be processed.</label>
                   <option value="3 months">3 months</option>
                 </select>
               </div>
-            </div>
             <div className='address-field'>
             <label>Enter Your Delivery Address</label>
-            <input type='text' value={address} onChange={setAddress} className='address-input' required/>
+            <input type='text' value={address} onChange={(e)=>{setAddress(e.target.value)}} className='address-input' required/>
+            </div>
+            <div className='radio-buttons'>
+              <label>Do you have any allergies</label>
+              <label>
+                <input
+                  type="radio"
+                  value="Yes"
+                  checked={allergy === 'Yes'}
+                  onChange={handleOptionChange}
+                  className='rdio-btn'
+                />
+              Yes
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="No"
+                  checked={allergy === 'No'}
+                  onChange={handleOptionChange}
+                  required
+                  className='rdio-btn'
+                />
+              No
+              </label>
+            </div>
+            <div className='allergy-text'>
+              <label>Note down all the allergies if you have any.</label>
+              <textarea type='text' className='allery-input' value={allergy} onChange={(e)=>{setAllergy(e.target.value)}} placeholder='Yes, enter your allergies' cols={40}/>
             </div>
           </form>
         </div>
