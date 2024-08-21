@@ -20,8 +20,8 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-logo">
-        <img src={logo} alt="Logo" />
-        <h2>Genuine Pharmacy</h2>
+       <a href='/Home'><img src={logo} alt="Logo" /></a>
+        <a href='/Home'><h2>Genuine Pharmacy</h2></a>
       </div>
       <ul className="navbar-links">
         <li className={`navbar-item ${activeLink === '/Home' ? 'active' : ''}`}>
