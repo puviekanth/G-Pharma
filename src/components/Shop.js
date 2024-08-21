@@ -10,6 +10,7 @@ import Wheel from './images/Wheel-1.jpg'
 import Sethescope from './images/Littman-1.jpg'
 import Pressure from './images/Rossmax-1.jpg'
 import './Shop.css';
+import NAV from './SecondNavbar'
 
 function Shop() {
     const [minPrice, setMinPrice] = useState('');
@@ -40,6 +41,7 @@ function Shop() {
     return (
         <>
             <Navbar />
+            <NAV/>
             <section className='cat-pro'>
                 <section className='with-categories'>
                     <div className='heading'>
