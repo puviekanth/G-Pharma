@@ -23,7 +23,7 @@ function Contact() {
                 }
             },
             {
-                threshold: 0.25, // Trigger when 50% of the section is in view
+                threshold: 0.05, // Trigger when 50% of the section is in view
             }
         );
 
@@ -151,12 +151,13 @@ function Contact() {
                             />
                             {errors.subject && <p className="error-message">{errors.subject}</p>}
 
-                            <input
+                            <textarea
                                 type="text"
                                 className='message-input'
                                 placeholder='Your Message...'
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
+                                cols={50}
                                 required
                             />
                             {errors.message && <p className="error-message">{errors.message}</p>}

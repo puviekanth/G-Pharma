@@ -5,7 +5,7 @@ import About1 from './images/about.jpg'
 import About2 from './images/about1.jpg'
 import About3 from './images/sbout2.webp'
 import { useEffect, useState } from 'react'
-import './about.css'
+ import './about.css'
 
 
 function About(){
