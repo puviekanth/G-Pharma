@@ -1,104 +1,30 @@
-/* src/components/Login.css */
-
-.login-container {
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    overflow: hidden;
-    height: 100vh;
-  }
-  
-  .login-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
-    width: 300px;
-    background-color: rgba(182, 180, 180, 0.562); 
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.473);
-    margin-left: 10%;
-    opacity: 0; /* Start hidden for fade-in effect */
-    animation: fadeIn 1s forwards 1s; /* 1s delay */
-    margin-top: 5%;
-  }
-  
-  .login-form h2 {
-    margin-bottom: 60px;
-  }
-  
-  .login-form label {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  
-  .email-input,
-  .password-input {
+.login-form{
+    margin-top: 8%;
+}
+.Password-input{
     padding: 8px;
-    font-size: 18px;
-    width: 100%;
+    font-size: 14px;
+    width: 300px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-  }
-  
-  .login-form button {
+}
+.Email-input{
+    padding: 8px;
+    font-size: 14px;
+    width: 300px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.Login-Button{
     padding: 10px;
     font-size: 20px;
-    width: 100%;
+    width: 200px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  .login-form button a{
-    text-decoration: none;
-    color: #fff;;
-  }
-  
-  .login-form button:hover {
-    background-color: #0056b3;
-  }
-  
-  .login-name {
-    color: #fff;
-    font-size: 40px;
-  }
-  
-  .genuine {
-    font-size: 48px;
-    opacity: 0; /* Start hidden for fade-in effect */
-    animation: fadeIn 1s forwards 0.5s; /* 0.5s delay */
-  }
-  
-  .pharmacy {
-    font-size: 30px;
-    text-align: center;
-    opacity: 0; /* Start hidden for fade-in effect */
-    animation: fadeIn 1s forwards 0.5s; /* 0.5s delay */
-  }
-  
-  .logo {
-    height: 100px;
-    width: 100px;
-    margin-left: 31%;
-    opacity: 0; /* Start hidden for fade-in effect */
-    animation: fadeIn 1s forwards 0.5s; /* 0.5s delay */
-  }
-  
-  /* Fade-in animation */
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-  
+}
