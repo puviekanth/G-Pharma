@@ -21,17 +21,19 @@
    flex-direction: column;
    align-items:center;
    justify-content: center;
-   height:60vh;
+   height:80vh;
    width: 400px;
    background-color: rgba(128, 126, 126, 0.562); 
    padding: 50px;
    border-radius: 10px;
    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.473);
    margin-left: 10%;;
+   margin-top: 20%;
+   margin-bottom: 60px;
   }
   
   .login-form h2 {
-   margin-bottom: 60px;
+   margin-bottom:40px;
   }
   
   
@@ -43,11 +45,11 @@
    width: 100%;
   }
   
-  .email-input,
-  .password-input,.nic-input,.contact-input,.name-input,.dob-input,.address-input,.confirmPassword-input {
+  
+  .login-form input{
    padding: 8px;
    font-size: 14px;
-   width: 100%;
+   width: 300px;
    margin-bottom: 10px;
    border: 1px solid #ccc;
    border-radius: 5px;
@@ -100,4 +102,7 @@
 
   .email-input{
     margin-top: -8%;
+  }
+  .withLOGO{
+    margin-top: 10%;
   }

@@ -5,7 +5,7 @@ import Promo1 from './images/Hedone-1924.jpg';
 import Promo2 from './images/Baby_Carelink_l.jpg';
 import Promo3 from './images/Diabetasol_LL.jpg';
 import NavBar from './NavBar';
-import './Home.css';
+ import './Home.css';
 import AboutLogo from './images/about.jpg'
 import { useEffect } from 'react'
 import NewArrivals from './NewArrivals' 

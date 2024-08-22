@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './SignUp.css';
 import logoImage from './images/Screenshot 2024-08-02 203142.png';
 import Navbar from './NavBar';
+import Footer from './Footer'
 
 function SignUp(){
   const [email, setEmail] = useState('');
@@ -162,6 +163,7 @@ function SignUp(){
           <p>Already registered? <a href='/Login'>Login</a></p>
         </form>
       </div>
+      <Footer/>
     </>
   );
 }

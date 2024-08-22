@@ -64,8 +64,8 @@
     padding: 10px;
     background-color: rgb(255, 227, 127);
     color: #000;
-    font-weight: bold;
     border-radius: 15px;
+    font-weight: normal;
     border: none;
 }
 
@@ -167,7 +167,7 @@
     margin-bottom: 6%;
     margin-right: 5%;
     margin-left: 5%;
-    font-size: 24px;
+    font-size: 18px;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
     background-color:rgb(255, 236, 173); ;
     display: flex;
