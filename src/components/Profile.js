@@ -19,8 +19,11 @@ function Profile() {
         <>
             <NavBar />
             <div className='profile-container'>
-                <section className='pic'>
-                    <img src="" class="rounded" alt="Cinque Terre"></img>
+                <section className='Pic'>
+                    <div>
+                        <img src=''  alt='pic'></img>
+                    </div>
+                    <button className='changePic-button'>Change Picture</button>
                 </section>
                 <section className='profile-section'>
                     <h1>Profile</h1>
@@ -31,7 +34,7 @@ function Profile() {
                         <div><strong>Phone Number:</strong> {user.phoneNumber}</div>
                         <div><strong>NIC:</strong> {user.nic}</div>
                     </div>
-                   <a href=''><button className='signout-button'>Sign Out</button></a> 
+                    <button className='signout-button'>Sign Out</button>
                 </section>
 
                 <section className='address-section'>

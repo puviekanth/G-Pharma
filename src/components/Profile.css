@@ -1,3 +1,56 @@
+
+
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-top: 10%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+  
+  .profile-section,
+  .address-section,
+  .pic{
+    width: 48%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  
+  .profile-info,
+  .address-info,
+  .pic {
+    margin-bottom: 20px;
+  }
+  
+  .profile-info div,
+  .address-info div,
+  .pic div {
+    margin-bottom: 10px;
+  }
+  
+  button.signout-button,
+  button.edit-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #e3efa4;
+    color: rgb(19, 18, 18);
+    border-radius: 4px;
+    cursor: pointer;
+    
+  }
+  
+  button.signout-button:hover,
+  button.edit-button:hover {
+    background-color: #0056b3;
+  }
+
 .profile-container {
   display: flex;
   justify-content: space-between;
@@ -32,7 +85,8 @@ h1 {
 }
 
 button.signout-button,
-button.edit-button {
+button.edit-button,
+button.changePic-button {
   padding: 10px 15px;
   border: none;
   background-color: #e3efa4;
@@ -43,6 +97,11 @@ button.edit-button {
 }
 
 button.signout-button:hover,
-button.edit-button:hover {
+button.edit-button:hover,
+button.changePic-button:hover {
   background-color: #0056b3;
 }
+
+
+
+
