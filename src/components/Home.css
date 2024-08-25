@@ -2,7 +2,7 @@
 @import '~slick-carousel/slick/slick-theme.css';
 
 .body{
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .banner {
@@ -223,6 +223,168 @@
 }
 
 
+/* Mobile devices */
+@media only screen and (max-width: 400px) {
+    .banner h1 {
+        font-size: 32px; /* Reduce the font size for smaller screens */
+        margin-top: 20%;
+        margin-left: 5%;
+    }
+
+    .logo {
+        height: 150px; /* Smaller logo for mobile */
+        width: 150px;
+        margin-top: 10%;
+        margin-right: 5%;
+    }
+
+    .small-phrase {
+        font-size: 16px; /* Adjust the phrase size */
+        margin-left: 5%;
+    }
+
+    .shop {
+        width: 80px; /* Adjust button size */
+        font-size: 16px;
+        margin-left: 5%;
+    }
+
+    .about {
+        margin-top: 30%;
+        font-size: 24px;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .about-pic {
+        width: 100%; /* Make the image full width */
+        margin-top: 10%;
+    }
+
+    .about-readmore {
+        width: 80%; /* Adjust the button size */
+        margin-top: 10%;
+        margin-right: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .with-logo {
+        flex-direction: column; /* Stack logo and text */
+        align-items: center;
+        margin-bottom: 0;
+    }
+
+    .content {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
 
 
+/* Tablets */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .banner h1 {
+        font-size: 48px; /* Adjust the font size */
+        margin-top: 15%;
+        margin-left: 4%;
+    }
+
+    .logo {
+        height: 200px; /* Adjust logo size */
+        width: 200px;
+        margin-top: 10%;
+        margin-right: 4%;
+    }
+
+    .small-phrase {
+        font-size: 20px;
+        margin-left: 4%;
+    }
+
+    .shop {
+        width: 90px;
+        font-size: 20px;
+        margin-left: 4%;
+    }
+
+    .about {
+        margin-top: 25%;
+        font-size: 32px;
+        margin-right: 20%;
+    }
+
+    .about-pic {
+        width: 300px;
+        margin-top: 12%;
+    }
+
+    .about-readmore {
+        width: 150px;
+        margin-top: 15%;
+        margin-right: 5%;
+    }
+
+    .with-logo {
+        margin-bottom: 5px;
+    }
+
+    .content {
+        margin-left: 7%;
+        margin-right: 7%;
+    }
+}
+
+/* Desktops and laptops */
+@media only screen and (min-width: 1025px) {
+    .banner h1 {
+        font-size: 64px;
+        margin-top: 10%;
+        margin-left: 2%;
+    }
+
+    .logo {
+        height: 300px;
+        width: 300px;
+        margin-top: 8%;
+        margin-right: 2%;
+    }
+
+    .small-phrase {
+        font-size: 24px;
+        margin-left: 2%;
+    }
+
+    .shop {
+        width: 100px;
+        font-size: 24px;
+        margin-left: 2%;
+    }
+
+    .about {
+        margin-top: 20%;
+        font-size: 40px;
+        margin-right: 40%;
+    }
+
+    .about-pic {
+        width: 400px;
+        margin-top: 15%;
+    }
+
+    .about-readmore {
+        width: 200px;
+        margin-top: 20%;
+        margin-right: 10%;
+    }
+
+    .with-logo {
+        margin-bottom: 10px;
+    }
+
+    .content {
+        margin-left: 9%;
+        margin-right: 5%;
+    }
+}
 
