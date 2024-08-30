@@ -62,28 +62,7 @@ function Navbar() {
         </ul>
       </nav>
 
-      {/* Action Bar for mobile devices */}
-      <div className="action-bar">
-        <div className="action-item">
-          <a href="/Home">Home</a>
-        </div>
-        <div className="action-item">
-          <a href="/shop">Shop</a>
-        </div>
-        <div className="action-item">
-          <a href="/Profile">Profile</a>
-        </div>
-        <div className="action-item">
-          <a href="/cart">Cart</a>
-        </div>
-        <div className="action-item">
-          {isLoggedIn ? (
-            <a href="/Add-prescription"><button className="action-btn">+</button></a>
-          ) : (
-            <a href="/Login"><button className="action-btn">Login</button></a>
-          )}
-        </div>
-      </div>
+      
     </>
   );
 }

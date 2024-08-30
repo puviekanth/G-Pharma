@@ -1,5 +1,5 @@
-/* General Styles */
-.navbar {
+
+ .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,7 +107,7 @@
 
 .dropdown:hover .dropdown-menu {
   display: block;
-}
+} 
 
 /* Mobile Devices (max-width: 400px) */
 @media only screen and (max-width: 400px) {

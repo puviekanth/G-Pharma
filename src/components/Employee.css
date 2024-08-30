@@ -1,0 +1,193 @@
+.App {
+    text-align: center;
+  }
+  
+  h2{
+    color:#d44102 ;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  }
+  .employee-form {
+    width: 80%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .employee-list, .employee-form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #F4F4F4;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10%;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .form-group label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #264653;
+  }
+  
+  .form-group input {
+    width: 40%;
+    padding: 5px;
+    box-sizing: content-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button[type='submit'] {
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: #fff;
+    background-color: #FFB133;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  button[type='submit']:hover {
+    background-color: #d44102;
+  }
+  
+  .employee-search {
+    margin-left: 0%;
+    margin-top: 20px;
+  }
+  
+  .employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+  }
+  
+  .employee-list th, .employee-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .employee-list th {
+    background-color: #ff8000;
+    color: #fff;
+    font-weight: bold;
+  }
+  
+  .employee-list td {
+    vertical-align: middle;
+  }
+  
+  .edit-btn, .delete-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    font-weight: bold;
+  }
+  
+  .edit-btn {
+    background-color: #d48702;
+    color: #fff;
+  }
+  
+  .edit-btn:hover {
+    background-color: #E9C46A;
+  }
+  
+  .delete-btn {
+    background-color: #E76F51;
+    color: #fff;
+  }
+  
+  .delete-btn:hover {
+    background-color: #B5422B;
+  }
+  
+  .with-categories {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    width: 150px;
+    height: 100vh;
+    background-color: #FFB133;
+    color: #fff;
+  }
+  
+  .categories ul li {
+    list-style: none;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .categories ul li a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .categories ul li {
+    text-decoration: solid;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .categories ul {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+  }
+  
+  .content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .categories ul li:hover {
+    color: #d44102;
+    text-decoration-line: underline;
+  }
+  
+  .icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-left: 25px;
+  }
+  
+  .profile-icon, .signout-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    padding: 10px;
+    cursor: pointer;
+    height: 70vh;
+    color: #fff;
+  }
+  
+  .profile-icon:hover, .signout-icon:hover {
+    color: #d44102;
+  }
+  
+  
+  
