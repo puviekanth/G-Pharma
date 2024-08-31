@@ -13,6 +13,9 @@
     background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url("./images/daniel-frank-wKbWAMlHgNo-unsplash.jpg");
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     opacity: 1;
+    background-size: cover; /* This makes the image cover the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat;
     
     
 }
@@ -225,8 +228,125 @@
     animation: slideInUp 1s forwards;
 }
 
-@media only screen and (max-width: 430px){
+
+
+
+/*Media Queries*/
+
+@media only screen and (max-width: 430px){  /*phone*/
+    .banner{
+        height: 80vh;
+        
+        background-size: cover; /* This makes the image cover the entire area */
+    background-position: center; /* This centers the image */
+    background-repeat: no-repeat;
+       
+    }
+    .banner h1{
+        font-size: 6vw;
+        margin-top: 40%;
+    }
+    .small-phrase {
+        width: 300px;
+        margin-top: 20px;
+        font-size: 4vw;
+        margin-left: 2%;
+        color: #fff;
+    }
+    .shop {
+        border-radius: 15px;
+        width: 75px;
+        font-size: 4vw;
+        margin-left: 2%;
+        margin-top: 2%;
+        background-color: rgb(255, 227, 127);
+        color: #000;
+        
+        
+        position: relative;
+        transition: all 0.3s ease;
+         
+    }
     
+     .shop:hover {
+        animation: pulse 1s infinite;
+        cursor: pointer;
+    } 
+    .about{
+        font-size: 4vw;
+        margin-left: 35px;
+        
+        
+    }
+    .content{
+        font-size: 4vw;
+        font-weight: normal;
+        width: 350px;   
+        
+    }
+    .about-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .about-pic{
+        width: 150px;
+        height: auto;
+
+    }
+    .about-with-img{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    } 
+    .about-readmore{
+        width: 150px;
+        font-size: 4vw;
+        font-weight: normal;
+        margin-right: 20px;
+    }
+
+
+    
+}
+
+@media only screen and (min-width: 500px) and (max-width: 790px){
+    .banner h1{
+        font-size: 8vw;
+        margin-top: 40%;
+    }
+    .small-phrase {
+        width: 450px;
+        margin-top: 20px;
+        font-size: 4vw;
+        margin-left: 2%;
+        color: #fff;
+    }
+    .about-pic{
+        width: 250px;
+        height: auto;
+
+    }
+    .about{
+        font-size: 3vw;
+        margin-right: 50%;
+    }
+    .content{
+        font-size: 2vw;
+        font-weight: normal;
+         width: 200px;
+         margin-right: 40%;
+        
+    }
+    .about-readmore{
+        margin-right:150px;
+        font-size: 2vw;
+        font-weight: normal;
+    }
+    
+
 }
 
 
