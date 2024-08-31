@@ -236,7 +236,7 @@
 @media only screen and (max-width: 430px){  /*phone*/
     .banner{
         height: 80vh;
-        
+        background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url("./images/daniel-frank-wKbWAMlHgNo-unsplash.jpg");
         background-size: cover; /* This makes the image cover the entire area */
     background-position: center; /* This centers the image */
     background-repeat: no-repeat;
@@ -247,7 +247,7 @@
         margin-top: 40%;
     }
     .small-phrase {
-        width: 300px;
+        width: 280px;
         margin-top: 20px;
         font-size: 4vw;
         margin-left: 2%;

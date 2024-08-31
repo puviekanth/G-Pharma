@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './AddProductForm.css'; 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
+import UserIcon from './images/icons8-male-user-32.png'
+import SignOut from './images/icons8-sign-out-48.png'
 
 
         <div className="content-wrapper">
@@ -15,10 +15,10 @@ import { faUser, faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
             </ul>
             <div className="icon">
                 <div className='profile-icon'>
-                    <FontAwesomeIcon icon={faUser} size="2x" />
+                    <img src={UserIcon} alt='User-Icon' className='User-Icon' />
                 </div>
                 <div className='signout-icon'>
-                    <FontAwesomeIcon icon={faSignOutAlt} size="2x" />
+                    <img src={SignOut} alt='SignOut' className='SignOut' />
                 </div>
             </div>
             </div>
