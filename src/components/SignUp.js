@@ -3,6 +3,8 @@ import './SignUp.css';
 import logoImage from './images/Screenshot 2024-08-02 203142.png';
 import Navbar from './NavBar';
 import Footer from './Footer'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function SignUp(){
   const [email, setEmail] = useState('');
@@ -15,6 +17,7 @@ function SignUp(){
   const [nic, setNic] = useState('');
 
   const [errors, setErrors] = useState({});
+  const Navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
@@ -53,15 +56,11 @@ function SignUp(){
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      // Handle form submission logic here
-      console.log('Email:', email);
-      console.log('Full Name:', name);
-      console.log('Password:', password);
-      console.log('Confirm Password:', confirmPassword);
-      console.log('Contact:', contact);
-      console.log('Address:', address);
-      console.log('Date of Birth:', dob);
-      console.log('NIC:', nic);
+      axios.post('http://127.0.0.1:3000/signup',{name,email,password,address,dob,nic,contact})
+      .then(result => {console.log(result)
+        Navigate('/Login')
+      })
+      .catch(err=>console.log(err))
     }
   };
 
@@ -133,7 +132,7 @@ function SignUp(){
             type="text"
             className='address-input'
             placeholder='Address'
-            value={address}
+            value={address}s
             onChange={(e) => setAddress(e.target.value)}
             required
           />

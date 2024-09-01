@@ -130,7 +130,7 @@ nav .menu span {
 }
 
 /* Mobile view */
-@media only screen and (max-width: 430px) {
+@media only screen and (max-width: 790px) {
   nav .menu {
     display: flex;
   }
