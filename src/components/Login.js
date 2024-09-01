@@ -3,16 +3,24 @@ import Navbar from './NavBar'
 import Footer from './Footer'
 import Logo from './images/Screenshot 2024-08-02 203142.png'
 import './Login.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Login(){
 
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Email : ',email);
-        console.log('Password : ',password)
+        axios.post('http://127.0.0.1:3000/login',{email,password})
+        .then(result=>{console.log(result)
+            if(result.data==="Success"){
+                navigate('/Home')
+            }
+        })
+        .catch(err=>console.log(err))
     };
     return(
         <>
