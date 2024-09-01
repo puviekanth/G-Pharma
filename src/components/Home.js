@@ -9,6 +9,7 @@ import NavBar from './NavBar';
 import AboutLogo from './images/about.jpg'
 import { useEffect } from 'react'
 import NewArrivals from './NewArrivals' 
+import { Link } from 'react-router-dom';
 
 import Footer from './Footer.js'
 
@@ -59,7 +60,7 @@ function Home() {
                     <h1>YOUR HEALTH,<br></br>YOUR WEALTH.</h1>
                 </div>
                 <h3 className='small-phrase'>Delivering all your life enhancers to your doorstep</h3>
-                <button className='shop'>Order</button>
+                <Link to='/Shop' className='shop'>Shop</Link>
             </section>
 
             <section className='about-section'>
