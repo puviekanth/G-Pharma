@@ -14,6 +14,7 @@ import Wheel from './images/Wheel-1.jpg'
 import Sethescope from './images/Littman-1.jpg'
 import Pressure from './images/Rossmax-1.jpg'
 import Newsimg from './images/young-handsome-physician-medical-robe-with-stethoscope.jpg'
+import axios from 'axios';
 
 
 
@@ -27,9 +28,11 @@ function NewArrivals() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Email:', email);
-    
+   
+    axios.post('http://127.0.0.1:3000/newsletter', { email })
+    .then(result => console.log(result))
+    .catch(err => console.log(err));
+
   };
 
 

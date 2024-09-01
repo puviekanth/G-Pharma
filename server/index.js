@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const CustomerModel = require('./model/Customer');
+const NewsletterModel = require('./model/Newsletter')
 
 
 const app = express();
@@ -12,7 +13,14 @@ mongoose.connect("mongodb://127.0.0.1:27017/customers")
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error("Failed to connect to MongoDB", err));
 
+    app.post('/newsletter', (req, res) => {
+        NewsletterModel.create(req.body)
+            .then(customers => res.json(customers))
+            .catch(err => res.json(err));
+    });
     
+    
+
     app.post('/login',(req,res)=>{
         const {email,password} = req.body;
         CustomerModel.findOne({email:email})
@@ -34,6 +42,8 @@ app.post('/signup', (req, res) => {
         .then(customers => res.json(customers))
         .catch(err => res.json(err));
 });
+
+
 
 
 
