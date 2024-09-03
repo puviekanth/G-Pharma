@@ -59,7 +59,7 @@ onClick={() => setMenuOpen(!menuOpen)}
   <a href="/Home">Home</a>
 </li>
 <li className={`navbar-item dropdown ${activeLink.includes('/shop') ? 'active' : ''}`}>
-  <a href="/shop" className="dropdown-toggle">Shop</a>
+  <a href="/shop" className="dropdown-toggle">Shop ▼</a>
   <ul className="dropdown-menu">
     <li><a href="/Shop/ayurvedic">Ayurvedic Products</a></li>
     <li><a href="/Shop/beaut">Beauty Products</a></li>

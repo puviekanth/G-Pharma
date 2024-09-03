@@ -17,6 +17,7 @@
 .categories ul li a{
     text-decoration: none;
     color: #000;
+    margin-left: 7px;
 }
 .categories ul a:hover{
     text-decoration: underline;
