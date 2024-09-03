@@ -10,13 +10,13 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    background: linear-gradient(rgba(0,0,0,0.75),rgba(0,0,0,0.75)),url("./images/daniel-frank-wKbWAMlHgNo-unsplash.jpg");
+    background: linear-gradient(rgba(0, 0, 0, 0.75),rgba(139, 139, 139, 0.75)),url("./images/pexels-n-voitkevich-7526012.jpg");
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     opacity: 1;
     background-size: cover; /* This makes the image cover the entire area */
     background-position: center; /* This centers the image */
     background-repeat: no-repeat;
-    
+    z-index: 1;
     
 }
 
@@ -51,16 +51,16 @@
 }
 
 .shop {
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 10px;
-    width: 100px;
+    width: 200px;
     font-size: 14px;
     margin-left: 2%;
     margin-top: 2%;
     background-color: rgb(255, 227, 127);
     color: #000;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 20px;
     position: relative;
     transition: all 0.3s ease;
      
