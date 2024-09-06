@@ -2,6 +2,7 @@ import React from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
 import './Profile.css';
+import Logo from './images/Blue_and_White_Flat_Illustrative_Health_Products_Logo-removebg-preview.png'
 
 function Profile() {
     const user = {
@@ -18,29 +19,12 @@ function Profile() {
     return (
         <>
             <NavBar />
-            <div className='profile-container'>
-                <section className='profile-section'>
-                    <h1>Profile</h1>
-                    <div className='profile-info'>
-                        <div><strong>Name:</strong> {user.fullName}</div>
-                        <div><strong>Email:</strong> {user.email}</div>
-                        <div><strong>Date of Birth:</strong> {user.dateOfBirth}</div>
-                        <div><strong>Phone Number:</strong> {user.phoneNumber}</div>
-                        <div><strong>NIC:</strong> {user.nic}</div>
-                    </div>
-                    <button className='signout-button'>Sign Out</button>
-                </section>
-
-                <section className='address-section'>
-                    <h1>Address</h1>
-                    <div className='address-info'>
-                        <div><strong>Address:</strong> {user.address}</div>
-                        <div><strong>City:</strong> {user.city}</div>
-                        <div><strong>Postal Code:</strong> {user.postalCode}</div>
-                    </div>
-                    <button className='edit-button'>Edit Details</button>
-                </section>
-            </div>
+           <section className='profile-section'>
+                <div className='img-logout'>
+                    <div className='profile-pic'><img src={Logo} alt='profile-pix'></img></div>
+                    <button className='sign-out'>Sign Out</button>
+                </div>
+           </section>
             <Footer />
         </>
     );
