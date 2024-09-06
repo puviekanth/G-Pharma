@@ -3,7 +3,7 @@
     background-color: rgb(189, 185, 180);
     padding: 20px;
     background-color: #f1f1f1;
-    height: 130vh;
+    height: 100vh;
     
 }
 
@@ -177,9 +177,11 @@
     
 }
 
+
 .links h3{
     text-align: left;
     padding-right: 10px;
+    margin-left: -50px;
 }
 .link-item a{
     text-decoration:none;
@@ -192,12 +194,14 @@
 }
 
 .branches-block{
-    display: flex;
+    display: block;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 4%;
+    margin-top: 2%;
+    
 }
+
 .branch-item{
     list-style: none;
     margin-top: 20px;
@@ -220,7 +224,7 @@
 
 .cp{
     width: 100%;
-    margin-top: 11%;
+    margin-top: 7%;
     text-align: center;
     background-color: #bdbbbb9a;
     padding: 10px;

@@ -59,12 +59,13 @@ nav .menu span {
   background-color: #fff;
 }  
 
-ul {
+#navbar-links {
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 0; /* Ensure no extra space around the list */
   margin: 0; /* Ensure no extra space around the list */
+ 
 }
 
 ul li {
@@ -119,9 +120,11 @@ ul li a:hover::after {
   margin-right: -120px;
   width: 80px;
   margin-top: 10px;
+  padding: 10px;
 }
 #signupbtn{
   width: 80px;
+  padding: 10px;
   margin-top: 10px;
 }
 .prescription:hover{
