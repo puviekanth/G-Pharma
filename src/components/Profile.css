@@ -1,3 +1,6 @@
+.profile-pic{
+  margin-top:15vh;
+}
 .img-logout{
   display: flex;
   flex-direction: column;
@@ -5,7 +8,103 @@
   justify-content: center;
 }
 .sign-out{
-  margin-top: 30vh;
+  margin-top: 15vh;
   padding: 10px;
-  /* background-color: ; */
+  border-radius: 10px;
+  background: rgb(255, 227, 127);;
+  border:4px solid #fff;
+  font-size: 14px;
+  width: 120px;
+}
+.sign-out:hover{
+  cursor: pointer;
+  border:3px solid rgb(255, 227, 127);
+  background:transparent;
+  animation: pulse 1s infinite;
+}
+.user-details{
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: center;
+}
+.img-details{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+} 
+.btn-edit{
+  width: 70px;
+  margin-left: 10vw;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background: transparent;
+  border:4px solid rgb(255, 227, 127);
+}
+.btn-edit:hover{
+  cursor: pointer;
+  background-color: rgb(255, 227, 127);
+  border: 4px solid #fff;
+}
+
+
+
+.btn-save{
+  width: 70px;
+  margin-left: 10vw;
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgb(255, 227, 127);;
+  border:4px solid #fff;
+}
+.btn-save:hover{
+  cursor: pointer;
+  background-color: transparent;
+  border: 4px solid rgb(255, 227, 127);
+}
+.name, .email, .contact , .nic, .address{
+  width:200px;
+  padding: 5px;
+  font-size: 14px;
+}
+.order-img{
+  width: 100px;
+  height: auto;
+}
+.order-Summary-all{
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ margin-top: 5%;
+}
+.individual-orders{
+  margin-top: 3%;
+}
+.individual-orders tbody{
+  background-color: rgb(246, 244, 244);;
+}
+.delete-btn{
+  margin-top: 10vh;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgb(254, 149, 147);;
+  border:4px solid #fff;
+  font-size: 14px;
+  width: 200px;
+  font-weight: bold;
+}
+.view-orders{
+  margin-top: 3vh;
+  padding: 10px;
+  border-radius: 10px;
+  background: rgb(255, 227, 127);;
+  border:4px solid #fff;
+  font-size: 14px;
+  width: 250px;
+}
+.view-orders:hover{
+  cursor: pointer;
 }
