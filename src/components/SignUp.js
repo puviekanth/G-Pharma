@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import './SignUp.css';
 import logoImage from './images/Screenshot 2024-08-02 203142.png';
