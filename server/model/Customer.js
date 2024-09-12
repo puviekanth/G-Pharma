@@ -7,7 +7,9 @@ const CustomerSchema = new mongoose.Schema({
     dob:String,
     address:String,
     contact:Number,
-    nic:String
+    nic:String,
+    token:String,
+    
 })
 
 const CustomerModel = mongoose.model("customers",CustomerSchema)
