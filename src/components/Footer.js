@@ -36,7 +36,7 @@ function Footer() {
                     <h4><a href='tel:0812 202 381'>081 2202381</a></h4>
                 </div>
                 <div className='mail'>
-                    <img src={ Email } alt='' className='email'></img>
+                    <img src={ Email } alt='' className='emaill'></img>
                     <h4><a href='mailto:genuinepharmaceuticals@gmail.com'>genuinepharmaceuticals@gmail.com</a></h4>
                 </div>
                 <div className='social-media-links'>

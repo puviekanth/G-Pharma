@@ -9,26 +9,12 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState(''); // State for error message
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://127.0.0.1:3000/login', { email, password })
-            .then(result => {
-                console.log(result);
-                if (result.data === "Success") {
-                    navigate('/Home');
-                } else {
-                    setErrorMessage('Incorrect email or password. Try again.'); // Set error message
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                setErrorMessage('Something went wrong. Please try again.'); // Handle server error
-            });
-    };
-
+    }
     return (
         <>
             <Navbar />
@@ -61,7 +47,7 @@ function Login() {
                     />
                     <button type='submit' className='Login-Button'>Login</button>
                     
-                    {errorMessage && <p className='error-message'>{errorMessage}</p>} {/* Conditionally render error message */}
+                    {errorMessage && <p className='error-message'>{errorMessage}</p>}
                     
                     <p><a href='/SignUp'>Don't have an account? Sign Up</a></p>
                 </form>
