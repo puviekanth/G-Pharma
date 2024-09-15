@@ -106,3 +106,10 @@
   .withLOGO{
     margin-top: 10%;
   }
+  .error{
+    background-color: #ff5757;
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }

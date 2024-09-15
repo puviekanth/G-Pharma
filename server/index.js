@@ -40,10 +40,16 @@ app.post('/signup', async (req, res) => {
         // Respond with success
         res.status(200).json({ message: 'User Created Successfully', user: newUser });
     } catch (e) {
-        console.error("Internal Error", e);
-        res.status(500).json({ error: 'Error in creating user' });
+        if (e.code === 11000) { // MongoDB error for duplicate key
+            // Duplicate email or NIC error
+            res.status(400).json({ error: "Email or NIC already exists." });
+        } else {
+            console.error("Email or NIC already exists.", e);
+            res.status(500).json({ error: 'Email or NIC Already exists.' });
+        }
     }
 });
+
 
 // Start the server
 app.listen(3000, () => {

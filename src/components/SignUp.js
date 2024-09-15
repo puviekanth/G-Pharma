@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './SignUp.css';
 import logoImage from './images/Screenshot 2024-08-02 203142.png';
@@ -7,7 +6,7 @@ import Footer from './Footer'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-function SignUp(){
+function SignUp() {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +17,8 @@ function SignUp(){
   const [nic, setNic] = useState('');
 
   const [errors, setErrors] = useState({});
-  const Navigate = useNavigate();
+  const [serverError, setServerError] = useState(''); // New state for server-side error
+  const navigate = useNavigate();
 
   const validateForm = () => {
     const newErrors = {};
@@ -57,11 +57,18 @@ function SignUp(){
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      axios.post('http://127.0.0.1:3000/signup',{name,email,password,address,dob,nic,contact})
-      .then(result => {console.log(result)
-        Navigate('/Login')
-      })
-      .catch(err=>console.log(err))
+      axios.post('http://127.0.0.1:3000/signup', { name, email, password, address, dob, nic, contact })
+        .then(result => {
+          console.log(result);
+          navigate('/Login');
+        })
+        .catch(err => {
+          if (err.response && err.response.data && err.response.data.error) {
+            setServerError(err.response.data.error); // Set server error message
+          } else {
+            setServerError('An unexpected error occurred');
+          }
+        });
     }
   };
 
@@ -78,6 +85,8 @@ function SignUp(){
         </div>
         <form onSubmit={handleSubmit} className='login-form'>
           <h2 className='login-name'>Register</h2>
+
+          
 
           <input
             type="email"
@@ -133,7 +142,7 @@ function SignUp(){
             type="text"
             className='address-input'
             placeholder='Address'
-            value={address}s
+            value={address}
             onChange={(e) => setAddress(e.target.value)}
             required
           />
@@ -158,12 +167,13 @@ function SignUp(){
             required
           />
           {errors.nic && <p className="error">{errors.nic}</p>}
+          {serverError && <p className="error">{serverError}</p>} {/* Display server error */}
 
           <button type="submit" className='login-button'>Register</button>
           <p>Already registered? <a href='/Login'>Login</a></p>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
