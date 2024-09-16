@@ -4,6 +4,7 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const CustomerModel = require('./model/Customer');
+const { Navigate } = require('react-router');
 
 const app = express();
 app.use(express.json());
@@ -49,6 +50,29 @@ app.post('/signup', async (req, res) => {
         }
     }
 });
+
+//login route
+app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await CustomerModel.findOne({ email: email });
+        if (!user) {
+            return res.status(404).json({ error: 'No User Found, please register.' });
+        }
+
+        // Correctly await bcrypt.compare for password comparison
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (isMatch) {
+            return res.status(200).json({ message: 'Logged in successfully' });
+        } else {
+            return res.status(401).json({ error: 'Invalid username or password' });
+        }
+    } catch (err) {
+        return res.status(500).json({ error: 'Server error' });
+    }
+});
+
 
 
 // Start the server

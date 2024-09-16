@@ -14,7 +14,21 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        axios.post('http://127.0.0.1:3000/login', { email, password })
+            .then(response => {
+                console.log(response);
+                navigate('/Home'); 
+            })
+            .catch(error => {
+                if (error.response && error.response.data && error.response.data.error) {
+                    setErrorMessage(error.response.data.error); 
+                } else {
+                    setErrorMessage('Something went wrong. Please try again.');
+                }
+            });
     }
+    
     return (
         <>
             <Navbar />
@@ -45,9 +59,10 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)} 
                         required 
                     />
+                    {errorMessage && <p className='error'>{errorMessage}</p>}
                     <button type='submit' className='Login-Button'>Login</button>
                     
-                    {errorMessage && <p className='error-message'>{errorMessage}</p>}
+                    
                     
                     <p><a href='/SignUp'>Don't have an account? Sign Up</a></p>
                 </form>

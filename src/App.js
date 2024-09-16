@@ -20,6 +20,7 @@ import Cart from './components/cart'
 import Payment from './components/Payment'
 import Individual from './components/individual'
 
+
 function App() {
   return (
     <Router>
@@ -46,6 +47,7 @@ function App() {
         <Route path="/Cart" element={<Cart />} />
         <Route path="/Payment" element={<Payment />} />
         <Route path="/Individual" element={<Individual />} />
+        
       </Routes>
     </Router>
   );
