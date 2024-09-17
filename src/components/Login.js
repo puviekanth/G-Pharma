@@ -17,6 +17,7 @@ function Login() {
         
         axios.post('http://127.0.0.1:3000/login', { email, password })
             .then(response => {
+                localStorage.setItem('token',response.data.token)
                 console.log(response);
                 navigate('/Home'); 
             })
@@ -26,6 +27,7 @@ function Login() {
                 } else {
                     setErrorMessage('Something went wrong. Please try again.');
                 }
+                navigate('/Login');
             });
     }
     

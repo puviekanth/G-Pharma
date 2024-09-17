@@ -5,21 +5,50 @@ import './Profile.css';
 import Logo from './images/Blue_and_White_Flat_Illustrative_Health_Products_Logo-removebg-preview.png';
 import Product1 from './images/Glutanex-Tablets-100.jpeg';
 import Product2 from './images/Eventone-C-Cream-300x300.jpg';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
+
 
 function Profile() {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [contact, setContact] = useState('');
-    const [address, setAddress] = useState('');
-    const [nic, setNIC] = useState('');
     const [isEditing, setIsEditing] = useState(false);
+    const navigate = useNavigate();
+    const [userDetails, setUserDetails] = useState({
+        name: '',
+        email: '',
+        contact: '',
+        address: '',
+        nic: ''
+    });
 
-   
 
-    const handleEmailChange = (e) => setEmail(e.target.value);
-    const handleContactChange = (e) => setContact(e.target.value);
-    const handleAddressChange = (e) => setAddress(e.target.value);
-    const handleSave = () => setIsEditing(false);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            navigate('/Login');
+        } else {
+            axios.get('http://127.0.0.1:3000/Profile', {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+                .then(response => {
+                    setUserDetails(response.data); // Set the user details correctly
+                })
+                .catch(error => {
+                    if (error.response && error.response.status === 500) {
+                        navigate('/Login');
+                    } else {
+                        console.log('Failed to fetch user details', error);
+                        
+                    }
+                });
+        }
+    }, [navigate]);
+
+    const handleSave = () => {
+        setIsEditing(false);
+       
+    };
+    
+
 
     return (
         <>
@@ -39,41 +68,48 @@ function Profile() {
                             <tbody>
                                 <tr>
                                     <td>Name</td>
-                                    <td><input type="text" className="name" value={name} disabled /></td>
+                                    <td><input type="text" className="name" value={userDetails.name} disabled /></td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    {isEditing ? (
-                                        <td><input type="email" className="email" onChange={handleEmailChange} value={email} /></td>
-                                    ) : (
-                                        <td>{email}</td>
-                                    )}
+                                    <td>
+                                        {isEditing ? (
+                                            <input type="email" className="email" value={userDetails.email} onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} />
+                                        ) : (
+                                            <span>{userDetails.email}</span>
+                                        )}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Contact</td>
-                                    {isEditing ? (
-                                        <td><input type="number" className="contact" onChange={handleContactChange} value={contact} /></td>
-                                    ) : (
-                                        <td>{contact}</td>
-                                    )}
+                                    <td>
+                                        {isEditing ? (
+                                            <input type="number" className="contact" value={userDetails.contact} onChange={(e) => setUserDetails({ ...userDetails, contact: e.target.value })} />
+                                        ) : (
+                                            <span>{userDetails.contact}</span>
+                                        )}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Address</td>
-                                    {isEditing ? (
-                                        <td><textarea className="address" type="text" onChange={handleAddressChange} value={address} /></td>
-                                    ) : (
-                                        <td>{address}</td>
-                                    )}
+                                    <td>
+                                        {isEditing ? (
+                                            <textarea className="address" value={userDetails.address} onChange={(e) => setUserDetails({ ...userDetails, address: e.target.value })} />
+                                        ) : (
+                                            <span>{userDetails.address}</span>
+                                        )}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>NIC Number</td>
-                                    <td><input className="nic" type="text" value={nic} disabled /></td>
+                                    <td><input className="nic" type="text" value={userDetails.nic} disabled /></td>
                                 </tr>
+                               
                                 <tr>
                                     {isEditing ? (
-                                        <button onClick={handleSave} className="btn-save">Save</button>
+                                        <td colSpan="2"><button onClick={handleSave} className="btn-save">Save</button></td>
                                     ) : (
-                                        <button onClick={() => setIsEditing(true)} className="btn-edit">Edit</button>
+                                        <td colSpan="2"><button onClick={() => setIsEditing(true)} className="btn-edit">Edit</button></td>
                                     )}
                                 </tr>
                             </tbody>
