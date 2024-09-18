@@ -96,6 +96,10 @@
   width: 200px;
   font-weight: bold;
 }
+.delete-btn:hover{
+  cursor: pointer;
+  animation: pulse 1s infinite;
+}
 .view-orders{
   margin-top: 3vh;
   padding: 10px;
@@ -108,4 +112,5 @@
 .view-orders:hover{
   cursor: pointer;
 }
+
 

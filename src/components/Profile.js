@@ -19,7 +19,7 @@ function Profile() {
         address: '',
         nic: ''
     });
-
+    
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -44,11 +44,53 @@ function Profile() {
     }, [navigate]);
 
     const handleSave = () => {
-        setIsEditing(false);
+
+        const token = localStorage.getItem('token');
+        axios.post('http://127.0.0.1:3000/updateProfile', {
+            name: userDetails.name,
+            contact: userDetails.contact,
+            address: userDetails.address,
+            email:userDetails.email
+        }, {
+            headers: { Authorization: `Bearer ${token}` } // Send the token in the headers
+        })
+        .then(response =>{
+            
+            console.log('User Updated Successfully',response);
+            setIsEditing(false);
+
+           
+        })
+        .catch(err=>{
+            console.log('Something went wrong',err);
+        })
+        
        
     };
-    
 
+    const handlesignout =() =>{
+        localStorage.removeItem('token');
+        navigate('/Login');
+    }
+
+    const handleDelete = () => {
+        const token = localStorage.getItem('token');
+        axios.delete('http://127.0.0.1:3000/deleteUser', {
+            headers: { Authorization: `Bearer ${token}` },
+            data: { email: userDetails.email } // Include email in the `data` field
+        })
+        .then(response => {
+            localStorage.removeItem('token'); // Remove token after successful deletion
+            console.log('User Deleted Successfully', response);
+            navigate('/Signup'); // Redirect to Signup page after account deletion
+        })
+        .catch(error => {
+            console.log('Something went wrong', error);
+        });
+    };
+    
+    
+    
 
     return (
         <>
@@ -59,22 +101,28 @@ function Profile() {
                         <div className="profile-pic-div">
                             <img src={Logo} alt="profile-pix" className="profile-pic" />
                         </div>
-                        <button className="sign-out">Sign Out</button>
-                        <button className="delete-btn">Delete Account</button>
+                        <button className="sign-out" onClick={handlesignout}>Sign Out</button>
+                        <button className="delete-btn" onClick={handleDelete} >Delete Account</button>
                     </div>
                     <div className="user-details">
                         <h2>Profile Details</h2>
                         <table className="user-details">
                             <tbody>
                                 <tr>
+
                                     <td>Name</td>
-                                    <td><input type="text" className="name" value={userDetails.name} disabled /></td>
+                                    <td> {isEditing ? (
+                                            <input className="name" value={userDetails.name} onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })} />
+                                        ) : (
+                                            <span>{userDetails.name}</span>
+                                        )}
+                                        </td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
                                     <td>
                                         {isEditing ? (
-                                            <input type="email" className="email" value={userDetails.email} onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} />
+                                            <input type="email" className="email" value={userDetails.email} onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} disabled/>
                                         ) : (
                                             <span>{userDetails.email}</span>
                                         )}
@@ -104,6 +152,7 @@ function Profile() {
                                     <td>NIC Number</td>
                                     <td><input className="nic" type="text" value={userDetails.nic} disabled /></td>
                                 </tr>
+                               
                                
                                 <tr>
                                     {isEditing ? (
