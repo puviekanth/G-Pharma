@@ -120,6 +120,45 @@ app.get('/Profile',authenticateJWT, async (req,res)=>{
 })
 
 
+//profile update route
+app.post('/updateProfile', authenticateJWT, async (req, res) => {
+    try {
+        const email = req.user.email; 
+        const { name, contact, address } = req.body;
+        const updatedUser = await CustomerModel.findOneAndUpdate(
+            { email: email },  
+            { name, contact, address },
+            { new: true }  
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User Not Found' });
+        }
+        return res.status(200).json({ message: 'User Updated Successfully', updatedUser });
+    } catch (error) {
+        console.log('Error updating profile', error);
+        return res.status(500).json({ error: 'Failed to update profile' });
+    }
+});
+
+//delete user
+app.delete('/deleteUser', authenticateJWT, async (req, res) => {
+    try {
+        const email = req.user.email; // Extracted from the JWT token
+        const deleteUser = await CustomerModel.findOneAndDelete({ email });
+
+        if (!deleteUser) {
+            return res.status(500).json({ error: 'No user found' });
+        }
+        return res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.log('Failed to delete user', error);
+        return res.status(500).json({ error: 'Failed to delete user.' });
+    }
+});
+
+
+
+
 
 
 // Start the server
