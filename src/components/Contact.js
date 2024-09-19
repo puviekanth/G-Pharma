@@ -4,13 +4,16 @@ import Navbar from './NavBar';
 import Footer from './Footer';
 import Phone from './images/telephone.png';
 import Location from './images/placeholder.png';
+import axios from 'axios'
 
 function Contact() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [subject, setSubject] = useState('');
     const [message, setMessage] = useState('');
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState('');
+    const [successMsg,setSuccessMsg] = useState('');
+    const [errorMsg,setErrorMsg] = useState('');
 
     useEffect(() => {
         const contactSection = document.querySelector('.contact-us');
@@ -58,10 +61,19 @@ function Contact() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log('Email:', email);
-            console.log('Full Name:', name);
-            console.log('Subject:', subject);
-            console.log('Message:', message);
+           axios.post('http://127.0.0.1:3000/contact',{name,email,subject,message})
+           .then(response =>{
+                console.log(response);
+                setSuccessMsg(response.data.message);
+           })
+           .catch(error=>{
+            console.log(error);
+            setErrorMsg(error.response.data.error);
+           })
+          
+        }
+        else{
+           setErrorMsg('Invalid Form Submission');
         }
     };
 
@@ -162,6 +174,9 @@ function Contact() {
                             />
                             {errors.message && <p className="error-message">{errors.message}</p>}
 
+
+                            {errorMsg && <p className='error'>{errorMsg}</p>}
+                            {successMsg && <p className='success'>{successMsg}</p>}
                             <button type="submit" className='send-button'>Send</button>
                         </form>
                     </div>

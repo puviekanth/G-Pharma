@@ -22,7 +22,8 @@ function SignUp() {
 
   const validateForm = () => {
     const newErrors = {};
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+(\.admin)?@genuinepharmacy\.com$|^[^\s@]+@(gmail\.com|outlook\.com|hotmail\.com|icloud\.com)$/;
+
     const nicRegex = /^[0-9]{9}[Vv]$/; // Assuming NIC format is 9 digits followed by 'V' or 'v'
 
     if (!email || !emailRegex.test(email)) {

@@ -145,7 +145,7 @@ function NewArrivals() {
             <div className='news-img'>
     <div className='newsletter-div'>
         <h3>Subscribe to Newsletter for more updates!</h3>
-        <form className='newsletter-form' onSubmit={handleSubmit}>
+        <form className='newsletter-form' value={email} onSubmit={handleSubmit}>
             <input
                 type="email"
                 className='email-input'
