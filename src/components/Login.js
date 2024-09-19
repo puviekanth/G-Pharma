@@ -19,7 +19,12 @@ function Login() {
             .then(response => {
                 localStorage.setItem('token',response.data.token)
                 console.log(response);
-                navigate('/Home'); 
+                if(response.data.user.email.endsWith('.admin@genuinepharmacy.com')){
+                    navigate('/Admin');
+                }
+                else{
+                    navigate('/Home');
+                }
             })
             .catch(error => {
                 if (error.response && error.response.data && error.response.data.error) {

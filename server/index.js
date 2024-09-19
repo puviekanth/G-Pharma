@@ -7,7 +7,10 @@ const saltRounds = 10;
 const CustomerModel = require('./model/Customer');
 const { Navigate } = require('react-router');
 const jwt = require('jsonwebtoken');
+const NewsletterModel = require('./model/Newsletter');
 const secretKey = process.env.JWT_PRIVATE_KEY;
+const ContactModel = require('./model/ContactModel');
+const AdminModel = require('./model/AdminModel');
 
 const app = express();
 app.use(express.json());
@@ -48,6 +51,19 @@ app.post('/signup', async (req, res) => {
         const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
         // Store the user details in the customers collection
+       if(email.endsWith('.admin@genuinepharmacy.com')){
+        const adminUser = await AdminModel.create({
+            name,
+            password: encryptedPassword,
+            email,
+            contact,
+            address,
+            dob,
+            nic
+        });
+        res.status(200).json({ message: 'User Created Successfully', user: adminUser });
+       }
+       else{
         const newUser = await CustomerModel.create({
             name,
             password: encryptedPassword,
@@ -60,6 +76,7 @@ app.post('/signup', async (req, res) => {
 
         // Respond with success
         res.status(200).json({ message: 'User Created Successfully', user: newUser });
+       }
     } catch (e) {
         if (e.code === 11000) { // MongoDB error for duplicate key
             // Duplicate email or NIC error
@@ -76,6 +93,24 @@ app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        if(email.endsWith('.admin@genuinepharmacy.com')){
+            const admin = await AdminModel.findOne({email:email});
+            if(!admin){
+                return res.status(404).json({error:'No admin Found'});
+            }
+            const isMatch = await bcrypt.compare(password, admin.password);
+            if (isMatch) {
+                // Generate JWT token
+                const token = jwt.sign({ email: admin.email }, secretKey, { expiresIn: '1h' });
+    
+                // Return token along with success message
+                return res.status(200).json({ message: 'Logged in successfully', token: token ,user:admin });
+            } else {
+                return res.status(401).json({ error: 'Invalid username or password' });
+            }
+
+        }
+       else{
         const user = await CustomerModel.findOne({ email: email });
         if (!user) {
             return res.status(404).json({ error: 'No User Found, please register.' });
@@ -88,10 +123,11 @@ app.post('/login', async (req, res) => {
             const token = jwt.sign({ email: user.email }, secretKey, { expiresIn: '1h' });
 
             // Return token along with success message
-            return res.status(200).json({ message: 'Logged in successfully', token: token });
+            return res.status(200).json({ message: 'Logged in successfully', token: token ,user:user });
         } else {
             return res.status(401).json({ error: 'Invalid username or password' });
         }
+       }
     } catch (err) {
         return res.status(500).json({ error: 'Server error' });
     }
@@ -155,6 +191,53 @@ app.delete('/deleteUser', authenticateJWT, async (req, res) => {
         return res.status(500).json({ error: 'Failed to delete user.' });
     }
 });
+
+
+//newsletter route
+app.post('/newsletter', async (req, res) => {
+    try {
+        const { email } = req.body; // Extract email from req.body
+
+        if (!email) {
+            return res.status(400).json({ error: 'Email is required' }); // Validate the presence of email
+        }
+
+        const news = await NewsletterModel.create({ email });
+
+        if (!news) {
+            return res.status(500).json({ error: 'Could not subscribe to newsletter' });
+        }
+
+        return res.status(200).json({ message: 'Successfully subscribed to the newsletter' });
+    } catch (error) {
+        console.log('Failed to subscribe:', error);
+        return res.status(500).json({ error: 'Failed to subscribe' });
+    }
+});
+
+
+//contact route
+app.post('/contact',  async (req,res)=>{
+   try {
+    const {name,email,subject,message} = req.body;
+    if(!name || !email|| !subject || !message){
+        return res.status(401).json({error:'Please provide valid details.'})
+    }
+
+    const contact = await ContactModel.create({
+        name,email,subject,message
+    });
+
+    if(!contact){
+        return res.status(401).json({error:'Could create and upload the contact form'})
+    }
+
+    return res.status(201).json({message:'Response Sent Successfully'});
+   } catch (error) {
+    console.log(error);
+    res.status(401).json({error:'Server error'});
+   }
+})
 
 
 
