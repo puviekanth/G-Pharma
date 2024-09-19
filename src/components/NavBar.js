@@ -14,7 +14,15 @@ function Navbar() {
   const [search,setSearch]=useState('');
 
   useEffect(() => {
-    const loggedInStatus = localStorage.getItem('isLoggedIn') === 'true';
+    const loggedInStatus =()=>{
+      const token = localStorage.getItem('token');
+      if(!token){
+        return false;
+      }
+      else{
+        return true;
+      }
+    } ;
     setIsLoggedIn(loggedInStatus);
     setActiveLink(location.pathname);
   }, [location.pathname]);
