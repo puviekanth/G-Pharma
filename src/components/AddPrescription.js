@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import './AddPrescription.css'
+import Prescription from './images/prescription.jpg'
+import Navbar from './NavBar'
+import Footer from './Footer'
 
 function AddPrescription() {
     const [selectedImages, setSelectedImages] = useState([]);
@@ -6,6 +10,14 @@ function AddPrescription() {
     const [name, setName] = useState('');
     const [contact,setContact] = useState('');
     const [patientName,setPatientName] = useState('');
+    const [patientAge,setPatientAge] = useState('');
+    const [date,setDate] = useState('');
+    const [delivery,setDelivery] = useState('');
+    const [email,setEmail] = useState('');
+    const [city,setCity] = useState('');
+    const [duration,setDuration] = useState('');
+    const [GenderselectedOption,setGenderSelectedOption] = useState('');
+    const [AllergyselectedOpion,setAllergySelectedOption] = useState('');
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -38,7 +50,11 @@ function AddPrescription() {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+        <Navbar/>
+        <section className='presc'>
+       
+            <form onSubmit={handleSubmit} className='prescription-form'>
+                
                 <h3>Please Select 3 clear images of your prescription before uploading</h3>
                 <input
                     type='file'
@@ -62,20 +78,63 @@ function AddPrescription() {
                     ))}
                 </div>
 
+               <h2>Personal Information</h2>
+               <div className='email'>
+                        <p>As part of security, your email will be recorded</p>
+                        <input className='email-input' type='email' value={email} onChange={(e)=>{setEmail(e.target.value)}} disabled />
+                    </div>
+               
+                <div className='name-contact'>
                 <div className='name'>
-                    <label>Your Name</label>
-                    <input type='text' className='name-input' value={name} onChange={(e)=>{setName(e.target.value)}} required/>
+                    <p>Your Name</p>
+                    <input className='name-input' type='text' value={name} onChange={(e)=>{setName(e.target.value)}} required />
                 </div>
-                <div>
-                    <label>Your Contact Number</label>
-                    <input type='number' className='contact-input' value={contact} onChange={(e)=>{setContact(e.target.value)}} required/>
+                <div className='contact'>
+                        <p>Your Contact Number</p>
+                        <input className='contact-input' type='number' value={contact} onChange={(e)=>{setContact(e.target.value)}} required />
+                    </div>
                 </div>
-                <h4 className='Prescription-details'>Prescription Information</h4>
-                <div className='patient-name'>
-                    <label>Patient Name</label>
-                    <input type='text' className='patient-name-input' value={patientName} onChange={(e)=>{setPatientName(e.target.value)}} required />
+                <h2>Prescription Information</h2>
+                <div className='patient-info'>
+                    <div className='patient-name'>
+                        <p>Patient Name</p>
+                        <input className='patient-name-input' type='text' value={patientName} onChange={(e)=>{setPatientName(e.target.value)}} required />
+                    </div>
+                    <div className='patient-age'>
+                        <p>Patient Age</p>
+                        <input className='patient-age-input' type='number' value={patientAge} onChange={(e)=>{setPatientAge(e.target.value)}} required />
+                    </div>
+                    
+                </div>
+                
+                 <div className='gender'>
+                    <p>Patient Gender</p>
+                    <input className='gender-input' type='radio' name='gender' value='Male' onChange={(e)=>{setGenderSelectedOption(e.target.value)}} /><label>Male</label>
+                    <input className='gender-input' type='radio' name='gender' value='Female' onChange={(e)=>{setGenderSelectedOption(e.target.value)}} /><label>Female</label>
+                </div>
+                <div className='allergy'>
+                    <p>Any Allergy to Medicine</p>
+                    <input className='allergy-input' type='radio' name='allergy' value='Yes' onChange={(e)=>{setAllergySelectedOption(e.target.value)}}/><label>Yes</label>
+                    <input className='allergy-input' type='radio' name='allergy' value='No' onChange={(e)=>{setAllergySelectedOption(e.target.value)}} /><label>No</label>
+                </div>
+                <h2>Delivery Information</h2>
+                <div className='delivery-info'>
+                <div className='delivery-address'>
+                    <p>Your Delivery Address</p>
+                    <input className='delivery-address-input' type='text' value={delivery} onChange={(e)=>{setDelivery(e.target.value)}} required />
+                </div>
+                <div className='delivery-city'>
+                    <p>Delivery City</p>
+                    <input className='delivery-city-input' type='text' value={city} onChange={(e)=>{setCity(e.target.value)}} required />
+                </div>
+                </div>
+                <div className='duration'>
+                    <p>The Duration Medicine Needed for </p>
+                    <input type='text' className='duration-input' value={duration} onChange={(e)=>{setDuration(e.target.value)}} required />
                 </div>
 
+                    
+               
                 {/* Display error message if any */}
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
@@ -84,6 +143,20 @@ function AddPrescription() {
                     <button type='submit'>Submit</button>
                 )}
             </form>
+
+            <section className='disclaimer'>
+            <h2>Simply Upload Your Prescription</h2>
+                <img src={Prescription} className='prescription-img' alt='' />
+                
+                <ul className='ul'>
+                    <li>You can upload up to 3 photos.</li>
+                    <li>Please upload a full, clear photo of your prescription.</li>
+                    <li>Please double check your mobile phone number before submitting the prescription. One of our pharmacists will contact you to confirm your order.</li>
+                    <li>Your prescription must be a valid prescription from a registered medical practitioner.</li>
+                </ul>
+            </section>
+            </section>
+            <Footer />
         </>
     );
 }
