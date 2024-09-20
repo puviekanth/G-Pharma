@@ -140,7 +140,7 @@ function AddPrescription() {
 
                 {/* Only show the Submit button if there are no errors */}
                 {!errorMessage && (
-                    <button type='submit'>Submit</button>
+                    <button type='submit' className='upload-btn'>Upload</button>
                 )}
             </form>
 
