@@ -11,10 +11,29 @@ const NewsletterModel = require('./model/Newsletter');
 const secretKey = process.env.JWT_PRIVATE_KEY;
 const ContactModel = require('./model/ContactModel');
 const AdminModel = require('./model/AdminModel');
+const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
+const multer = require('multer');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/prescription'); // Save files to 'uploads/prescriptions' folder
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Append date and file extension to the file name
+    }
+});
+
+// Upload middleware to accept 3 files at most
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
+}).array('prescription', 3); 
 
 // Connect to MongoDB with the genuine-pharmacy database
 mongoose.connect("mongodb://localhost:27017/genuine-pharmacy", {
@@ -240,7 +259,56 @@ app.post('/contact',  async (req,res)=>{
 })
 
 
+//add prescription route
+app.post('/addPrescription', authenticateJWT, (req, res) => {
+    
+    // Use multer middleware for file upload
+    upload(req, res, async (err) => {
+        if (err) {
+            return res.status(400).json({ error: 'File upload error: ' + err.message });
+        }
 
+        try {
+            // Extract the data from the form submission
+            const { email, Username, Contact, PatientName, PatientAge, PatientGender, Allergy, DeliveryAddress, DeliveryCity, Duration } = req.body;
+
+            // Create a new Prescription document
+            const newPrescription = new PrescriptionModel({
+                prescription: req.files.map(file => file.path), // Store paths of uploaded images
+                email,
+                Username,
+                Contact,
+                PatientName,
+                PatientAge,
+                PatientGender,
+                Allergy,
+                DeliveryAddress,
+                DeliveryCity,
+                Duration
+            });
+
+            // Save the prescription to the database
+            await newPrescription.save();
+            res.status(201).json({ message: 'Prescription submitted successfully', prescription: newPrescription,email:email });
+        } catch (error) {
+            res.status(500).json({ error: 'Error saving prescription: ' + error.message });
+        }
+    });
+});
+
+//get the email in the add prescription page
+app.get('/email',authenticateJWT,async (req,res)=>{
+    try {
+        const email = req.user.email
+    const user = await CustomerModel.findOne({email});
+    if(!user){
+        return res.status(500).json({error:'No User Found.'})
+    }
+    res.status(200).json({message:'USer found successfully',email:email});
+    } catch (error) {
+        return res.status(500).json({error:'Server Error'})
+    }
+})
 
 
 
