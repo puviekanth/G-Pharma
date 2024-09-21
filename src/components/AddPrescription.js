@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './AddPrescription.css'
 import Prescription from './images/prescription.jpg'
 import Navbar from './NavBar'
 import Footer from './Footer'
+import axios from 'axios';
 
 function AddPrescription() {
     const [selectedImages, setSelectedImages] = useState([]);
@@ -11,13 +12,31 @@ function AddPrescription() {
     const [contact,setContact] = useState('');
     const [patientName,setPatientName] = useState('');
     const [patientAge,setPatientAge] = useState('');
-    const [date,setDate] = useState('');
+    
     const [delivery,setDelivery] = useState('');
     const [email,setEmail] = useState('');
     const [city,setCity] = useState('');
     const [duration,setDuration] = useState('');
     const [GenderselectedOption,setGenderSelectedOption] = useState('');
     const [AllergyselectedOpion,setAllergySelectedOption] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.log('No token found');
+            return;
+        }
+        axios.get('http://127.0.0.1:3000/email', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(response => {
+            setEmail(response.data.email);
+        })
+        .catch(err => {
+            console.log('Failed to retrieve the email.', err);
+        });
+    }, []); // Empty array ensures the effect runs only once after initial render.
+    
 
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -42,10 +61,37 @@ function AddPrescription() {
         setErrorMessage('');
         setSelectedImages(files);
     };
+    
 
     const handleSubmit = (e) => {
         e.preventDefault();
         // Handle the form submission logic here
+        const formData = new FormData();
+        selectedImages.forEach((file) => {
+            formData.append('prescription', file);
+        });
+        formData.append('Username', name);
+        formData.append('email', email);
+        formData.append('Contact', contact);
+        formData.append('PatientName', patientName);
+        formData.append('PatientAge', patientAge);
+        formData.append('PatientGender', GenderselectedOption);
+        formData.append('Allergy', AllergyselectedOpion);
+        formData.append('DeliveryAddress', delivery);
+        formData.append('DeliveryCity', city);
+        formData.append('Duration', duration);
+
+        try {
+            const response =  axios.post('http://127.0.0.1:3000/addPrescription', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    Authorization: `Bearer ${localStorage.getItem('token')}`, // Send token for authentication
+                },
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error('Failed to submit prescription:', error.response.data);
+        }
     };
 
     return (
