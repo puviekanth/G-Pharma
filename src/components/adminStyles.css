@@ -1,0 +1,154 @@
+.orders-container {
+    padding: 10px;
+    max-width: 50%;
+    margin: auto;
+  }
+  
+  /* Individual order items */
+  .order-item {
+    border: 2px solid rgb(163, 144, 31); /* Gold border around each order */
+    border-radius: 8px;     /* Rounded corners */
+    padding: 15px;
+    margin-bottom: 20px;    /* Space between orders */
+    background-color: #f9f9f9; /* Light background for better contrast */
+  }
+  
+  /* Heading for each order */
+  .order-item h2 {
+    color: #0a090459    ; /* Gold color for text */
+  }
+  
+  /* Paragraph text in the orders */
+  .order-item p {
+    color: #DAA520; /* Darker shade of gold */
+    margin: 5px 0;  /* Small margin for spacing */
+  }
+  
+  /* Prescription list */
+  .prescription-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Individual prescription items */
+  .prescription-item {
+    color: #ffd90082; /* Gold color for prescription text */
+    padding: 5px 0; /* Padding between prescription items */
+  }
+  
+  /* Delete and status buttons */
+  button {
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: #DAA520; /* Dark gold button background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #B8860B; /* Darker gold on hover */
+  }
+  
+  input[type="text"] {
+    padding: 5px;
+    margin-top: 10px;
+    border: 1px solid #DAA520;
+    border-radius: 4px;
+    color: #333;
+  }
+
+  .orders-container {
+    padding: 20px;
+  }
+  
+  .order-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .create-order-btn, .delete-order-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .delete-order-btn {
+    background-color: #dc3545;
+  }
+  
+  .create-order-btn:hover, .delete-order-btn:hover {
+    opacity: 0.8;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%; /* Adjust width to be responsive */
+    max-width: 600px; /* Set a maximum width for larger screens */
+    max-height: 80vh; /* Limit the height to be responsive */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative;
+  }
+  
+  /* Close Button */
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    background: none;
+    border: none;
+    color: #333; /* Adjust color to fit the design */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .submit-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .submit-btn:hover {
+    opacity: 0.8;
+  }
