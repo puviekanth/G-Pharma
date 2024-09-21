@@ -14,6 +14,7 @@ const AdminModel = require('./model/AdminModel');
 const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
 const multer = require('multer');
 const path = require('path');
+const Order = require('./model/orderModel');
 
 const app = express();
 app.use(express.json());
@@ -310,6 +311,72 @@ app.get('/email',authenticateJWT,async (req,res)=>{
     }
 })
 
+
+// GET route to fetch all orders
+app.get('/orders', async (req, res) => {
+    try {
+      const orders = await Order.find();
+      res.json(orders);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching orders' });
+    }
+  });
+  
+  // POST route to create a new order
+  app.post('/orders', async (req, res) => {
+    try {
+      const orderData = req.body;
+  
+      // Generate a new orderId based on the highest existing orderId + 1
+      const highestOrder = await Order.findOne().sort({ orderId: -1 });
+      const newOrderId = highestOrder ? highestOrder.orderId + 1 : 1;
+      orderData.orderId = newOrderId;
+  
+      const newOrder = new Order(orderData);
+      await newOrder.save();
+      res.status(201).json(newOrder);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  });
+  
+  // DELETE route to delete an order
+  app.delete('/orders/:orderId', async (req, res) => {
+      try {
+        const orderId = parseInt(req.params.orderId, 10);
+        const result = await Order.deleteOne({ orderId: orderId });
+    
+        if (result.deletedCount === 0) {
+          return res.status(404).json({ error: 'Order not found' });
+        }
+        
+        res.status(200).json({ message: 'Order deleted successfully' });
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+  });
+  
+  // PUT route to update the status of an order
+  app.put('/orders/:orderId/status', async (req, res) => {
+      try {
+        const orderId = parseInt(req.params.orderId, 10);
+        const { status } = req.body;
+    
+        const result = await Order.findOneAndUpdate(
+          { orderId: orderId },
+          { status: status },
+          { new: true } // Return the updated document
+        );
+    
+        if (!result) {
+          return res.status(404).json({ message: 'Order not found' });
+        }
+    
+        res.json(result);
+      } catch (err) {
+        res.status(500).json({ error: err.message });
+      }
+    });
 
 
 // Start the server
