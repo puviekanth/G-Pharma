@@ -1,0 +1,83 @@
+html, body {
+    margin: 0;
+    height: 100%;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: rgba(255, 227, 127);
+    padding: 20px;
+    height: 100%; /* Full height of the container */
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 10px;
+    margin: 10px 0;
+    background-color: white;
+    color: orange;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    
+  }
+  
+  .sidebar .icon {
+    margin-top: auto; /* Pushes the icons to the bottom */
+    display: flex;
+    justify-content: space-around;
+    color: white;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: white;
+    color: orange;
+    overflow-y: auto; /* Allows scrolling if content is too long */
+  }
+  
+  input {
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: rgba(255, 227, 127);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .product-list {
+    margin-top: 20px;
+  }
+  
+  .product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }
+  
+  
