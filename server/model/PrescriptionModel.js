@@ -14,6 +14,6 @@ const PrescriptionSchema = new mongoose.Schema({
     Duration:String
 });
 
-const PrescriptionModel = mongoose.model('order', PrescriptionSchema);
+const PrescriptionModel = mongoose.model('Prescription-order', PrescriptionSchema);
 
 module.exports = PrescriptionModel;

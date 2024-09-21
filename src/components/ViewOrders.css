@@ -1,0 +1,32 @@
+.navs{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 20vh;
+}
+.profile-icon{
+    width: 40px;
+    height: auto;
+    margin-left: 5vw;
+}
+.signout-icon{
+    width: 40px;
+    height: auto;
+    margin-left: 4vw;
+}
+.signOut-profile{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    margin-top: 20vh;
+}
+.side-navbar{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    background-color: #ccc;
+    height: 100vh;
+}
