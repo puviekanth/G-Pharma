@@ -14,11 +14,13 @@ const AdminModel = require('./model/AdminModel');
 const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
 const multer = require('multer');
 const path = require('path');
-const Order = require('./model/orderModel');
+
 
 const app = express();
 app.use(express.json());
 app.use(cors());
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 const storage = multer.diskStorage({
@@ -285,7 +287,8 @@ app.post('/addPrescription', authenticateJWT, (req, res) => {
                 Allergy,
                 DeliveryAddress,
                 DeliveryCity,
-                Duration
+                Duration,
+                status:'New'
             });
 
             // Save the prescription to the database
@@ -310,6 +313,35 @@ app.get('/email',authenticateJWT,async (req,res)=>{
         return res.status(500).json({error:'Server Error'})
     }
 })
+
+app.get('/PrescriptionOrdersGet', async (req, res) => {
+    try {
+        const prescriptions = await PrescriptionModel.find(); // Get all prescriptions
+        console.log(prescriptions);
+        if (!prescriptions.length) {
+            return res.status(400).json({ error: 'No Prescriptions found' });
+        }
+
+        const prescriptionData = prescriptions.map(prescription => ({
+            orderID: prescription._id,
+            prescriptions:prescription.prescription,
+            username: prescription.Username,
+            userContact: prescription.Contact,
+            useremail: prescription.email,
+            PatientName: prescription.PatientName,
+            PatientAge: prescription.PatientAge,
+            PatientGender: prescription.PatientGender,
+            PatientAllergy: prescription.Allergy,
+            DeliveryAddress: prescription.DeliveryAddress,
+            DeliveryCity: prescription.DeliveryCity,
+            Duration: prescription.Duration,
+        }));
+
+        res.status(200).json(prescriptionData);
+    } catch (error) {
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 
 
 

@@ -11,7 +11,8 @@ const PrescriptionSchema = new mongoose.Schema({
     Allergy:String,
     DeliveryAddress:String,
     DeliveryCity:String,
-    Duration:String
+    Duration:String,
+    status:String
 });
 
 const PrescriptionModel = mongoose.model('Prescription-order', PrescriptionSchema);

@@ -1,32 +1,180 @@
-.navs{
+.navs {
     display: flex;
     flex-direction: column;
-    align-items: baseline;
-    justify-content: center;
-    margin-top: 20vh;
+    align-items: start; /* Align links to the start of the container */
+    margin-top: 10px; /* Adjust margin to move links closer to the top */
+    padding-left: 20px; /* Add padding for spacing from the left */
 }
-.profile-icon{
-    width: 40px;
+
+.profile-icon {
+    width: 45px;
     height: auto;
     margin-left: 5vw;
 }
-.signout-icon{
+
+.signout-icon {
     width: 40px;
     height: auto;
     margin-left: 4vw;
 }
-.signOut-profile{
+.signOut-profile {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-around;
-    margin-top: 20vh;
+    margin-bottom: 20px; /* Adjust the margin to fit at the bottom */
 }
-.side-navbar{
+.side-navbar {
     width: 300px;
+    height: 100vh; /* Full height */
+    position: fixed; /* Fixed sidebar at the top */
+    top: 0; /* Start from the top */
+    left: 0; /* Align to the left */
+    background-color: rgb(255, 227, 127);
     display: flex;
     flex-direction: column;
-    align-items: baseline;
-    justify-content: center;
-    background-color: #ccc;
-    height: 100vh;
+    justify-content: space-between; /* Spread content between top and bottom */
+    padding-top: 20px; /* Add padding to the top */
+    z-index: 100; /* Ensure it stays on top of other elements */
 }
+
+.admin-items {
+    font-weight: bold;
+    margin-bottom: 20px; /* Space between each item */
+    cursor: pointer;
+}
+
+.prescrip,.prod{
+    width: 200px;
+    text-align: center;
+     height: 70px; 
+}
+.prescription-orders,.product-orders{
+    margin-top: 25px;
+    
+}
+.prescription-orders a, .product-orders a{
+    text-decoration: none;
+    color: #000;
+}
+.prod{
+    background-color: #ececec;
+}
+.prescrip{
+    border: 3px solid #000;
+}
+.prod:hover{
+    cursor: pointer;
+    border: 3px solid #000;
+    
+}
+.prescrip:hover{
+    cursor: pointer;
+}
+.products-prescription-nav{
+    width: 400px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(255, 227, 127);
+    
+}  
+.img1 , .img2, .img3 {
+    width:150px;
+    height: auto;
+    margin-top: 15px;
+}
+.img1:hover,.img2:hover,.img3:hover{
+    cursor: pointer;
+}
+.images-cont{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Modal container */
+/* Adjust modal to ensure it works properly */
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+}
+
+/* Modal content */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Close button */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+.admin-Order-details{
+     display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center; 
+}
+.img-details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btns{
+    width: 20vw;
+    display: flex;
+    align-items:center;
+    justify-content: space-around;
+    margin-top: 15px;
+    margin-left: 30px;
+}
+.order-cont{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+} 
+.interface {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 20px; /* Adjust padding to align with top of page */
+}
+.orders {
+    display: flex;
+    margin-left: 300px; /* Adjust so the content does not overlap with the sidebar */
+    padding: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+

@@ -21,6 +21,8 @@ import Payment from './components/Payment'
 import Individual from './components/individual'
 import Orders from './components/ViewOrders'
 import Prescription from './components/AddPrescription'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function App() {

@@ -19,6 +19,7 @@ function AddPrescription() {
     const [duration,setDuration] = useState('');
     const [GenderselectedOption,setGenderSelectedOption] = useState('');
     const [AllergyselectedOpion,setAllergySelectedOption] = useState('');
+    const[successMSG,setSuccessMSG] = useState('');
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -31,6 +32,7 @@ function AddPrescription() {
         })
         .then(response => {
             setEmail(response.data.email);
+            setSuccessMSG(response.data.message);
         })
         .catch(err => {
             console.log('Failed to retrieve the email.', err);
@@ -185,7 +187,9 @@ function AddPrescription() {
                 {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
                 {/* Only show the Submit button if there are no errors */}
-                {!errorMessage && (
+                {successMSG && <p className='success'>{successMSG}</p>}
+                {!errorMessage && ( 
+                   
                     <button type='submit' className='upload-btn'>Upload</button>
                 )}
             </form>
