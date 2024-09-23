@@ -187,20 +187,20 @@
     width: 150px;
     height: 50px;
 }
-/* .new{
+/* .processing{
     background-color:  rgb(255, 227, 127);
 } */
-.processing,.completed{
+.new,.completed{
     background-color: #ececec;
 }
 .processing{
     border-right: 1px solid #000;
     border-left: 1px solid #000;
 }
-.new:hover{
+.processing:hover{
     cursor: pointer;
 }
-.processing:hover, .completed:hover{
+.new:hover, .completed:hover{
     background-color: rgb(255, 227, 127);
     cursor: pointer;
 }

@@ -5,7 +5,7 @@ import Img1 from './images/img3.jpg';
 import Img2 from './images/pexels-n-voitkevich-7526012.jpg';
 import Img3 from './images/about1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './ViewOrders.css';
+import './adminPrescriptionProcessing.css';
 import axios from 'axios';
 
 function ViewOrders() {
@@ -22,7 +22,7 @@ function ViewOrders() {
     const [prescriptionOrderDetails, setPrescriptionOrderDetails] = useState([]);
 
 useEffect(() => {
-    axios.get('http://127.0.0.1:3000/PrescriptionOrdersGet')
+    axios.get('http://127.0.0.1:3000/PrescriptionOrdersGetProcessing')
         .then(response => {
             setPrescriptionOrderDetails(response.data); // Now stores an array
         })
@@ -69,12 +69,10 @@ const handleOrderProcessing = (orderID) => {
                         </div>
                     </div>
                     <div className='process-complete'>
-                    <div className='new' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
-                        <a href='/orders'>
-                            <p className='new-prescriptions'>New</p>
-                        </a>
-                    </div>
-                       <div className='processing'>
+                        <div className='new'>
+                        <a href='/orders'><p className='new-prescriptions'>New</p></a>
+                        </div>
+                       <div className='processing' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
                        <a href='/prescripion-processing'><p className='processing-prescriptions'>Processing</p></a>
                        </div>
                        <div className='completed'>
@@ -123,7 +121,7 @@ const handleOrderProcessing = (orderID) => {
                 </div>
             </div>
             <div className='btns'>
-                <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}}>Start Processing</button>
+                <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}}>Complete Order</button>
                 <button className='btn btn-danger mt-3'>Delete Order</button>
             </div>
         </div>
