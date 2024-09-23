@@ -22,6 +22,7 @@ import Individual from './components/individual'
 import Orders from './components/ViewOrders'
 import Prescription from './components/AddPrescription'
 import ProcessingPrescription from './components/adminPrescriptionProcessing'
+import CompletedPrescriptions from './components/adminCompletedPrescription'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -55,6 +56,7 @@ function App() {
         <Route path="/Add-prescription" element={<Prescription />} />
         <Route path='/orders' element={<Orders />} />
         <Route path='/prescripion-processing' element={<ProcessingPrescription />} />
+        <Route path='//completed-orders' element={<CompletedPrescriptions/>} />
       </Routes>
     </Router>
   );

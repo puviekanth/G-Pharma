@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './adminPrescriptionProcessing.css';
 import axios from 'axios';
 
-function ViewOrders() {
+function CompletedOrders() {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const handleImageClick = (image) => {
@@ -22,7 +22,7 @@ function ViewOrders() {
     const [prescriptionOrderDetails, setPrescriptionOrderDetails] = useState([]);
 
 useEffect(() => {
-    axios.get('http://127.0.0.1:3000/PrescriptionOrdersGetProcessing')
+    axios.get('http://127.0.0.1:3000/PrescriptionOrdersGetCompleted')
         .then(response => {
             setPrescriptionOrderDetails(response.data); // Now stores an array
         })
@@ -31,15 +31,7 @@ useEffect(() => {
         });
 }, []);
 
-const handleOrderProcessing = (orderID) => {
-    axios.put(`http://127.0.0.1:3000/updateOrderStatus/${orderID}`,{status:'Processing'})
-    .then(response =>{
-        console.log(response);
-    })
-    .catch(error =>{
-        console.log(error);
-    })
-}
+
 
 
     return (
@@ -72,11 +64,11 @@ const handleOrderProcessing = (orderID) => {
                         <div className='new'>
                         <a href='/orders'><p className='new-prescriptions'>New</p></a>
                         </div>
-                       <div className='processing' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
+                       <div className='processing' >
                        <a href='/prescripion-processing'><p className='processing-prescriptions'>Processing</p></a>
                        </div>
-                       <div className='completed'>
-                       <a href='/completed-orders'><p className='completed-prescriptions'>Completed</p></a>
+                       <div className='completed' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
+                       <a href='#'><p className='completed-prescriptions'>Completed</p></a>
                        </div>
                     </div>
                     <h2 className='topic'>Prescription Orders</h2>
@@ -120,10 +112,6 @@ const handleOrderProcessing = (orderID) => {
                     <p className='Order-duration'>Medicine Needed for: {order.Duration}</p>
                 </div>
             </div>
-            <div className='btns'>
-                <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}}>Complete Order</button>
-                <button className='btn btn-danger mt-3'>Delete Order</button>
-            </div>
         </div>
     ))
 ) : (
@@ -143,4 +131,4 @@ const handleOrderProcessing = (orderID) => {
     );
 }
 
-export default ViewOrders;
+export default CompletedOrders;
