@@ -8,7 +8,7 @@ const CustomerModel = require('./model/Customer');
 const { Navigate } = require('react-router');
 const jwt = require('jsonwebtoken');
 const NewsletterModel = require('./model/Newsletter');
-const secretKey = process.env.JWT_PRIVATE_KEY;
+const secretKey = 'anura-gpharma-24/6';
 const ContactModel = require('./model/ContactModel');
 const AdminModel = require('./model/AdminModel');
 const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
@@ -39,12 +39,12 @@ const upload = multer({
 }).array('prescription', 3); 
 
 // Connect to MongoDB with the genuine-pharmacy database
-mongoose.connect("mongodb://localhost:27017/genuine-pharmacy", {
+mongoose.connect("mongodb://localhost:27017/genuine-new", {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
-    .then(() => console.log("Connected to MongoDB database: genuine-pharmacy"))
+    .then(() => console.log("Connected to MongoDB database: genuine-new"))
     .catch(err => console.error("Failed to connect to MongoDB", err));
 
 
@@ -151,7 +151,8 @@ app.post('/login', async (req, res) => {
         }
        }
     } catch (err) {
-        return res.status(500).json({ error: 'Server error' });
+        console.log(err);
+        return res.status(500).json({ error: 'Server error'});
     }
 });
 
@@ -316,7 +317,7 @@ app.get('/email',authenticateJWT,async (req,res)=>{
 
 app.get('/PrescriptionOrdersGet', async (req, res) => {
     try {
-        const prescriptions = await PrescriptionModel.find(); // Get all prescriptions
+        const prescriptions = await PrescriptionModel.find({status:'New'}); // Get all prescriptions
         console.log(prescriptions);
         if (!prescriptions.length) {
             return res.status(400).json({ error: 'No Prescriptions found' });
@@ -342,6 +343,67 @@ app.get('/PrescriptionOrdersGet', async (req, res) => {
         res.status(500).json({ error: 'Database error' });
     }
 });
+
+
+//update status
+app.put('/updateOrderStatus/:orderId', async (req, res) => {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    console.log('Received update request for order ID:', orderId);
+    console.log('New status:', status);
+
+    try {
+        const order = await PrescriptionModel.findOneAndUpdate(
+            { _id: orderId },
+            { status: status },
+            { new: true, runValidators: true }
+        );
+
+        if (!order) {
+            console.error('Order not found:', orderId);
+            return res.status(404).json({ message: 'Order not found' });
+        }
+
+        console.log('Updated Order:', order);
+        res.status(200).json({ message: 'Updated successfully', order });
+    } catch (error) {
+        console.error('Error updating order status:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+});
+
+
+//get processing orders only
+app.get('/PrescriptionOrdersGetProcessing', async (req, res) => {
+    try {
+        const prescriptions = await PrescriptionModel.find({status:'Processing'}); // Get all prescriptions
+        console.log(prescriptions);
+        if (!prescriptions.length) {
+            return res.status(400).json({ error: 'No Prescriptions found' });
+        }
+
+        const prescriptionData = prescriptions.map(prescription => ({
+            orderID: prescription._id,
+            prescriptions:prescription.prescription,
+            username: prescription.Username,
+            userContact: prescription.Contact,
+            useremail: prescription.email,
+            PatientName: prescription.PatientName,
+            PatientAge: prescription.PatientAge,
+            PatientGender: prescription.PatientGender,
+            PatientAllergy: prescription.Allergy,
+            DeliveryAddress: prescription.DeliveryAddress,
+            DeliveryCity: prescription.DeliveryCity,
+            Duration: prescription.Duration,
+        }));
+
+        res.status(200).json(prescriptionData);
+    } catch (error) {
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
 
 
 
