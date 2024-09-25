@@ -41,6 +41,16 @@ const handleOrderProcessing = (orderID) => {
     })
 }
 
+const handleOrderDelete=(orderID)=>{
+    axios.delete(`http://127.0.0.1:3000/deleteOrder/${orderID}`)
+    .then(response=>{
+        console.log(response)
+    })
+    .catch(error=>{
+        console.log(error)
+    })
+}
+
 
     return (
         <>
@@ -124,7 +134,7 @@ const handleOrderProcessing = (orderID) => {
             </div>
             <div className='btns'>
                 <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}}>Start Processing</button>
-                <button className='btn btn-danger mt-3'>Delete Order</button>
+                <button className='btn btn-danger mt-3' onClick={()=>{handleOrderDelete(order.orderID)}}>Delete Order</button>
             </div>
         </div>
     ))

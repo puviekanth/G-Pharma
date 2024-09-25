@@ -68,7 +68,7 @@ useEffect(() => {
                        <a href='/prescripion-processing'><p className='processing-prescriptions'>Processing</p></a>
                        </div>
                        <div className='completed' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
-                       <a href='#'><p className='completed-prescriptions'>Completed</p></a>
+                       <a href='/completed-orders'><p className='completed-prescriptions'>Completed</p></a>
                        </div>
                     </div>
                     <h2 className='topic'>Prescription Orders</h2>

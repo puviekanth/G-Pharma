@@ -404,6 +404,53 @@ app.get('/PrescriptionOrdersGetProcessing', async (req, res) => {
     }
 });
 
+//get completed orders 
+app.get('/PrescriptionOrdersGetCompleted', async (req, res) => {
+    try {
+        const prescriptions = await PrescriptionModel.find({status:'Completed'}); // Get all prescriptions
+        console.log(prescriptions);
+        if (!prescriptions.length) {
+            return res.status(400).json({ error: 'No Prescriptions found' });
+        }
+
+        const prescriptionData = prescriptions.map(prescription => ({
+            orderID: prescription._id,
+            prescriptions:prescription.prescription,
+            username: prescription.Username,
+            userContact: prescription.Contact,
+            useremail: prescription.email,
+            PatientName: prescription.PatientName,
+            PatientAge: prescription.PatientAge,
+            PatientGender: prescription.PatientGender,
+            PatientAllergy: prescription.Allergy,
+            DeliveryAddress: prescription.DeliveryAddress,
+            DeliveryCity: prescription.DeliveryCity,
+            Duration: prescription.Duration,
+        }));
+
+        res.status(200).json(prescriptionData);
+    } catch (error) {
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+app.delete('/deleteOrder/:orderID',async (req,res)=>{
+    try {
+        const {orderID} = req.params;
+    
+
+    const deletedPrescription = await PrescriptionModel.findOneAndDelete({_id:orderID})
+
+    if(!deletedPrescription){
+        return res.status(500).json({error:'No Prescription found'})
+    }
+    return res.status(200).json({message:'Prescription Deleted Successfully'})
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({message:'Error in Server'})
+    }
+})
+
 
 
 
