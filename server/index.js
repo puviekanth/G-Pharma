@@ -14,6 +14,7 @@ const AdminModel = require('./model/AdminModel');
 const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
 const multer = require('multer');
 const path = require('path');
+const ProductModel = require('./model/ProductModel')
 
 
 const app = express();
@@ -37,6 +38,11 @@ const upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 5 }, // Limit file size to 5MB
 }).array('prescription', 3); 
+
+
+
+
+
 
 // Connect to MongoDB with the genuine-pharmacy database
 mongoose.connect("mongodb://localhost:27017/genuine-new", {
@@ -450,6 +456,77 @@ app.delete('/deleteOrder/:orderID',async (req,res)=>{
         return res.status(500).json({message:'Error in Server'})
     }
 })
+ 
+
+//get porducts at admin page
+// app.get('/getproducts', async (req, res) => {
+//     try {
+//       const products = await Product.find();
+//       res.json(products);
+//     } catch (error) {
+//       res.status(500).json({ message: 'Error fetching products' });
+//     }
+//   });
+
+
+ 
+const Productstorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/products'); // Save files to 'uploads/products' folder
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + path.extname(file.originalname)); // Append date and file extension to the file name
+    }
+});
+
+const Productupload = multer({
+    storage: Productstorage,
+    limits: { fileSize: 1024 * 1024 * 5 }, // 5MB limit
+}).single('image'); // Single file upload for the 'image' field
+
+app.post('/addproducts', Productupload, async (req, res) => {
+    try {
+        const { name, description, price, category } = req.body;
+        
+
+        const newProduct = new ProductModel({
+            image:req.file.path,
+            name,
+            description,
+            price,
+            category
+             // Store image path in the database
+        });
+
+        await newProduct.save();
+        res.status(200).json({ message: 'Product added successfully' });
+    } catch (error) {
+        console.error('Error adding product:', error);
+        res.status(500).json({ message: 'Error adding product' });
+    }
+});
+
+
+
+
+//   //delete products
+//   app.delete('/deleteproducts/:productID', async (req, res) => {
+//     try {
+//       const productID = parseInt(req.params.productID, 10);
+//       const result = await Product.deleteOne({ productID: productID });
+  
+//       if (result.deletedCount === 0) {
+//         return res.status(404).json({ error: 'Product not found' });
+//       }
+      
+//       res.status(200).json({ message: 'Product deleted successfully' });
+//     } catch (err) {
+//       res.status(500).json({ error: err.message });
+//     }
+//   });
+
+
+
 
 
 
