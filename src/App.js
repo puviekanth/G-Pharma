@@ -23,6 +23,7 @@ import Orders from './components/ViewOrders'
 import Prescription from './components/AddPrescription'
 import ProcessingPrescription from './components/adminPrescriptionProcessing'
 import CompletedPrescriptions from './components/adminCompletedPrescription'
+import ProductsPage from './components/adminProductsPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -57,6 +58,7 @@ function App() {
         <Route path='/orders' element={<Orders />} />
         <Route path='/prescripion-processing' element={<ProcessingPrescription />} />
         <Route path='//completed-orders' element={<CompletedPrescriptions/>} />
+        <Route path='/products' element={<ProductsPage />} />
       </Routes>
     </Router>
   );

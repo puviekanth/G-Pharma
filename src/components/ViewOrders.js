@@ -59,7 +59,7 @@ const handleOrderDelete=(orderID)=>{
                     <ul className='navs'>
                         <li className='admin-items'>Orders</li>
                         <li className='admin-items'>Employees</li>
-                        <li className='admin-items'>Products</li>
+                        <li className='admin-items'><a href='/products'>Products</a></li>
                         <li className='admin-items'>Suppliers</li>
                         <li className='admin-items'>Delivery Personnel</li>
                     </ul>
