@@ -45,16 +45,8 @@ function Footer() {
                     <a href=''><img src={Whatsapp} className='wtsp'></img></a>
                 </div>
             </div>
-            <div className='about-block'>
-                <h3>About Us</h3>
-                <p>Genuine Pharmacy has been dedicated to serving the community with high-quality
-                healthcare products. Customer can upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs.</p>
-                <br></br>
-                <h3>Why Us ?</h3>
-                <p>Our mission is to deliver life-enhancing products to your
-                doorstep, ensuring that your health is our priority.</p>
-            </div>
-            <div className='links'>
+           
+            <div className='links-footer'>
                 <h3>Links</h3>
                 <ul>
                     <li className='link-item'><a href=''>> Products</a></li>
@@ -66,11 +58,11 @@ function Footer() {
                 </ul>
             </div>
             <div className='branches-block'>
-                <h3>Branches</h3>
+                <h3 >Branches</h3>
                 <ul>
-                    <li className='branch-item'><img src={Location} className='location'></img><a href=''>Kandy</a></li>
-                    <li className='branch-item'><img src={Location} className='location'></img><a href=''>Avisawella</a></li>
-                    <li className='branch-item'><img src={Location} className='location'></img><a href=''>UdaPussalawa</a></li>
+                    <li className='branch-item'><img src={Location} className='location-branch'></img><a href=''>Kandy</a></li>
+                    <li className='branch-item'><img src={Location} className='location-branch'></img><a href=''>Avisawella</a></li>
+                    <li className='branch-item'><img src={Location} className='location-branch'></img><a href=''>UdaPussalawa</a></li>
                 </ul>
             </div>
             </section>

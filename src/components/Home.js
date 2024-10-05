@@ -27,9 +27,9 @@ function Home() {
 
 
     useEffect(() => {
-        const aboutSection = document.querySelector('.about-section');
-        const aboutPic = document.querySelector('.about-pic');
-        const aboutButton = document.querySelector('.about-readmore');
+        const aboutSection = document.querySelector('.about-section-home');
+        const aboutPic = document.querySelector('.about-pic-home');
+        const aboutButton = document.querySelector('.about-readmore-home');
 
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -38,7 +38,7 @@ function Home() {
                 }
             },
             {
-                threshold: 0.75, // Trigger when 50% of the section is in view
+                threshold: 0.25, // Trigger when 50% of the section is in view
             }
         );
 
@@ -60,19 +60,19 @@ function Home() {
                     <h1>YOUR HEALTH,<br></br>YOUR WEALTH.</h1>
                 </div>
                 <h3 className='small-phrase'>Delivering all your life enhancers to your doorstep</h3>
-                <Link to='/Shop' className='shop'>Shop</Link>
+                <Link to='/Shop' className='shopLink'>Shop</Link>
             </section>
 
-            <section className='about-section'>
-            <div className='about-with-img'>
-                        <img src={ AboutLogo } alt='about' className='about-pic'></img>
+            <section className='about-section-home'>
+            <div className='about-with-img-home'>
+                        <img src={ AboutLogo } alt='about' className='about-pic-home'></img>
                     
-                <div className='about-content'>
-                <h1 className='about'>About Us</h1>
-                <h3 className='content'>Genuine Pharmacy has been dedicated to serving the community with high-quality
+                <div className='about-content-home'>
+                <h1 className='about-home'>About Us</h1>
+                <h3 className='content-home'>Genuine Pharmacy has been dedicated to serving the community with high-quality
                 healthcare products. Our mission is to deliver life-enhancing products to your
                 doorstep, ensuring that your health is our priority.<br></br><br></br>With present busy schedules and traffic situations to customers, we have established our  “Online Pharmacy” service. Customers can log in to “Genuine Pharmacy pharmacy online” Upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs, from our “Pharmacy Online service”.</h3>
-                <a href='/About'><button className='about-readmore'>Read more ></button></a>
+                <a href='/About'><button className='about-readmore-home'>Read more ></button></a>
             </div>
             </div>
             </section>

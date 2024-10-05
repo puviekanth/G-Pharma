@@ -121,11 +121,11 @@ function NewArrivals() {
             <section className='new-arrivals'>
                 <h1 className='head'>New Arrivals</h1>
                
-                <div className='container'>
+                <div className='container-home'>
                     {[Product1, Product1, Product1, Product2, Product1, Product2, Product1, Product1].map((product, index) => (
-                        <div className='pro-container' key={index}>
-                            <img src={product} alt={`Product${index + 1}`} className='pro-image' />
-                            <h3 className='pro-name'>Glutanex Tablets - 100g</h3>
+                        <div className='pro-container-home' key={index}>
+                            <img src={product} alt={`Product${index + 1}`} className='pro-image-home' />
+                            <h3 className='pro-name-home'>Glutanex Tablets - 100g</h3>
                             <h4>Rs. 15,000</h4>
                             <button className='add-to-cart'>Add to Cart</button>
                         </div>
@@ -166,10 +166,10 @@ function NewArrivals() {
                 <div className='best-selling-div'>
                     
                     {[Product1, Product1, Product2, Product1, Product1, Product2, Product1, Product1, Product2, Product1].map((product, index) => (
-                        <div className='product' key={index}>
+                        <div className='product-home' key={index}>
                             <img src={product} alt={`Product${index + 1}`} />
-                            <h3 className='pro-name'>Product Name {index + 1}</h3>
-                            <h4>Price</h4>
+                            <h3 className='pro-name-home'>Product Name {index + 1}</h3>
+                            <h5>Price</h5>
                             <button className='add-to-cart'>Add to Cart</button>
                         </div>
                     ))}

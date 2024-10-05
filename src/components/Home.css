@@ -32,6 +32,7 @@
     font-weight: 600;
     margin-top: 10%;
     margin-left: 2%;
+    margin-bottom: 20px;
     color: #fff;
     font-style: bold;
 }
@@ -47,16 +48,16 @@
     margin-top: 20px;
     font-size: 24px;
     margin-left: 2%;
+    margin-bottom: 20px;
     color: #fff;
 }
 
-.shop {
+.shopLink {
     border-radius: 15px;
     padding: 10px;
-    width: 200px;
-    font-size: 14px;
+    width: 500px;
     margin-left: 2%;
-    margin-top: 2%;
+    margin-top: 5%;
     background-color: rgb(255, 227, 127);
     color: #000;
     text-decoration: none;
@@ -66,7 +67,7 @@
      
 }
 
- .shop:hover {
+ .shopLink:hover {
     animation: pulse 1s infinite;
     cursor: pointer;
 } 
@@ -84,20 +85,16 @@
 }
 
 .promo {
-    width: 100%;
+    width: 80%;
     height: auto;
     margin-top: 5%;
+    margin-left: 10%;
 }
 
 .small-phrase {
     margin-top: -2.5%;
 }
 
-.promo {
-    width: 100%;
-    height: auto;
-    margin-top: 5%;
-}
 
 .promo-image {
     width: 100%;
@@ -109,7 +106,7 @@
 
 
 /*about*/
-.about{
+.about-home{
     margin-top: 20%;
     font-size: 40px;
     font-style: bold;
@@ -118,31 +115,34 @@
 
 }
 
-.about-section{
+.about-section-home{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.content{
+.content-home{
     max-width: 700px;
     margin-right: 05%;
     margin-left: 9%;
     justify-content: center;
 }
 
-.about-content{
+.about-content-home{
     display: flex;
     flex-direction: column;
     align-items: end;
     justify-content: center;
 }
+.content-home{
+    font-size: 20px;
+}
 
-.about-pic{
+.about-pic-home{
     width: 400px;
     height: auto;
     margin-top: 15%;
 }
 
-.about-with-img{
+.about-with-img-home{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,7 +153,7 @@
 
 }
 
-.about-readmore{
+.about-readmore-home{
     background-color: rgba(241, 210, 143, 0.993);
     padding: 10px;
     border-radius: 7px;
@@ -167,7 +167,7 @@
     
 }
 
-.about-readmore:hover {
+.about-readmore-home:hover {
     animation: pulse 1s infinite;
     cursor: pointer;
 }
@@ -196,7 +196,7 @@
     }
 }
 
-.about-pic {
+.about-pic-home {
     width: 400px;
     height: auto;
     margin-top: 15%;
@@ -205,7 +205,7 @@
     transition: transform 1s ease, opacity 1s ease;
 }
 
-.about-readmore {
+.about-readmore-home {
     background-color: rgba(241, 210, 143, 0.993);
     padding: 10px;
     border-radius: 7px;
@@ -220,11 +220,11 @@
     transition: transform 1s ease, opacity 1s ease;
 }
 
-.in-view .about-pic {
+.in-view .about-pic-home {
     animation: slideInLeft 1s forwards;
 }
 
-.in-view .about-readmore {
+.in-view .about-readmore-home {
     animation: slideInUp 1s forwards;
 }
 

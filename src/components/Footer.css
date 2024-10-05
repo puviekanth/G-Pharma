@@ -3,7 +3,7 @@
     background-color: rgb(189, 185, 180);
     padding: 20px;
     background-color: #f1f1f1;
-    height: 100vh;
+    height: 110vh;
     
 }
 
@@ -29,12 +29,17 @@
   }
 
   .footer-logo{
-    width: 100px;
+    width: 150px;
     height: auto;
    padding-left: 50px;
    margin-top: -15%;
-    
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
   }
+
 
 .logo-name{
     display: flex;
@@ -42,7 +47,9 @@
     align-items:flex-start;
     justify-content: center;
     margin-top: 10%;
+    width: 300px;
 }
+
 
 .logo-with-name-only{
     margin-left: 5%;
@@ -63,6 +70,7 @@
 
 .address h4{
     margin-left: 10px;
+    font-size: 14px;
 }
 
 .address h4 a{
@@ -78,6 +86,7 @@
 .mobile{
     width: 20px;
     height: auto;
+    margin-bottom: 10px;
 }
 
 .phone{
@@ -85,7 +94,9 @@
     align-items: baseline;
     justify-content: center;
 }
-
+.phone h4{
+    font-size: 14px;
+}
 
 
 .phone h4 a{
@@ -110,6 +121,7 @@
 
 .mail h4{
     margin-left: 10px;
+    font-size: 14px;
 }
 .mail h4 a{
     text-decoration: none;
@@ -155,13 +167,14 @@
 
 .about-block h3{
     text-align: center;
+    font-size: 16px;
 }
 
 .about-block p{
     text-align: justify;
 }
 
-.links{
+.links-footer{
     margin-left: 4%;
     display: flex;
     flex-direction: column;
@@ -178,10 +191,11 @@
 }
 
 
-.links h3{
+.links-footer h3{
     text-align: left;
     padding-right: 10px;
     margin-left: -50px;
+    font-size: 16px;
 }
 .link-item a{
     text-decoration:none;
@@ -194,12 +208,15 @@
 }
 
 .branches-block{
-    display: block;
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin-top: 2%;
     
+}
+.branches-block h3{
+    font-size: 16px;
 }
 
 .branch-item{
@@ -213,9 +230,7 @@
     color: #000;
 }
 
-.branch-item h3{
-    margin-top: 13%;
-}
+
 
 .branch-item a:hover{
     text-decoration: underline;
@@ -228,7 +243,11 @@
     text-align: center;
     background-color: #bdbbbb9a;
     padding: 10px;
-    
+    font-size: 14px;
 
+}
+.location-branch{
+    width: 20px;
+    height: auto;
 }
 
