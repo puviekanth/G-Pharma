@@ -60,6 +60,9 @@ useEffect(() => {
                             <p className='product-orders'><a href='#'>Products</a></p>
                         </div>
                     </div>
+                    <div className='search'>
+                       <a href='/SearchPrescription'> <button  className='btn btn-success mt-3'>Search ...</button></a>
+                    </div>
                     <div className='process-complete'>
                         <div className='new'>
                         <a href='/orders'><p className='new-prescriptions'>New</p></a>

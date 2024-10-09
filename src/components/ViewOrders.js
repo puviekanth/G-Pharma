@@ -78,6 +78,9 @@ const handleOrderDelete=(orderID)=>{
                             <p className='product-orders'><a href='#'>Products</a></p>
                         </div>
                     </div>
+                    <div className='search'>
+                    <a href='/SearchPrescription'> <button  className='btn btn-success mt-3'>Search ...</button></a>
+                    </div>
                     <div className='process-complete'>
                     <div className='new' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
                         <a href='/orders'>
