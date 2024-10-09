@@ -32,7 +32,7 @@ useEffect(() => {
 }, []);
 
 const handleOrderProcessing = (orderID) => {
-    axios.put(`http://127.0.0.1:3000/updateOrderStatus/${orderID}`,{status:'Processing'})
+    axios.put(`http://127.0.0.1:3000/updateOrderStatus/${orderID}`,{status:'Completed',deliveryStatus:'Ready For Delivery'})
     .then(response =>{
         console.log(response);
     })
@@ -67,6 +67,9 @@ const handleOrderProcessing = (orderID) => {
                         <div className='prod'>
                             <p className='product-orders'><a href='#'>Products</a></p>
                         </div>
+                    </div>
+                    <div className='search'>
+                    <a href='/SearchPrescription'> <button  className='btn btn-success mt-3'>Search ...</button></a>
                     </div>
                     <div className='process-complete'>
                         <div className='new'>
