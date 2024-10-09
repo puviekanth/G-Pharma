@@ -72,7 +72,7 @@ function Payment() {
                         {errors.email && <div className="error-message">{errors.email}</div>}
                         <input
                             type="email"
-                            className={`email-input ${errors.email ? 'input-error' : ''}`}
+                            className={`mail-input ${errors.email ? 'input-error' : ''}`}
                             placeholder='Email'
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}

@@ -110,6 +110,7 @@ useEffect(() => {
                     <p className='OrderDelivery-address'>Delivery Address: {order.DeliveryAddress}</p>
                     <p className='OrderDelivery-city'>Delivery City: {order.DeliveryCity}</p>
                     <p className='Order-duration'>Medicine Needed for: {order.Duration}</p>
+                    <p className='Order-delivery-Status'>Delivery Status : {order.deliveryStatus}</p>
                 </div>
             </div>
         </div>

@@ -295,7 +295,8 @@ app.post('/addPrescription', authenticateJWT, (req, res) => {
                 DeliveryAddress,
                 DeliveryCity,
                 Duration,
-                status:'New'
+                status:'New',
+                deliveryStatus:'Not Ready for Delivery',
             });
 
             // Save the prescription to the database
@@ -354,7 +355,7 @@ app.get('/PrescriptionOrdersGet', async (req, res) => {
 //update status
 app.put('/updateOrderStatus/:orderId', async (req, res) => {
     const { orderId } = req.params;
-    const { status } = req.body;
+    const { status,deliveryStatus } = req.body;
 
     console.log('Received update request for order ID:', orderId);
     console.log('New status:', status);
@@ -362,7 +363,7 @@ app.put('/updateOrderStatus/:orderId', async (req, res) => {
     try {
         const order = await PrescriptionModel.findOneAndUpdate(
             { _id: orderId },
-            { status: status },
+            { status: status,deliveryStatus: deliveryStatus },
             { new: true, runValidators: true }
         );
 
@@ -432,6 +433,7 @@ app.get('/PrescriptionOrdersGetCompleted', async (req, res) => {
             DeliveryAddress: prescription.DeliveryAddress,
             DeliveryCity: prescription.DeliveryCity,
             Duration: prescription.Duration,
+            deliveryStatus:prescription.deliveryStatus,
         }));
 
         res.status(200).json(prescriptionData);

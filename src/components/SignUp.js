@@ -90,14 +90,23 @@ function SignUp() {
           
 
           <input
-            type="email"
-            className='email-input'
-            placeholder='Email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          {errors.email && <p className="error">{errors.email}</p>}
+  type="email"
+  style={{
+    marginTop: '-5%',
+    padding: '10px',
+    fontSize: '14px',
+    marginBottom: '10px',
+    border: '1px solid #ccc',
+    borderRadius: '5px'
+  }}
+  className='email-input'
+  placeholder='Email'
+  value={email}
+  onChange={(e) => setEmail(e.target.value)}
+  required
+/>
+{errors.email && <p className="error">{errors.email}</p>}
+
 
           <input
             type="text"
@@ -108,6 +117,7 @@ function SignUp() {
             required
           />
           {errors.name && <p className="error">{errors.name}</p>}
+          
 
           <input
             type="password"
@@ -171,7 +181,7 @@ function SignUp() {
           {serverError && <p className="error">{serverError}</p>} {/* Display server error */}
 
           <button type="submit" className='login-button'>Register</button>
-          <p>Already registered? <a href='/Login'>Login</a></p>
+          <p className='Login-link'>Already registered? <a href='/Login'>Login</a></p>
         </form>
       </div>
       <Footer />

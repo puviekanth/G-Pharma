@@ -12,7 +12,8 @@ const PrescriptionSchema = new mongoose.Schema({
     DeliveryAddress:String,
     DeliveryCity:String,
     Duration:String,
-    status:String
+    status:String,
+    deliveryStatus:String,
 });
 
 const PrescriptionModel = mongoose.model('Prescription-order', PrescriptionSchema);
