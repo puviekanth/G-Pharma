@@ -14,7 +14,8 @@ const AdminModel = require('./model/AdminModel');
 const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
 const multer = require('multer');
 const path = require('path');
-const ProductModel = require('./model/ProductModel')
+const ProductModel = require('./model/ProductModel');
+const {ObjectId} = require('mongodb');
 
 
 const app = express();
@@ -535,6 +536,25 @@ app.post('/addproducts', Productupload, async (req, res) => {
 //     }
 //   });
 
+app.get('/searchprescription', async (req, res) => {
+    console.log('Received search request:', req.query.search); // Log search query
+    const search = req.query.search;
+
+    try {
+        // Attempt to convert the search value to ObjectId
+        const id = new ObjectId(search); // Ensure it's an ObjectId
+        const prescription = await PrescriptionModel.findOne({ _id: id });
+
+        if (!prescription) {
+            return res.status(404).json({ error: 'No prescription found' });
+        }
+
+        console.log(prescription);  // Log prescription to see it in the console
+        return res.status(200).json(prescription);
+    } catch (error) {
+        return res.status(500).json({ error: 'Something went wrong', error });
+    }
+});
 
 
 
