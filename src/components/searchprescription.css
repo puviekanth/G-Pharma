@@ -45,9 +45,41 @@
     align-items: center;
     justify-content: center;
     margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 .searchIcon:hover{
     cursor: pointer;
     padding: 5px;
     background-color: rgb(244, 244, 244);
+}
+
+.img1{
+    width: 200px;
+    height: auto;
+}
+.img-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pres-details p{
+    font-size: 14px;
+}
+.pres-details{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin-left: 5vw;
+}
+.orders-cont{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    margin-left: 20vw;
+    padding-bottom: 10vh;
 }
