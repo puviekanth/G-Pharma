@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import searchIcon from './images/icons8-search-50.png';
 import './searchprescription.css';
 import User from './images/user-black.png';
 import Signout from './images/signout-black.png';
-import Pres1 from './images/Rossmax-1.jpg';
-import Pres2 from './images/Littman-1.jpg';
-import Pres3 from './images/Multy-1.jpg';
 import axios from 'axios';
 
 function Searchprescription() {
@@ -76,44 +73,49 @@ function Searchprescription() {
                 />
             </div>
 
-            <div className='orders-cont'>
-                <div className='img-details'>
-                    <div className='img-cont'>
-                    {Array.isArray(prescription.prescriptions) && prescription.prescriptions.length > 0 ? (
-    prescription.prescriptions.map((image, index) => {
-        const imagePath = `http://localhost:3000/${image.replace(/\\/g, '/')}`;
-        return (
-            <img
-                key={index}
-                src={imagePath}
-                alt={`Prescription ${index + 1}`}
-                className="img1"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'path/to/fallback-image.png'; }} // Optional fallback
-                onClick={() => handleImageClick(imagePath)} // Wrap in an arrow function
-            />
-        );
-    })
+            {prescription && Object.keys(prescription).length > 0 ? (
+    <div className='orders-cont'>
+        <div className='img-details'>
+            <div className='img-cont'>
+                {Array.isArray(prescription.prescriptions) && prescription.prescriptions.length > 0 ? (
+                    prescription.prescriptions.map((image, index) => {
+                        const imagePath = `http://localhost:3000/${image.replace(/\\/g, '/')}`;
+                        return (
+                            <img
+                                key={index}
+                                src={imagePath}
+                                alt={`Prescription ${index + 1}`}
+                                className='img1'
+                                onClick={() => handleImageClick(imagePath)}
+                            />
+                        );
+                    })
+                ) : (
+                    <p>No prescription images available</p>
+                )}
+            </div>
+
+            <div className='pres-details'>
+                {prescription._id && <p className='Order-id'>Order ID: {prescription._id}</p>}
+                {prescription.Username && <p className='User-name'>User Name: {prescription.Username}</p>}
+                {prescription.email && <p className='User-email'>User Email: {prescription.email}</p>}
+                {prescription.Contact && <p className='User-contact'>User Contact: {prescription.Contact}</p>}
+                {prescription.PatientName && <p className='Patient-name'>Patient Name: {prescription.PatientName}</p>}
+                {prescription.PatientAge && <p className='Patient-Age'>Patient Age: {prescription.PatientAge}</p>}
+                {prescription.PatientGender && <p className='Patient-gender'>Patient Gender: {prescription.PatientGender}</p>}
+                {prescription.PatientAllergy && <p className='Patient-allergy'>Patient Allergies: {prescription.PatientAllergy}</p>}
+                {prescription.DeliveryAddress && <p className='OrderDelivery-address'>Delivery Address: {prescription.DeliveryAddress}</p>}
+                {prescription.DeliveryCity && <p className='OrderDelivery-city'>Delivery City: {prescription.DeliveryCity}</p>}
+                {prescription.Duration && <p className='Order-duration'>Medicine Needed for: {prescription.Duration}</p>}
+                {prescription.deliveryStatus && <p className='Order-delivery-status'>Delivery Status: {prescription.deliveryStatus}</p>}
+            </div>
+        </div>
+    </div>
 ) : (
-    <p>No prescription images available</p>
+    <p>No prescription images available or search for a prescription by entering an order ID.</p>
 )}
 
-                    </div>
-                    <div className='pres-details'>
-                    <p className='Order-id'>Order ID: {prescription._id}</p>
-                    <p className='User-name'>User Name: {prescription.Username}</p>
-                    <p className='User-email'>User Email: {prescription.email}</p>
-                    <p className='User-contact'>User Contact: {prescription.Contact}</p>
-                    <p className='Patient-name'>Patient Name: {prescription.PatientName}</p>
-                    <p className='Patient-Age'>Patient Age: {prescription.PatientAge}</p>
-                    <p className='Patient-gender'>Patient Gender: {prescription.PatientGender}</p>
-                    <p className='Patient-allergy'>Patient Allergies: {prescription.PatientAllergy}</p>
-                    <p className='OrderDelivery-address'>Delivery Address: {prescription.DeliveryAddress}</p>
-                    <p className='OrderDelivery-city'>Delivery City:{prescription.DeliveryCity}</p>
-                    <p className='Order-duration'>Medicine Needed for: {prescription.Duration}</p>
-                    <p className='Order-delivery-status'>Delivery Status: {prescription.deliveryStatus}</p>
-                    </div>
-                </div>
-            </div>
+
 
             {selectedImage && (
                 <div className='modal'>
