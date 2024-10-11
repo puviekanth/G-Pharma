@@ -16,6 +16,7 @@ const multer = require('multer');
 const path = require('path');
 const ProductModel = require('./model/ProductModel');
 const {ObjectId} = require('mongodb');
+const DeliveryPersonModel = require('./model/DeliveryModel');
 
 
 const app = express();
@@ -74,48 +75,68 @@ const authenticateJWT = (req,res,next) =>{
 // Sign up route
 app.post('/signup', async (req, res) => {
     try {
+        
         const { name, email, password, contact, dob, address, nic } = req.body;
 
         // Hash the password
         const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
-        // Store the user details in the customers collection
-       if(email.endsWith('.admin@genuinepharmacy.com')){
-        const adminUser = await AdminModel.create({
-            name,
-            password: encryptedPassword,
-            email,
-            contact,
-            address,
-            dob,
-            nic
-        });
-        res.status(200).json({ message: 'User Created Successfully', user: adminUser });
-       }
-       else{
-        const newUser = await CustomerModel.create({
-            name,
-            password: encryptedPassword,
-            email,
-            contact,
-            address,
-            dob,
-            nic
-        });
+        // Store the user details in the appropriate collection
+        if (email.endsWith('.admin@genuinepharmacy.com')) {
+            // Admin user logic
+            const adminUser = await AdminModel.create({
+                name,
+                password: encryptedPassword,
+                email,
+                contact,
+                address,
+                dob,
+                nic
+            });
+            res.status(200).json({ message: 'Admin User Created Successfully', user: adminUser });
 
-        // Respond with success
-        res.status(200).json({ message: 'User Created Successfully', user: newUser });
-       }
+        } else if (email.includes('deliverygpharma24@gmail.com')) {
+            // Delivery user logic
+            const deliveryUser = await DeliveryPersonModel.create({
+                name,
+                password: encryptedPassword,
+                email,
+                contact,
+                address,
+                dob,
+                nic
+            });
+
+            // Respond with success
+            res.status(200).json({ message: 'Delivery User Created Successfully', user: deliveryUser });
+
+        } else {
+            // Regular customer logic
+            const newUser = await CustomerModel.create({
+                name,
+                password: encryptedPassword,
+                email,
+                contact,
+                address,
+                dob,
+                nic
+            });
+
+            // Respond with success
+            res.status(200).json({ message: 'Customer Created Successfully', user: newUser });
+        }
+
     } catch (e) {
         if (e.code === 11000) { // MongoDB error for duplicate key
             // Duplicate email or NIC error
             res.status(400).json({ error: "Email or NIC already exists." });
         } else {
-            console.error("Email or NIC already exists.", e);
-            res.status(500).json({ error: 'Email or NIC Already exists.' });
+            console.error("An unexpected error occurred.", e);
+            res.status(500).json({ error: 'An unexpected error occurred.' });
         }
     }
 });
+
 
 //login route
 app.post('/login', async (req, res) => {
@@ -139,7 +160,24 @@ app.post('/login', async (req, res) => {
             }
 
         }
-       else{
+       else if(email.includes('deliverygpharma24@gmail.com')){
+        const deliveryperson = await DeliveryPersonModel.findOne({ email: email });
+        if (!deliveryperson) {
+            return res.status(404).json({ error: 'No User Found, please register.' });
+        }
+
+        // Correctly await bcrypt.compare for password comparison
+        const isMatch = await bcrypt.compare(password, deliveryperson.password);
+        if (isMatch) {
+            // Generate JWT token
+            const token = jwt.sign({ email: deliveryperson.email }, secretKey, { expiresIn: '1h' });
+
+            // Return token along with success message
+            return res.status(200).json({ message: 'Logged in successfully', token: token ,user:deliveryperson });
+        } else {
+            return res.status(401).json({ error: 'Invalid username or password' });
+        }
+       }else{
         const user = await CustomerModel.findOne({ email: email });
         if (!user) {
             return res.status(404).json({ error: 'No User Found, please register.' });

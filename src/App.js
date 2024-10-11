@@ -25,6 +25,7 @@ import ProcessingPrescription from './components/adminPrescriptionProcessing'
 import CompletedPrescriptions from './components/adminCompletedPrescription'
 import ProductsPage from './components/adminProductsPage'
 import SearchOrderPage from './components/searchprescription'
+import DeliveryUI from './components/deliveryUI'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -61,6 +62,7 @@ function App() {
         <Route path='//completed-orders' element={<CompletedPrescriptions/>} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/SearchPrescription' element={<SearchOrderPage />}  />
+        <Route path='/deliveryUI' element={<DeliveryUI />} />
       </Routes>
     </Router>
   );

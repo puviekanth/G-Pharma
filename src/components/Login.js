@@ -22,6 +22,9 @@ function Login() {
                 if(response.data.user.email.endsWith('.admin@genuinepharmacy.com')){
                     navigate('/orders');
                 }
+                else if(response.data.user.email.includes('deliverygpharma24@gmail.com')){
+                    navigate('/deliveryUI');
+                }
                 else{
                     navigate('/Home');
                 }
