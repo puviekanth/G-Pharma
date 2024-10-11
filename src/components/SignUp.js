@@ -57,16 +57,20 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (validateForm()) {
       axios.post('http://127.0.0.1:3000/signup', { name, email, password, address, dob, nic, contact })
         .then(result => {
+          
           console.log(result);
           navigate('/Login');
         })
         .catch(err => {
           if (err.response && err.response.data && err.response.data.error) {
+          
             setServerError(err.response.data.error); // Set server error message
           } else {
+           
             setServerError('An unexpected error occurred');
           }
         });
