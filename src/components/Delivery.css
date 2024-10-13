@@ -1,35 +1,134 @@
-.logo{
-    width: 5vw;
-    height: auto;
-    margin-right: 15px;
+.hamburger-menu {
+    position: relative;
+      display: flex;
+    align-items: center;
+    justify-content: space-between;  
+    background-color: rgb(37, 128, 143);
 }
-.header{
-    display: flex;
-    align-items: baseline;
-    justify-content: center;
-    margin-top: 10px;
-}
-.brand{
-    font-size: 12px;
+
+.menu-button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
     color: #fff;
+    
 }
-.bar{
-    width: 5vw;
-    height: 3px;
-    margin-bottom: 3px;
-    background-color: #fff;
+
+.menu-nav {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    width: 150px;
+    z-index: 1;
+    /* height: 100vh; */
 }
-.hamburger{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    margin-right: 10px;
-    margin-top: 10px;
+
+.menu-nav.open {
+    display: block;
+    height: 100vh;
 }
-.nav{
+
+.menu-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    
+}
+
+.menu-nav li {
+    border-bottom: 1px solid #ddd;
+}
+
+.menu-nav li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-nav li a:hover {
+    background-color: #f0f0f0;
+}
+
+.profile-icon{
+    width: 7vw;
+    height: auto;
+    margin-left: 20px;
+}
+.signout-icon{
+    width: 6vw;
+    height: auto;
+   margin-right: 20px;
+}
+.profile-signout{
     display: flex;
     align-items: center;
     justify-content: space-between;
-   background-color: rgb(35, 125, 144);
+    margin-top: 50vh;
+}
+.brand a{
+    text-decoration:none;
+    color: #fff;
+}
+.logo{
+    width: 6vw;
+    height: auto;
+    margin-bottom: 23px;
+    margin-left: -22px
+}
+.brand h4{
+    font-size: 14px;
+    
+}
+.brand{
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-right: 6vw;
+    margin-top: 10px;
+}
+.ongoing-orders h4{
+    font-size: 16px;
+}
+.order-details-delivery p{
+    font-size: 12px;
+    margin-bottom: 5px;
+    color: #000;
+}
+.order-details-delivery{
+    display: flex;
+    flex-direction: column;
+    align-items:baseline;
+    justify-content: center;
+    width: 90vw;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #ededed;
+    
+}
+.ongoing-orders{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(37, 128, 143);
+    margin-top: 5%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.btns{
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }

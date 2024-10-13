@@ -62,7 +62,7 @@ function App() {
         <Route path='//completed-orders' element={<CompletedPrescriptions/>} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/SearchPrescription' element={<SearchOrderPage />}  />
-        <Route path='/deliveryUI' element={<DeliveryUI />} />
+        <Route path='/deliveryUI/home' element={<DeliveryUI />} />
       </Routes>
     </Router>
   );

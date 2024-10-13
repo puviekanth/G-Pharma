@@ -23,7 +23,7 @@ function Login() {
                     navigate('/orders');
                 }
                 else if(response.data.user.email.includes('deliverygpharma24@gmail.com')){
-                    navigate('/deliveryUI');
+                    navigate('/deliveryUI/home');
                 }
                 else{
                     navigate('/Home');
