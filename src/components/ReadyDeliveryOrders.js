@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import './delivery.css'; // Import the corresponding CSS file
+import React,{useState,useRef,useEffect} from 'react'
 import Signout from './images/signout-black.png';
 import Profile from './images/user-black.png';
 import Logo from './images/Screenshot_2024-08-02_203142-removebg-preview.png';
@@ -12,12 +11,12 @@ import WTSP from './images/icons8-whatsapp-50.png'
 import axios from 'axios';
 
 
-const HamburgerMenu = () => {
+function ReadyforDelivery(){
     const [isOpen, setIsOpen] = useState(false);
     const [address, setAddress] = useState('No 14, Lady Torrington Road Kandy');
     const [contact, setContact] = useState('0751122334');
     const menuRef = useRef(null);
-    const [prescriptions,setPrescriptions] = useState([]);
+    const [prescriptions,setPrescriptions]=useState([]);
     const phonenumber = '+94763322825';
     const message = 'Hello, I would like to inquire about...';
     const whatsappUrl = `https://wa.me/${phonenumber}?text=${encodeURIComponent(message)}`;
@@ -31,11 +30,10 @@ const HamburgerMenu = () => {
         setIsOpen(false);
     };
 
-    const generateMapLink = (addr) => {
-        return `https://www.google.com/maps?q=${encodeURIComponent(addr)}`;
+    const generateMapLink = (deliveryaddr) => {
+        return `https://www.google.com/maps?q=${encodeURIComponent(deliveryaddr)}`;
     };
 
-    // Close the menu if clicked outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -51,24 +49,24 @@ const HamburgerMenu = () => {
         };
     }, []);
 
-    useEffect(() => {
+    useEffect(()=>{
         axios.get('http://127.0.0.1:3000/getreadyfordelivery')
-            .then(res => {
-                setPrescriptions(res.data);
-                console.log('Successfully fetched');
-            })
-            .catch(err => {
-                console.log('Could not fetch, there was an error', err);
-            });
-    }, []);
+        .then(res=>{
+            setPrescriptions(res.data);
+            console.log('Successfully fetched');
+            
+        })
+        .catch(err=>{
+            console.log('There was an error executing this code',err);
+        })
 
-
-    return (
+    },[]);
+    return(
         <>
-            <div className="hamburger-menu" ref={menuRef}>
+         <div className="hamburger-menu" ref={menuRef}>
                 <div className='brand'>
                     <img src={Logo} alt='Logo' className='logo'/>
-                    <h4><a href='deliveryUI/home'>Genuine Pharmacy</a></h4>
+                    <h4><a href='/deliveryUI/home'>Genuine Pharmacy</a></h4>
                 </div>
                 <button className="menu-button" onClick={toggleMenu}>
                     ☰
@@ -82,7 +80,7 @@ const HamburgerMenu = () => {
                             <a href="#current-orders">View Current Orders</a>
                         </li>
                         <li>
-                            <a href="/readyfordelivery">View Ready Orders</a>
+                            <a href="#ready-orders">View Ready Orders</a>
                         </li>
                         <li>
                             <a href='#contact-us'>Contact Us</a>
@@ -94,52 +92,31 @@ const HamburgerMenu = () => {
                     </div>
                 </nav>
             </div>
-            <div style={{'display':'flex','align-items':'center','justify-content':'center','margin-top':'10px'}}>
-                <a href='/readyfordelivery'><button className='btn btn-primary'>Take Orders</button></a>
-            </div>
-            <section className='ongoing-orders'>
-                <h4 style={{'color':'#fff'}}>Currently Ongoing Orders</h4>
-                <div className='order-details-delivery'>
-                <p style={{'font-size':'16px'}}><b>6570fr54aa23456iyou7</b></p>
-                    <p><b>Customer Name </b>: Jon McNroe</p>
-                    <p><b>Patient Name :</b> Dinurakshan</p>
-                    <p><b>Delivery Address :</b> <a href={generateMapLink()} target="_blank" rel="noopener noreferrer">{address}</a></p>
-                    <p><b>Customer Contact :</b> <a href={`tel:${contact}`} >{contact}</a></p>
-                    <p><b>Customer Email</b> :- genuine@gmail.com</p>
-                    <div className='btns'>
-                        <button className='btn btn-success' style={{'fontSize':'12px', 'width':'200px'}}>Completed Delivery</button>
-                        <button className='btn btn-danger' style={{'fontSize':'12px', 'width':'200px'}}>Choose another</button>
-                    </div>
-                </div>
-                <div className='view-more'>
-                    <h5 style={{'color':'#fff', 'textDecoration':'underline', 'fontSize':'12px', 'marginTop':'5px'}}>View More</h5>
-                </div>
-            </section>
-            <section className='ongoing-orders'>
-                <h4 style={{ color: '#fff' }}>Ready For Delivery</h4>
-                {prescriptions.length > 0 ? (
-                    <>
+            {prescriptions.length>0?(
+                prescriptions.map((order,index)=>(
+                    <section className='ongoing-orders' key={index}>
+                    <h4 style={{'color':'#fff'}}>Ready for Delivery</h4>
                     <div className='order-details-delivery'>
-                        <p style={{ fontSize: '16px' }}><b>{prescriptions[0].orderID}</b></p>
-                        <p><b>Customer Name </b>: {prescriptions[0].username}</p>
-                        <p><b>Patient Name :</b> {prescriptions[0].PatientName}</p>
-                        <p><b>Delivery Address :</b> <a href={generateMapLink(prescriptions[0].DeliveryAddress)} target="_blank" rel="noopener noreferrer">{prescriptions[0].DeliveryAddress}</a></p>
-                        <p><b>Customer Contact :</b> <a href={`tel:${prescriptions[0].userContact}`} >{prescriptions[0].userContact}</a></p>
-                        <p><b>Customer Email</b> :- {prescriptions[0].useremail}</p>
+                    <p style={{'fontSize':'16px'}}><b>{order.orderID}</b></p>
+                        <p><b>Customer Name : </b>{order.username}</p>
+                        <p><b>Patient Name : </b> {order.PatientName}</p>
+                        <p><b>Delivery Address : </b> <a href={generateMapLink(order.DeliveryAddress)} target="_blank" rel="noopener noreferrer">{order.DeliveryAddress}</a></p>
+                        <p><b>Customer Contact : </b> <a href={`tel:${order.userContact}`} >{order.userContact}</a></p>
+                        <p><b>Customer Email : </b> {order.useremail}</p>
                         <div className='btns'>
-                            <button className='btn btn-success' style={{ fontSize: '12px', width: '200px' }}>Start to Deliver</button>
-                            <button className='btn btn-danger' style={{ fontSize: '12px', width: '200px' }}>Not Interested</button>
+                            <button className='btn btn-success' style={{'fontSize':'12px', 'width':'200px'}}>Start To Deliver</button>
+                            <button className='btn btn-danger' style={{'fontSize':'12px', 'width':'200px'}}>Not Interested </button>
                         </div>
                     </div>
-                    <div className='view-more'>
-                         <a href='/readyfordelivery'> <h5 style={{ color: '#fff', textDecoration: 'underline', fontSize: '12px', marginTop: '5px' }}>View More</h5></a>
-                     </div></>
-                    
-                ) : (
-                    <p style={{ color: '#fff' }}>Currently no orders are ready for delivery.</p>
-                )}
-            </section>
+                </section>
+                ))
+            ):(
+                <p style={{'textAlign':'center'}}>Currently no orders, please stay updated.</p>
+            )}
            
+
+
+
             <section className='footer-delivery'>
                <div className='upper-footer'>
                <div className='logo-and-name-delivery'>
@@ -161,7 +138,7 @@ const HamburgerMenu = () => {
                </div>
                <div className='branch-and-links'>
                     <div className='links-footer'>
-                        <p style={{'font-size':'14px'}}><b>Links</b></p>
+                        <p style={{'fontSize':'14px'}}><b>Links</b></p>
                         <div className='div-links'>
                             <p>View Ongoing Orders</p>
                             <p>View Ready Orders</p>
@@ -170,7 +147,7 @@ const HamburgerMenu = () => {
                         </div>
                     </div>
                     <div className='branch-footer'>
-                        <p style={{'font-size':'14px'}}><b>Branches</b></p>
+                        <p style={{'fontSize':'14px'}}><b>Branches</b></p>
                         <div className='div-branches'>
                             <p>Kandy</p>
                             <p>UdaPussalawa</p>
@@ -180,7 +157,7 @@ const HamburgerMenu = () => {
                     </div>
                </div>
                <div className='connect-via'>
-                <p style={{'font-size':'16px'}}>Connect with us :</p>
+                <p style={{'fontSize':'16px'}}>Connect with us :</p>
                 <div className='link-connect'>
                 <a href='https://www.facebook.com/GenuinePharmacy/'><img src={ FB} className='link-img' /></a>
                     <a href='https://www.instagram.com/airmedsbygp/'><img src={Insta} className='link-img' /></a>
@@ -188,12 +165,12 @@ const HamburgerMenu = () => {
 
                 </div>
                </div>
-               <div className='copy-rights' style={{'background-color':'#fff','padding':'5px','margin-top':'20px'}}>
-                 <p style={{'font-size':'12px'}} >Copyrights © 2024 Genuine Pharmacy. All Rights Reserved </p>
+               <div className='copy-rights' style={{'backgroundColor':'#fff','padding':'5px','marginTop':'20px'}}>
+                 <p style={{'fontSize':'12px'}} >Copyrights © 2024 Genuine Pharmacy. All Rights Reserved </p>
                </div>
             </section>
         </>
     );
-};
+}
 
-export default HamburgerMenu;
+export default ReadyforDelivery;

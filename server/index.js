@@ -594,7 +594,29 @@ app.get('/searchprescription', async (req, res) => {
     }
 });
 
+app.get('/getreadyfordelivery',async(req,res)=>{
+    try {
+        const prescription = await PrescriptionModel.find({deliveryStatus:'Ready For Delivery'});
+        console.log(prescription);
 
+    if(!prescription){
+        return res.status(500).json({error:'Did not find any prescriptions ready for delivery'});
+    }
+     const prescriptionData = prescription.map(prescription => ({
+            orderID: prescription._id,
+            username: prescription.Username,
+            userContact: prescription.Contact,
+            useremail: prescription.email,
+            PatientName: prescription.PatientName,
+            DeliveryAddress: prescription.DeliveryAddress,
+            DeliveryCity: prescription.DeliveryCity,
+        }));
+
+        return res.status(200).json(prescriptionData);
+    } catch (error) {
+        return res.status(500).json({error:'Backend error',error});
+    }
+});
 
 
 
