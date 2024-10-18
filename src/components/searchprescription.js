@@ -1,8 +1,8 @@
 import React, {  useState } from 'react';
 import searchIcon from './images/icons8-search-50.png';
 import './searchprescription.css';
-import User from './images/user-black.png';
-import Signout from './images/signout-black.png';
+import User from './images/icons8-user-64.png';
+import Signout from './images/icons8-sign-out-64.png'
 import axios from 'axios';
 
 function Searchprescription() {
@@ -34,26 +34,32 @@ function Searchprescription() {
 
     return (
         <>
-            <div className='side-navbar'>
-                <ul className='navs'>
-                    <li className='admin-items'>Orders</li>
-                    <li className='admin-items'>Employees</li>
-                    <li className='admin-items'><a href='/products'>Products</a></li>
-                    <li className='admin-items'>Suppliers</li>
-                    <li className='admin-items'>Delivery Personnel</li>
-                </ul>
-                <div className='signOut-profile'>
-                    <a href='/adminprofile'><img src={User} alt='adminprofile' className='profile-icon' /></a>
-                    <a href='/Login'><img src={Signout} alt='signout' className='signout-icon' /></a>
-                </div>
-            </div>
+             <div className="sidebar">
+        <ul>
+          <li>Suppliers</li>
+          <li><a href='/products'>Products</a></li>
+          <li>Employee</li>
+          <li><a href='/orders'>Orders</a></li>
+          <li><a href='/landing-delivery'>Delivery Person</a></li>
+        </ul>
+        <div className="icon">
+          <div className="profile-icon">
+            <a href='/adminprofile'>
+              <img src={User} alt='Admin Profile' className='profile-icon-pro' />
+            </a>
+          </div>
+          <a href='/Login'>
+            <img src={Signout} alt='Sign Out' className='signout-icon-pro' />
+          </a>
+        </div>
+      </div>
 
             <div className='prescription-or-product'>
                 <div className='prescripton-type-order'>
-                    <h4>Prescription</h4>
+                    <h5 style={{color:'#fff'}}>Prescription</h5>
                 </div>
                 <div className='product-type-order'>
-                    <h4>Products</h4>
+                    <h5 style={{color:'#000'}}>Products</h5>
                 </div>
             </div>
 
@@ -74,7 +80,7 @@ function Searchprescription() {
             </div>
 
             {prescription && Object.keys(prescription).length > 0 ? (
-    <div className='orders-cont'>
+    <div className='orders-cont' style={{marginLeft:'10%'}}>
         <div className='img-details'>
             <div className='img-cont'>
                 {Array.isArray(prescription.prescriptions) && prescription.prescriptions.length > 0 ? (

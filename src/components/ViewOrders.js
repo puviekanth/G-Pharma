@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import User from './images/user-black.png';
-import Signout from './images/signout-black.png';
+import User from './images/icons8-user-64.png';
+import Signout from './images/icons8-sign-out-64.png'
 import Img1 from './images/img3.jpg';
 import Img2 from './images/pexels-n-voitkevich-7526012.jpg';
 import Img3 from './images/about1.jpg';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import './ViewOrders.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import axios from 'axios';
 
 function ViewOrders() {
@@ -55,43 +56,50 @@ const handleOrderDelete=(orderID)=>{
     return (
         <>
             <section className='orders'>
-                <div className='side-navbar'>
-                    <ul className='navs'>
-                        <li className='admin-items'>Orders</li>
-                        <li className='admin-items'>Employees</li>
-                        <li className='admin-items'><a href='/products'>Products</a></li>
-                        <li className='admin-items'>Suppliers</li>
-                        <li className='admin-items'>Delivery Personnel</li>
-                    </ul>
-                    <div className='signOut-profile'>
-                        <a href='/adminprofile'><img src={User} alt='adminprofile' className='profile-icon' /></a>
-                        <a href='/Login'><img src={Signout} alt='signout' className='signout-icon' /></a>
-                    </div>
-                </div>
+            <div className="sidebar">
+        <ul>
+          <li>Suppliers</li>
+          <li><a href='/products'>Products</a></li>
+          <li>Delivery</li>
+          <li>Employee</li>
+          <li><a href='/orders'>Orders</a></li>
+          <li><a href='/landing-delivery'>Delivery Person</a></li>
+        </ul>
+        <div className="icon">
+          <div className="profile-icon">
+            <a href='/adminprofile'>
+              <img src={User} alt='Admin Profile' className='profile-icon-pro' />
+            </a>
+          </div>
+          <a href='/Login'>
+            <img src={Signout} alt='Sign Out' className='signout-icon-pro' />
+          </a>
+        </div>
+      </div>
 
                 <section className='interface'>
                     <div className='products-prescription-nav'>
                         <div className='prescrip'>
-                            <p className='prescription-orders'><a href='#'>Prescriptions</a></p>
+                            <p className='prescription-orders'><a href='/orders'>Prescriptions</a></p>
                         </div>
                         <div className='prod'>
-                            <p className='product-orders'><a href='#'>Products</a></p>
+                            <p className='product-orders'><a href='/orders-products'>Products</a></p>
                         </div>
                     </div>
-                    <div className='search'>
-                    <a href='/SearchPrescription'> <button  className='btn btn-success mt-3'>Search ...</button></a>
+                    <div className='search-order'>
+                    <a href='/SearchPrescription'> <button  className='btn btn-success mt-3' style={{'marginBottom':'20px'}}>Search ...</button></a>
                     </div>
                     <div className='process-complete'>
-                    <div className='new' style={{ backgroundColor: 'rgb(255, 227, 127)' }}>
+                    <div className='new-view' >
                         <a href='/orders'>
-                            <p className='new-prescriptions'>New</p>
+                            <p className='new-prescriptions-view'>New</p>
                         </a>
                     </div>
-                       <div className='processing'>
-                       <a href='/prescripion-processing'><p className='processing-prescriptions'>Processing</p></a>
+                       <div className='processing-view'>
+                       <a href='/prescription-processing'><p className='processing-prescriptions-view'>Processing</p></a>
                        </div>
-                       <div className='completed'>
-                       <a href='/completed-orders'><p className='completed-prescriptions'>Completed</p></a>
+                       <div className='completed-view'>
+                       <a href='/completed-orders'><p className='completed-prescriptions-view'>Completed</p></a>
                        </div>
                     </div>
                     <h2 className='topic'>Prescription Orders</h2>
