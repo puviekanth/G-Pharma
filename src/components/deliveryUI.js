@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './delivery.css'; // Import the corresponding CSS file
-import Signout from './images/signout-black.png';
-import Profile from './images/user-black.png';
+import Profile from './images/icons8-user-64.png';
+import Signout from './images/icons8-sign-out-64.png'
 import Logo from './images/Screenshot_2024-08-02_203142-removebg-preview.png';
 import Telephone from './images/icon-phone-blue.png'
 import Location from './images/icon-location-blue.png'

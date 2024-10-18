@@ -1,218 +1,285 @@
-.navs {
-    display: flex;
-    flex-direction: column;
-    align-items: start; /* Align links to the start of the container */
-    margin-top: 10px; /* Adjust margin to move links closer to the top */
-    padding-left: 20px; /* Add padding for spacing from the left */
-}
-
-.profile-icon {
-    width: 45px;
-    height: auto;
-    margin-left: 5vw;
-}
-
-.signout-icon {
-    width: 40px;
-    height: auto;
-    margin-left: 4vw;
-}
-.signOut-profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-bottom: 20px; /* Adjust the margin to fit at the bottom */
-}
-.side-navbar {
-    width: 300px;
-    height: 100vh; /* Full height */
-    position: fixed; /* Fixed sidebar at the top */
-    top: 0; /* Start from the top */
-    left: 0; /* Align to the left */
-    background-color: rgb(255, 227, 127);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Spread content between top and bottom */
-    padding-top: 20px; /* Add padding to the top */
-    z-index: 100; /* Ensure it stays on top of other elements */
-}
-
-.admin-items {
-    font-weight: bold;
-    margin-bottom: 20px; /* Space between each item */
-    cursor: pointer;
-}
-
-.prescrip,.prod{
-    width: 200px;
-    text-align: center;
-     height: 70px; 
-}
-.prescription-orders,.product-orders{
-    margin-top: 25px;
-    
-}
-.prescription-orders a, .product-orders a{
-    text-decoration: none;
-    color: #000;
-}
-.prod{
-    background-color: #ececec;
-}
-.prescrip{
-    border: 3px solid #000;
-}
-.prod:hover{
-    cursor: pointer;
-    border: 3px solid #000;
-    
-}
-.prescrip:hover{
-    cursor: pointer;
-}
-.products-prescription-nav{
-    width: 400px;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgb(255, 227, 127);
-    
-}  
-.img1 , .img2, .img3 {
-    width:150px;
-    height: auto;
-    margin-top: 15px;
-}
-.img1:hover,.img2:hover,.img3:hover{
-    cursor: pointer;
-}
-.images-cont{
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-}
-
-/* Modal container */
-/* Adjust modal to ensure it works properly */
-.modal {
-    display: block;
-    position: fixed;
-    z-index: 1000;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
-}
-
-/* Modal content */
-.modal-content {
-    margin: auto;
-    display: block;
-    width: 80%;
-    max-width: 700px;
-}
-
-/* Close button */
-.close-modal {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    color: white;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close-modal:hover,
-.close-modal:focus {
-    color: #bbb;
-    text-decoration: none;
-    cursor: pointer;
-}
-.admin-Order-details{
-     display: flex;
-    flex-direction: column;
-    align-items: baseline;
-    justify-content: center; 
-}
-.img-details{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.btns{
-    width: 20vw;
-    display: flex;
-    align-items:center;
-    justify-content: space-around;
-    margin-top: 15px;
-    margin-left: 30px;
-}
-.order-cont{
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #000;
-} 
-.interface {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: 20px; /* Adjust padding to align with top of page */
-}
-.orders {
-    display: flex;
-    margin-left: 300px; /* Adjust so the content does not overlap with the sidebar */
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #004085; /* Darker blue for sidebar */
     padding: 20px;
-    align-items: flex-start;
-    justify-content: flex-start;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
 }
-.process-complete{
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f8f9fa;
+    color: #004085;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.sidebar ul li:hover {
+    background-color: #e9ecef; /* Light gray on hover */
+    color: #004085;
+}
+
+/* Icon styles */
+.icon {
     display: flex;
     align-items: center;
+    justify-content: space-around;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.icon img:hover {
+    transform: scale(1.1);
+}
+
+/* Interface styles */
+.interface {
+    margin-left: 270px; /* Account for sidebar width */
+    padding: 20px;
+}
+
+.products-prescription-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    /* padding: 15px;
+    background-color: #fff;
+    border-radius: 5px; */
+    margin-bottom: 20px;
+    width: 500px;
+    margin-left: 25%;
+}
+
+.products-prescription-nav .prescrip, 
+.products-prescription-nav .prod {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.products-prescription-nav a {
+    color: #004085;
+    text-decoration: none;
+}
+
+.products-prescription-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Status Navigation (New, Processing, Completed) */
+.process-complete {
+    display: flex;
     justify-content: space-between;
-    margin-top: 10%;
-}
-.new,.processing,.completed{
-    width: 150px;
-    height: 50px;
-}
-/* .processing{
-    background-color:  rgb(255, 227, 127);
-} */
-.new,.completed{
-    background-color: #ececec;
-}
-.processing{
-    border-right: 1px solid #000;
-    border-left: 1px solid #000;
-}
-.processing:hover{
-    cursor: pointer;
-}
-.new:hover, .completed:hover{
-    background-color: rgb(255, 227, 127);
-    cursor: pointer;
-}
-.new p, .processing p, .completed p{
-    margin-top: 10px;
+    margin-bottom: 20px;
+    
 }
 .process-complete a{
     text-decoration: none;
+    color: #fff;
+}
+
+.process-complete div {
+    flex: 1;
+    text-align: center;
+    padding: 15px;
+    margin: 0 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.new-process {
+    background-color: #f1f1f1; /* Amber */
+    border: 1px solid #004085;
+}
+.new-process a{
+    text-decoration: none;
     color: #000;
-    
+}
+
+.processing {
+    background-color:  #004085;
+   ; /* Cyan */
+}
+.processing a,.processing p{
+    text-decoration: none;
+    color: #fff;
+}
+
+.completed {
+    background-color: #f1f1f1;
+    border:1px solid #004085;
+    /* Green */
 }
 
 
+.process-complete div:hover {
+    opacity: 0.9;
+}
 
+/* Buttons */
+.btns {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
 
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-success {
+    background-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+/* Order Container */
+.order-cont {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.img-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.images-cont {
+    display: flex;
+    gap: 10px;
+}
+
+.images-cont img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.images-cont img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .interface {
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .process-complete {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+    }
+
+    .sidebar ul li {
+        margin: 5px 0;
+    }
+}
+.search-order{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10%;
+}
+
+.products-orders{
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+.prescription-orders{
+    padding: 20px;
+    background-color: #004085;
+    
+}
+.prescription-orders a{
+    color: #fff;
+}
+.processing-prescriptions,.completed-prescriptions{
+    color: #000;
+}

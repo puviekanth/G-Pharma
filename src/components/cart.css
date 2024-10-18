@@ -1,74 +1,109 @@
-.cart-section{
+.cart-section {
     margin-top: 10%;
     margin-left: 2%;
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
     justify-content: space-around;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background color for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
-.cart-pro-img{
-    width: 100px;
+
+.cart-div {
+    width: 100%; /* Make cart table take full width */
+    max-width: 700px; /* Limit max width */
+    overflow: auto; /* Enable scrolling for overflow */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+
+th {
+    background-color: #ffdf7e; /* Header background color */
+    color: #333; /* Header text color */
+    padding: 10px; /* Padding for headers */
+    text-align: left; /* Align text to the left */
+}
+
+td {
+    padding: 10px; /* Padding for cells */
+    text-align: left; /* Align text to the left */
+}
+
+.cart-pro-img {
+    width: 80px; /* Reduced image size */
     height: auto;
+    border-radius: 5px; /* Rounded corners for images */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Subtle shadow */
 }
-.quantity-input{
-    width: 42px;
+
+.quantity-input {
+    width: 50px; /* Slightly wider input */
     padding: 5px;
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #ccc; /* Light border */
 }
-td:hover{
-    background:inherit;
+
+.cancel {
+    cursor: pointer; /* Change cursor to pointer for remove button */
 }
-th,td{
-    border-right: none;
-    border-left: none;
-}
-.total{
+
+.total {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: rgb(246, 244, 244);
-    border-radius: 15px;
-    padding: 10px;
+    background-color: #ffffff; /* White background for total section */
+    border-radius: 10px;
+    padding: 20px; /* Increased padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-left: 20px; /* Spacing from cart */
 }
-.sub-table{
-    width: 300px;
+
+.sub-table {
+    width: 100%; /* Make subtotal table full width */
 }
-.cart-products a{
-    text-decoration: none;
-    color: #000;
+
+.sub-table td {
+    padding: 10px; /* Padding for subtotal cells */
 }
-.cart-products a:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-.pay-btn{
-    margin-top: 30px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border:none;
-    background-color: rgb(255, 227, 127);;
-    border-radius: 25px;
-}
-.pay-btn a{
-    text-decoration: none;
-    color: #000;
-}
-.pay-btn:hover{
-    cursor: pointer;
-    animation:pulse 1s infinite;
-}
-.update-div{
-    display: flex;
-    justify-content: right;
-    align-items: flex-end;
-}
-.update-btn{
-    padding: 15px;
-    background-color: rgb(255, 227, 127);;
-    margin-top: 5%;
+
+.pay-btn {
+    margin-top: 20px;
+    padding: 10px 20px; /* Increased button padding */
     border: none;
-    border-radius: 15px;
+    background-color: #ffdf7e; /* Match button color with header */
+    border-radius: 25px; /* Rounded button corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition */
 }
-.update-btn:hover{
-    cursor: pointer;
-    animation:pulse 1s infinite;
+
+.pay-btn:hover {
+    background-color: #ffd500; /* Darken color on hover */
+    animation: pulse 1s infinite; /* Pulse animation */
+}
+
+.cart-products a {
+    text-decoration: none;
+    color: #007bff; /* Change link color to a shade of blue */
+}
+
+.cart-products a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
 }

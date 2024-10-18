@@ -14,13 +14,16 @@ const AdminModel = require('./model/AdminModel');
 const PrescriptionModel = require('./model/PrescriptionModel'); // Your Prescription model
 const multer = require('multer');
 const path = require('path');
-const ProductModel = require('./model/ProductModel');
 const {ObjectId} = require('mongodb');
 const DeliveryPersonModel = require('./model/DeliveryModel');
+const CartModel = require('./model/CartModel');
+const CheckoutModel = require('./model/CheckoutModel')
 
 
 const app = express();
+
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -499,89 +502,35 @@ app.delete('/deleteOrder/:orderID',async (req,res)=>{
 })
  
 
-//get porducts at admin page
-app.get('/getproducts', async (req, res) => {
-    try {
-      const products = await ProductModel.find();
-      console.log(products);
-      const productsData = products.map(product =>({
-        image:product.image,
-        name:product.name,
-        description: product.description,
-        price:product.price,
-        category:product.category
-      }))
-      res.json(productsData);
-    } catch (error) {
-      res.status(500).json({ message: 'Error fetching products',error });
-    }
-  });
+
 
 
  
-const Productstorage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/products'); // Save files to 'uploads/products' folder
-    },
-    filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname)); // Append date and file extension to the file name
-    }
-});
-
-const Productupload = multer({
-    storage: Productstorage,
-    limits: { fileSize: 1024 * 1024 * 5 }, // 5MB limit
-}).single('image'); // Single file upload for the 'image' field
-
-app.post('/addproducts', Productupload, async (req, res) => {
-    try {
-        const { name, description, price, category } = req.body;
-        
-
-        const newProduct = new ProductModel({
-            image:req.file.path,
-            name,
-            description,
-            price,
-            category
-             // Store image path in the database
-        });
-
-        await newProduct.save();
-        res.status(200).json({ message: 'Product added successfully' });
-    } catch (error) {
-        console.error('Error adding product:', error);
-        res.status(500).json({ message: 'Error adding product' });
-    }
-});
 
 
 
 
-//   //delete products
-//   app.delete('/deleteproducts/:productID', async (req, res) => {
-//     try {
-//       const productID = parseInt(req.params.productID, 10);
-//       const result = await Product.deleteOne({ productID: productID });
-  
-//       if (result.deletedCount === 0) {
-//         return res.status(404).json({ error: 'Product not found' });
-//       }
-      
-//       res.status(200).json({ message: 'Product deleted successfully' });
-//     } catch (err) {
-//       res.status(500).json({ error: err.message });
-//     }
-//   });
+
+
+
+
 
 app.get('/searchprescription', async (req, res) => {
-    console.log('Received search request:', req.query.search); // Log search query
+    console.log('Received search request:', req.query); // Log entire query object
     const search = req.query.search;
+    
+    console.log('Received search print is ', search);
+    
+    // Validate ObjectId
+    if (!ObjectId.isValid(search)) {
+        return res.status(400).json({ error: 'Invalid ObjectId' });
+    }
 
     try {
-        // Attempt to convert the search value to ObjectId
-        const id = new ObjectId(search); // Ensure it's an ObjectId
-        const prescription = await PrescriptionModel.findOne({ _id: id });
+        const id = new ObjectId(search);
+        console.log('ID is ', id);
+        
+        const prescription = await PrescriptionModel.findOne({ _id: new ObjectId(search) });
 
         if (!prescription) {
             return res.status(404).json({ error: 'No prescription found' });
@@ -590,9 +539,11 @@ app.get('/searchprescription', async (req, res) => {
         console.log(prescription);  // Log prescription to see it in the console
         return res.status(200).json(prescription);
     } catch (error) {
+        console.error('Error occurred:', error); // Log the error to the console
         return res.status(500).json({ error: 'Something went wrong', error });
     }
 });
+
 
 app.get('/getreadyfordelivery',async(req,res)=>{
     try {
@@ -617,6 +568,204 @@ app.get('/getreadyfordelivery',async(req,res)=>{
         return res.status(500).json({error:'Backend error',error});
     }
 });
+
+
+
+
+
+const productSchema = new mongoose.Schema({
+    name: String,
+    description: String,
+    price: Number,
+    category: String,
+    image: String,
+  });
+  
+  // Create a model
+  const ProductModel = mongoose.model('Product', productSchema, 'productDbase');
+  
+  // Define routes
+  app.get('/getproducts', async (req, res) => {
+    try {
+      const products = await ProductModel.find();
+      res.json(products);
+    } catch (error) {
+      res.status(500).json({ message: 'Error fetching products', error });
+    }
+  });
+  
+  const Productstorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads/products');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname));
+    },
+  });
+  
+  const uploadProducts = multer({ storage: Productstorage });
+  
+  // Add new product
+  app.post('/addproducts', uploadProducts.single('image'), async (req, res) => {
+    const { name, description, price, category } = req.body;
+    const imagePath = req.file ? req.file.path : '';
+  
+    try {
+      const newProduct = new ProductModel({ name, description, price, category, image: imagePath });
+      await newProduct.save();
+      res.status(201).json(newProduct);
+    } catch (error) {
+      res.status(500).json({ message: 'Error adding product', error });
+    }
+  });
+  
+  // Update existing product
+  app.put('/updateproducts/:id', uploadProducts.single('image'), async (req, res) => {
+    const { id } = req.params;
+    const { name, description, price, category } = req.body;
+    const imagePath = req.file ? req.file.path : '';
+  
+    try {
+      const updatedProduct = await ProductModel.findByIdAndUpdate(
+        id,
+        { name, description, price, category, image: imagePath },
+        { new: true }
+      );
+      res.json(updatedProduct);
+    } catch (error) {
+      res.status(500).json({ message: 'Error updating product', error });
+    }
+  });
+  
+  // Delete a product
+  app.delete('/deleteproducts/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+      await ProductModel.findByIdAndDelete(id);
+      res.status(204).json({ message: 'Product deleted successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Error deleting product', error });
+    }
+  });
+  
+  // Serve uploaded images
+  app.use('/uploads/products', express.static(path.join(__dirname, 'uploads/products')));
+  
+
+
+  
+  // Get all delivery persons
+  app.get('/api/delivery-persons', (req, res) => {
+    DeliveryPersonModel.find()
+      .then(persons => res.json(persons))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+  
+  // Add a new delivery person
+  app.post('/api/delivery-persons', (req, res) => {
+    const newPerson = new DeliveryPersonModel(req.body);
+  
+    newPerson.save()
+      .then(() => res.json('Delivery person added successfully'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+  
+  // Update a delivery person by ID
+  app.put('/api/delivery-persons/:id', (req, res) => {
+    DeliveryPersonModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .then(() => res.json('Delivery person updated successfully'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+  
+  // Delete a delivery person by ID
+  app.delete('/api/delivery-persons/:id', (req, res) => {
+    DeliveryPersonModel.findByIdAndDelete(req.params.id)
+      .then(() => res.json('Delivery person deleted successfully'))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+
+  //add to cart
+  app.post('/addtocart',authenticateJWT,async (req,res)=>{
+    const {ProductName,email,ProductPrice,ProductQuantity,Subtotal,Image} = req.body;
+   try {
+    const newItem = new CartModel({
+        ProductName,
+        email:req.user.email,
+        ProductPrice,
+        ProductQuantity,
+        Subtotal,
+        Image
+    });
+
+    await newItem.save();
+    return res.status(200).json({message:'Product Added to Cart Successfully'})
+   } catch (error) {
+    console.log("Something went wrong in the server");
+    return res.status(500).json({error:'Something went wrong in the server'})
+   }
+
+  })
+
+  //get Cart items
+  app.get('/getcartitems',authenticateJWT,async (req,res)=>{
+   try {
+    const email = req.user.email;
+    const items = await CartModel.find({email:email});
+    if(!items){
+        console.log('No items found in the cart');
+        return res.status(500).json({error:'No items in the cart'})
+    }
+    return res.status(200).json(items);
+   } catch (error) {
+    return res.status(500).json({error:'Something went wrong in the server side',error})
+   }
+  });
+
+
+
+  // Add checkout
+// Add checkout
+app.post('/addcheckout', async (req, res) => {
+    console.log('Request Body:', req.body); // Log the request body to see what is being sent
+    const { email, cartItems } = req.body;
+
+    if (!email || !cartItems) {
+        return res.status(400).json({ message: "Email and cart items are required." });
+    }
+
+    try {
+        // Check if a checkout already exists for this user
+        let existingCheckout = await CheckoutModel.findOne({ email });
+
+        if (existingCheckout) {
+            // Update the existing checkout record with new cart items
+            existingCheckout.cartItems = cartItems; // Overwrite the existing cart items array with the new one
+            await existingCheckout.save();
+            res.status(200).json({ message: "Checkout updated successfully.", data: existingCheckout });
+        } else {
+            // Create a new checkout record
+            const newCheckout = new CheckoutModel({
+                email,
+                cartItems // Save the cartItems array as it is
+            });
+
+            await newCheckout.save();
+            res.status(200).json({ message: "Checkout processed successfully.", data: newCheckout });
+        }
+    } catch (error) {
+        console.error("Error processing checkout:", error);
+        res.status(500).json({ message: "Internal Server Error." });
+    }
+});
+
+
+
+  
+
+
+
+
 
 
 

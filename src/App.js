@@ -23,10 +23,12 @@ import Orders from './components/ViewOrders'
 import Prescription from './components/AddPrescription'
 import ProcessingPrescription from './components/adminPrescriptionProcessing'
 import CompletedPrescriptions from './components/adminCompletedPrescription'
-import ProductsPage from './components/adminProductsPage'
+import ProductsPage from './components/AdminProductPage'
 import SearchOrderPage from './components/searchprescription'
 import DeliveryUI from './components/deliveryUI'
 import ReadyforDelivery from './components/ReadyDeliveryOrders';
+import AdminPRofile from './components/adminProfile'
+import LandingDelivery from './components/LandingDeliveryPage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -59,12 +61,15 @@ function App() {
         <Route path="/Individual" element={<Individual />} />
         <Route path="/Add-prescription" element={<Prescription />} />
         <Route path='/orders' element={<Orders />} />
-        <Route path='/prescripion-processing' element={<ProcessingPrescription />} />
+        <Route path='/prescription-processing' element={<ProcessingPrescription />} />
         <Route path='//completed-orders' element={<CompletedPrescriptions/>} />
         <Route path='/products' element={<ProductsPage />} />
         <Route path='/SearchPrescription' element={<SearchOrderPage />}  />
         <Route path='/deliveryUI/home' element={<DeliveryUI />} />
         <Route path='/readyfordelivery' element={<ReadyforDelivery />} />
+        <Route path='/adminprofile' element={<AdminPRofile />} />
+        <Route path='/landing-delivery' element={<LandingDelivery />} />
+
       </Routes>
     </Router>
   );
