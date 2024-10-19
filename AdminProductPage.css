@@ -1,0 +1,205 @@
+/* AdminAddProduct.css */
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif; /* More modern font */
+}
+
+.container-adminProduct {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #0056b3; /* Darker blue for sidebar */
+  padding: 20px;
+  height: 100%;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: white;
+  color: #0056b3; /* Darker text color */
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+  background-color: #e9ecef; /* Light gray on hover */
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: auto;
+}
+
+.icon img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.icon img:hover {
+  transform: scale(1.1);
+}
+
+.content-adminProduct {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
+}
+
+h2, h3 {
+  color: #0056b3; /* Darker blue headings */
+}
+
+.name-input-adminProduct,
+.desc-input-adminProduct,
+.cat-input-adminProduct,
+.price-input-adminProduct,
+.file-input-adminProduct,
+.search-input {
+  margin: 10px 0;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da; /* Border color */
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #004085; /* Darker blue on hover */
+}
+
+.product-list {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between items */
+}
+
+.product-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f8f9fa; /* Light background */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.product-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.product-item img {
+  max-width: 100%;
+  border-radius: 5px; /* Rounded corners */
+}
+
+/* Search Bar Styles */
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.search-button:hover {
+  background-color: #004085;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background-color: #004B87; /* Dark blue sidebar */
+  padding: 20px;
+  height: 100%; /* Full height of the container */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures elements like icons are at the bottom */
+}
+
+.sidebar h2 {
+  color: white; /* White heading color for sidebar */
+  text-align: center;
+  margin-bottom: 20px; /* Space below heading */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+  margin: 10px 0;
+  background-color: white; /* White background for list items */
+  color: #004B87; /* Blue text for items */
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar ul li:hover {
+  background-color: #E6F7FF; /* Light blue on hover */
+}
+
+/* Content Styles */
+.product-list-title {
+  margin-top: 20px;
+  font-size: 1.5rem; /* Font size for the title */
+  color: #004B87; /* Color for the title */
+  font-weight: bold; /* Make the title bold */
+}
+
+.container-adminProduct {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+}
