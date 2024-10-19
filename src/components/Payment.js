@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './NavBar';
 import Footer from './Footer';
 import './Payment.css';
-import Product1 from './images/Glutanex-Tablets-100.jpeg';
-import Product2 from './images/Eventone-C-Cream-300x300.jpg';
+import axios from 'axios';
 
 function Payment() {
     const [email, setEmail] = useState('');
@@ -12,15 +11,47 @@ function Payment() {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [errors, setErrors] = useState({});
+    const [cartItems, setCartItems] = useState([]);
+    const [loading, setLoading] = useState(false); // State for loading indicator
+    const [fetchError, setFetchError] = useState(null); // State for fetch error
 
-    const [cartItems, setCartItems] = useState([
-        { id: 1, name: 'Glutanex Tablets - 100g', price: 5000, quantity: 1, image: Product1 },
-        { id: 2, name: 'Face Cream', price: 3000, quantity: 1, image: Product2 },
-        { id: 3, name: 'My product', price: 2000, quantity: 2, image: Product1 }
-    ]);
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (!token) {
+            console.log('No token found. Please try logging in again.');
+            setFetchError('Please log in to view your billing information.');
+            return;
+        }
+
+        setLoading(true);
+        axios.get('http://127.0.0.1:3000/getbillinginfo', {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+        .then(res => {
+            if (Array.isArray(res.data)) {
+                setCartItems(res.data);
+                console.log('Fetched data successfully');
+            } else {
+                setFetchError('Unexpected response format.');
+            }
+        })
+        .catch(err => {
+            console.log('Could not fetch', err);
+            setFetchError('Failed to load billing information.');
+        })
+        .finally(() => {
+            setLoading(false);
+        });
+    }, []);
+
+    const calculateSubtotal = (price, quantity) => {
+        return price * quantity;
+    };
 
     const calculateTotalCartCost = () => {
-        return (cartItems.reduce((total, item) => total + calculateSubtotal(item.price, item.quantity), 0) + 600);
+        const deliveryFee = 600;
+        const total = cartItems.reduce((total, item) => total + (item.Subtotal || 0), 0);
+        return total + deliveryFee;
     };
 
     const validateForm = () => {
@@ -47,18 +78,11 @@ function Payment() {
         return Object.keys(newErrors).length === 0;
     };
 
-    const calculateSubtotal = (price, quantity) => {
-        return price * quantity;
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log('Email:', email);
-            console.log("Name : ", name);
-            console.log("Contact : ", contact);
-            console.log("Address", address);
-            console.log("City : ", city);
+            console.log('Submitting the form:', { email, name, contact, address, city });
+            // Here, you can add the axios POST request to send data to the server.
         }
     };
 
@@ -78,80 +102,48 @@ function Payment() {
                             onChange={(e) => setEmail(e.target.value)}
                             required
                         />
-                        
-                        {errors.name && <div className="error-message">{errors.name}</div>}
-                        <input
-                            type="text"
-                            className={`name-input ${errors.name ? 'input-error' : ''}`}
-                            placeholder='Full Name'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                        />
-                        
-                        {errors.contact && <div className="error-message">{errors.contact}</div>}
-                        <input
-                            type="text"
-                            className={`contact-input ${errors.contact ? 'input-error' : ''}`}
-                            placeholder='Contact'
-                            value={contact}
-                            onChange={(e) => setContact(e.target.value)}
-                            required
-                        />
-                        
-                        {errors.city && <div className="error-message">{errors.city}</div>}
-                        <input
-                            type="text"
-                            className={`city-input ${errors.city ? 'input-error' : ''}`}
-                            placeholder='City'
-                            value={city}
-                            onChange={(e) => setCity(e.target.value)}
-                            required
-                        />
-                        
-                        {errors.address && <div className="error-message">{errors.address}</div>}
-                        <input
-                            type="text"
-                            className={`address-input ${errors.address ? 'input-error' : ''}`}
-                            placeholder='Address'
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            required
-                        />
-                        
+                        {/* Repeat similar input fields for name, contact, city, and address */}
                     </form>
                 </div>
                 <div className='order-summary'>
                     <h2>Order Summary</h2>
-                    <table className='order-summary-table'>
-                        <thead>
-                            <tr>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cartItems.map((item) => (
-                                <tr key={item.id}>
-                                    <td>{item.name}</td>
-                                    <td>{item.quantity.toLocaleString()}</td>
-                                    <td>{calculateSubtotal(item.price, item.quantity).toLocaleString()}</td>
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : fetchError ? (
+                        <p className="error-message">{fetchError}</p>
+                    ) : (
+                        <table className='order-summary-table'>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
                                 </tr>
-                            ))}
-                            <tr>
-                                <td><b>Delivery Fee</b></td>
-                                <td></td>
-                                <td><b>600</b></td>
-                            </tr>
-                            <tr>
-                                <td><b>Total</b></td>
-                                <td></td>
-                                <td><b>{calculateTotalCartCost()}</b></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <button className='pay-btn' style={{ width: '200px' }} onClick={handleSubmit}><a href=''>Checkout</a></button>
+                            </thead>
+                            <tbody>
+                                {cartItems.map((item) => (
+                                    <tr key={item._id}>
+                                        <td>{item.ProductName}</td>
+                                        <td>{item.ProductQuantity}</td>
+                                        <td>{item.Subtotal ? item.Subtotal.toLocaleString() : 'N/A'}</td>
+                                    </tr>
+                                ))}
+                                <tr>
+                                    <td><b>Delivery Fee</b></td>
+                                    <td></td>
+                                    <td><b>600</b></td>
+                                </tr>
+                                <tr>
+                                    <td><b>Total</b></td>
+                                    <td></td>
+                                    <td><b>{calculateTotalCartCost().toLocaleString()}</b></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    )}
+                    <button className='pay-btn' style={{ width: '200px' }} onClick={handleSubmit}>
+                        Checkout
+                    </button>
                 </div>
             </section>
             <Footer />

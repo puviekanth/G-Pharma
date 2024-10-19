@@ -759,6 +759,25 @@ app.post('/addcheckout', async (req, res) => {
     }
 });
 
+app.get('/getbillinginfo', authenticateJWT, async (req, res) => {
+    try {
+        const email = req.user.email;
+        if (!email) {
+            return res.status(401).json({ error: 'Please log in, no email found.' });
+        }
+
+        const userBillingInfo = await CheckoutModel.findOne({ email: email });
+        if (!userBillingInfo || !Array.isArray(userBillingInfo.cartItems)) {
+            return res.status(404).json({ error: 'No items found in the cart.' });
+        }
+
+        return res.status(200).json(userBillingInfo.cartItems);
+    } catch (error) {
+        return res.status(500).json({ error: 'Server error, please try again later.' });
+    }
+});
+
+
 
 
   
