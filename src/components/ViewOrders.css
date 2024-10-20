@@ -256,10 +256,7 @@
     justify-content: center;
 }
 
-.products-orders{
-    padding: 20px;
-    background-color: #f1f1f1;
-}
+
 .prescription-orders{
     padding: 20px;
     background-color: #004085;
@@ -270,4 +267,8 @@
 }
 .processing-prescriptions-view,.completed-prescriptions-view{
     color: #000;
+}
+.product-orders-pres:hover{
+    background-color: #004085;
+    cursor: pointer;
 }

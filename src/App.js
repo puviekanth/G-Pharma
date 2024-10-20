@@ -30,6 +30,10 @@ import ReadyforDelivery from './components/ReadyDeliveryOrders';
 import AdminPRofile from './components/adminProfile'
 import LandingDelivery from './components/LandingDeliveryPage'
 import ViewOrderProducts from './components/ViewOrderProdcuts'
+import Employee from './components/adminEmployee'
+import AddEmp from './components/addEmployee'
+import UpdateEmp from './components/updateEmployee'
+import Suppliers from './components/SupplierManage'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -71,6 +75,10 @@ function App() {
         <Route path='/adminprofile' element={<AdminPRofile />} />
         <Route path='/landing-delivery' element={<LandingDelivery />} />
         <Route path='/orders-products' element={<ViewOrderProducts />} />
+        <Route path='/employee' element={<Employee />} />
+        <Route path='/create' element={<AddEmp />} />
+        <Route path='/updateEmployee/:id' element={<UpdateEmp />} />
+        <Route path='/suppliers' element={<Suppliers />} />
       </Routes>
     </Router>
   );

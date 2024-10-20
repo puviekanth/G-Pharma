@@ -58,10 +58,9 @@ const handleOrderDelete=(orderID)=>{
             <section className='orders'>
             <div className="sidebar">
         <ul>
-          <li>Suppliers</li>
+        <li><a href='/suppliers'>Suppliers</a></li>
           <li><a href='/products'>Products</a></li>
-          <li>Delivery</li>
-          <li>Employee</li>
+          <li><a href='/employees'>Employee</a></li>
           <li><a href='/orders'>Orders</a></li>
           <li><a href='/landing-delivery'>Delivery Person</a></li>
         </ul>
@@ -79,11 +78,11 @@ const handleOrderDelete=(orderID)=>{
 
                 <section className='interface'>
                     <div className='products-prescription-nav'>
-                        <div className='prescrip'>
-                            <p className='prescription-orders'><a href='/orders'>Prescriptions</a></p>
+                        <div className='prescrip' >
+                            <p className='prescription-orders-pres'  style={{backgroundColor:'#004085',padding:'10px'}}><a href='/orders' style={{color:'#fff'}}>Prescriptions</a></p>
                         </div>
-                        <div className='prod'>
-                            <p className='product-orders'><a href='/orders-products'>Products</a></p>
+                        <div className='prod'   >
+                            <p className='product-orders-pres' style={{backgroundColor:'#f1f1f1',padding:'10px'}}><a href='/orders-products'>Products</a></p>
                         </div>
                     </div>
                     <div className='search-order'>

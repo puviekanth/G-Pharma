@@ -126,11 +126,11 @@ const AdminProductPage = () => {
     <div className="container-adminProduct">
       <div className="sidebar">
         <ul>
-          <li>Suppliers</li>
-          <li><a href='/produts'>Products</a></li>
-          <li>Employee</li>
+        <li><a href='/suppliers'>Suppliers</a></li>
+          <li><a href='/products'>Products</a></li>
+          <li><a href='/employees'>Employee</a></li>
           <li><a href='/orders'>Orders</a></li>
-          <li>Delivery Person</li>
+          <li><a href='/landing-delivery'>Delivery Person</a></li>
         </ul>
         <div className="icon">
           <div className="profile-icon">
