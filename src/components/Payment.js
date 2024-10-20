@@ -78,11 +78,41 @@ function Payment() {
         return Object.keys(newErrors).length === 0;
     };
 
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        axios.get('http://127.0.0.1:3000/email',
+            { headers: { Authorization: `Bearer ${token}`}
+        })
+        .then(res=>{
+            setEmail(res.data.email);
+            console.log('Email fetched successfully');
+        })
+        .catch(err=>{
+            console.log('No email found',err);
+        })
+    },[])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            console.log('Submitting the form:', { email, name, contact, address, city });
-            // Here, you can add the axios POST request to send data to the server.
+            console.log('Submitting the form:', { email, name, contact, address, city , cartItems});
+            const token = localStorage.getItem('token');
+            const userEmail = JSON.parse(atob(token.split('.')[1])).email;
+            
+            axios.post('http://127.0.0.1:3000/addbillinginfo',
+                {email:userEmail,
+                name,
+                contact,
+                city,
+                address,
+                cartItems}
+            )
+            .then(res=>{
+                console.log('Data sent successfully',res);
+            })
+            .catch(err=>{
+                console.log('Something went wrong, could not add the billing info',err);
+            })
         }
     };
 
@@ -92,7 +122,7 @@ function Payment() {
             <section className='payment-section'>
                 <div className='billing-info'>
                     <form onSubmit={handleSubmit} className='billing-form'>
-                        <h2 className='billing-name'>Billing Information</h2>
+                        <h2 className='billing-name' style={{marginBottom:'20px'}}>Billing Information</h2>
                         {errors.email && <div className="error-message">{errors.email}</div>}
                         <input
                             type="email"
@@ -101,8 +131,47 @@ function Payment() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
+                            disabled
                         />
-                        {/* Repeat similar input fields for name, contact, city, and address */}
+                         {errors.name && <div className="error-message">{errors.name}</div>}
+                        <input
+                            type="text"
+                            className={`name-input-pay ${errors.name ? 'input-error' : ''}`}
+                            placeholder='Full Name'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                        
+                        {errors.contact && <div className="error-message">{errors.contact}</div>}
+                        <input
+                            type="text"
+                            className={`contact-input-pay ${errors.contact ? 'input-error' : ''}`}
+                            placeholder='Contact'
+                            value={contact}
+                            onChange={(e) => setContact(e.target.value)}
+                            required
+                        />
+                        
+                        {errors.city && <div className="error-message">{errors.city}</div>}
+                        <input
+                            type="text"
+                            className={`city-input-pay ${errors.city ? 'input-error' : ''}`}
+                            placeholder='City'
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            required
+                        />
+                        
+                        {errors.address && <div className="error-message">{errors.address}</div>}
+                        <input
+                            type="text"
+                            className={`address-input-pay ${errors.address ? 'input-error' : ''}`}
+                            placeholder='Address'
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            required
+                        />
                     </form>
                 </div>
                 <div className='order-summary'>

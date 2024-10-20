@@ -17,7 +17,8 @@ const path = require('path');
 const {ObjectId} = require('mongodb');
 const DeliveryPersonModel = require('./model/DeliveryModel');
 const CartModel = require('./model/CartModel');
-const CheckoutModel = require('./model/CheckoutModel')
+const CheckoutModel = require('./model/CheckoutModel');
+const BillingModel = require('./model/BillingModel');
 
 
 const app = express();
@@ -759,6 +760,9 @@ app.post('/addcheckout', async (req, res) => {
     }
 });
 
+
+
+//get billing info
 app.get('/getbillinginfo', authenticateJWT, async (req, res) => {
     try {
         const email = req.user.email;
@@ -776,6 +780,72 @@ app.get('/getbillinginfo', authenticateJWT, async (req, res) => {
         return res.status(500).json({ error: 'Server error, please try again later.' });
     }
 });
+
+//add billing info to the database
+app.post('/addbillinginfo', async (req, res) => {
+    try {
+        console.log('Request body:', req.body);
+        const { email, name, contact, city, address, cartItems } = req.body;
+
+        // Check for required fields
+        if (!email || !name || !contact || !city || !address || !cartItems) {
+            console.log('Missing fields');
+            return res.status(400).json({ error: 'Please provide all required information' });
+        }
+
+        // Create a new billing model instance
+        const bill = new BillingModel({
+            email,
+            name,
+            contact,
+            city,
+            address,
+            date:Date.now(),
+            cartItems,
+            status:'New'
+        });
+
+        // Save the billing information to the database
+        await bill.save();
+        return res.status(200).json({ message: 'Successfully added billing info' });
+
+    } catch (error) {
+        console.error('Error adding billing info:', error);
+        return res.status(500).json({ error: 'Could not add the data from the server side' });
+    }
+});
+
+
+//get product orders
+
+app.get('/ProductsOrdersGet', async (req, res) => {
+    try {
+        const prescriptions = await BillingModel.find({status:'New'}); // Get all prescriptions
+        console.log(prescriptions);
+        if (!prescriptions.length) {
+            return res.status(400).json({ error: 'No Prescriptions found' });
+        }
+
+        const prescriptionData = prescriptions.map(prescription => ({
+            orderID: prescription._id,
+            username: prescription.name,
+            userContact: prescription.contact,
+            useremail: prescription.email,
+            DeliveryAddress: prescription.address,
+            DeliveryCity: prescription.city,
+            Quantity: prescription.quantity,
+            Date : prescription.date,
+            cartItems:prescription.cartItems
+        }));
+
+        res.status(200).json(prescriptionData);
+    } catch (error) {
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+
+    
 
 
 
