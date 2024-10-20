@@ -759,7 +759,31 @@ app.post('/addcheckout', async (req, res) => {
     }
 });
 
+app.get('/ProductsOrdersGet', async (req, res) => {
+    try {
+        const prescriptions = await BillingModel.find({status:'New'}); // Get all prescriptions
+        console.log(prescriptions);
+        if (!prescriptions.length) {
+            return res.status(400).json({ error: 'No Prescriptions found' });
+        }
 
+        const prescriptionData = prescriptions.map(prescription => ({
+            orderID: prescription._id,
+            username: prescription.name,
+            userContact: prescription.contact,
+            useremail: prescription.email,
+            DeliveryAddress: prescription.address,
+            DeliveryCity: prescription.city,
+            Quantity: prescription.quantity,
+            Date : prescription.date,
+            cartItems:prescription.cartItems
+        }));
+
+        res.status(200).json(prescriptionData);
+    } catch (error) {
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 
   
 

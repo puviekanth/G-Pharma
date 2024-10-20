@@ -3,7 +3,7 @@ import axios from 'axios';
 import User from './images/icons8-user-64.png';
 import Signout from './images/icons8-sign-out-64.png';
 import ImageModal from './ImageModal'; // Import the modal
-import './AdminProductPage.css';
+import './adminProductPage.css';
 
 const AdminProductPage = () => {
   const [product, setProduct] = useState({

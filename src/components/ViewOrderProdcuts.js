@@ -3,10 +3,9 @@ import User from './images/icons8-user-64.png';
 import Signout from './images/icons8-sign-out-64.png'
 import Img1 from './images/img3.jpg';
 import Img2 from './images/pexels-n-voitkevich-7526012.jpg';
-import Img3 from 'C:/Users/sanud/OneDrive/Desktop/Sliit/G-Pharma-main/G-Pharma/src/components/images/about1.jpg';
-import './ViewOrders.css';
+import Img3 from './images/about1.jpg';
+import './ViewOrderProducts.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import html2pdf from 'html2pdf.js';
 
 import axios from 'axios';
 
@@ -21,20 +20,46 @@ function ViewOrders() {
         setSelectedImage(null);
     };
 
-    const [prescriptionOrderDetails, setPrescriptionOrderDetails] = useState([]);
+    const [ProductnOrderDetails, setProductOrderDetails] = useState([]);
 
 useEffect(() => {
-    axios.get('http://127.0.0.1:3000/PrescriptionOrdersGet')
+    axios.get('http://127.0.0.1:3000/ProductsOrdersGet')
         .then(response => {
-            setPrescriptionOrderDetails(response.data); // Now stores an array
+            setProductOrderDetails(response.data); // Now stores an array
         })
         .catch(error => {
             console.log('Server error', error);
         });
 }, []);
 
+const generatePDF = () => {
+    const element = document.createElement("div");
+    
+    // Create a list of orders in HTML format
+    ProductOrderDetails.forEach(order => {
+        const orderDiv = document.createElement("div");
+        orderDiv.innerHTML = `
+            <p><strong>Order ID:</strong> ${order.orderID}</p>
+            <p><strong>User Name:</strong> ${order.username}</p>
+            <p><strong>Patient Name:</strong> ${order.PatientName}</p>
+            <p><strong>Cart:</strong> ${order.cartItems.join(', ')}</p>
+            <hr />
+        `;
+        element.appendChild(orderDiv);
+    });
+
+    const opt = {
+        margin:       0.5,
+        filename:     'ProductOrders.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(opt).save();
+};
+
 const handleOrderProcessing = (orderID) => {
-    axios.put(`http://127.0.0.1:3000/updateOrderStatus/${orderID}`,{status:'Processing'})
+    axios.put(`http://127.0.0.1:3000/updateOrderStatus/${orderID}`,{status:'Completed'})
     .then(response =>{
         console.log(response);
     })
@@ -43,43 +68,8 @@ const handleOrderProcessing = (orderID) => {
     })
 }
 
-const handleOrderDelete=(orderID)=>{
-    axios.delete(`http://127.0.0.1:3000/deleteOrder/${orderID}`)
-    .then(response=>{
-        console.log(response)
-    })
-    .catch(error=>{
-        console.log(error)
-    })
-}
 
-const generatePDF = () => {
-    const element = document.createElement("div");
-    
-    // Create a list of orders in HTML format
-    prescriptionOrderDetails.forEach(order => {
-        const orderDiv = document.createElement("div");
-        orderDiv.innerHTML = `
-            <p><strong>Order ID:</strong> ${order.orderID}</p>
-            <p><strong>User Name:</strong> ${order.username}</p>
-            <p><strong>Patient Name:</strong> ${order.PatientName}</p>
-            <p><strong>Prescriptions:</strong> ${order.prescriptions.join(', ')}</p>
-            <p><strong>Duration:</strong> ${order.Duration}</p>
-            <p><strong>Status:</strong> ${order.status}</p>
-            <hr />
-        `;
-        element.appendChild(orderDiv);
-    });
 
-    const opt = {
-        margin:       0.5,
-        filename:     'Orders.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-    html2pdf().from(element).set(opt).save();
-};
 
 
     return (
@@ -116,7 +106,7 @@ const generatePDF = () => {
                         </div>
                     </div>
                     <div className='search-order'>
-                    <a href='/SearchPrescription'> <button  className='btn btn-success mt-3' style={{'marginBottom':'20px'}}>Search ...</button></a>
+                    <a href='/SearchProducts'> <button  className='btn btn-success mt-3' style={{'marginBottom':'20px'}}>Search ...</button></a>
                     <button className='btn btn-primary mt-3' style={{ 'marginLeft': '20px' }} onClick={generatePDF}>Download PDF</button>
                     </div>
                     <div className='process-complete'>
@@ -125,20 +115,17 @@ const generatePDF = () => {
                             <p className='new-prescriptions-view'>New</p>
                         </a>
                     </div>
-                       <div className='processing-view'>
-                       <a href='/prescription-processing'><p className='processing-prescriptions-view'>Processing</p></a>
-                       </div>
                        <div className='completed-view'>
                        <a href='/completed-orders'><p className='completed-prescriptions-view'>Completed</p></a>
                        </div>
                     </div>
-                    <h2 className='topic'>Prescription Orders</h2>
-                    {prescriptionOrderDetails.length > 0 ? (
-    prescriptionOrderDetails.map((order, index) => (
+                    <h2 className='topic'>Products Orders</h2>
+                    {ProductnOrderDetails.length > 0 ? (
+    ProductnOrderDetails.map((order, index) => (
         <div className='order-cont' key={index}>
             <div className='img-details'>
                 <div className='images-cont'>
-                {Array.isArray(order.prescriptions) && order.prescriptions.length > 0 ? (
+                {/* {Array.isArray(order.prescriptions) && order.prescriptions.length > 0 ? (
     order.prescriptions.map((image, index) => {
         const imagePath = `http://localhost:3000/${image.replace(/\\/g, '/')}`;
         return (
@@ -154,7 +141,7 @@ const generatePDF = () => {
     })
 ) : (
     <p>No prescription images available</p>
-)}
+)} */}
 
     </div>
 
@@ -164,18 +151,26 @@ const generatePDF = () => {
                     <p className='User-name'>User Name: {order.username}</p>
                     <p className='User-email'>User Email: {order.useremail}</p>
                     <p className='User-contact'>User Contact: {order.userContact}</p>
-                    <p className='Patient-name'>Patient Name: {order.PatientName}</p>
-                    <p className='Patient-Age'>Patient Age: {order.PatientAge}</p>
-                    <p className='Patient-gender'>Patient Gender: {order.PatientGender}</p>
-                    <p className='Patient-allergy'>Patient Allergies: {order.PatientAllergy}</p>
                     <p className='OrderDelivery-address'>Delivery Address: {order.DeliveryAddress}</p>
                     <p className='OrderDelivery-city'>Delivery City: {order.DeliveryCity}</p>
-                    <p className='Order-duration'>Medicine Needed for: {order.Duration}</p>
+                    <p className='Order-date'>Date : {order.Date}</p>
+                    <thead>
+                        <td>Product</td>
+                        <td>Quantity</td>
+                    </thead>
+                    <tbody>
+                        {order.cartItems.map((item,index)=>(
+                            <tr key={index}>
+                                <td>{item.ProductName}</td>
+                                <td>{item.ProductQuantity}</td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </div>
             </div>
             <div className='btns'>
-                <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}}>Start Processing</button>
-                <button className='btn btn-danger mt-3' onClick={()=>{handleOrderDelete(order.orderID)}}>Delete Order</button>
+                <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}}>Complete</button>
+                
             </div>
         </div>
     ))

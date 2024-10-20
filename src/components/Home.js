@@ -72,7 +72,7 @@ function Home() {
                 <h3 className='content-home'>Genuine Pharmacy has been dedicated to serving the community with high-quality
                 healthcare products. Our mission is to deliver life-enhancing products to your
                 doorstep, ensuring that your health is our priority.<br></br><br></br>With present busy schedules and traffic situations to customers, we have established our  “Online Pharmacy” service. Customers can log in to “Genuine Pharmacy pharmacy online” Upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs, from our “Pharmacy Online service”.</h3>
-                <a href='/About'><button className='about-readmore-home'>Read more ></button></a>
+                <a href='/About'><button className='about-readmore-home'>Read more </button></a>
             </div>
             </div>
             </section>

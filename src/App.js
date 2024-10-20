@@ -29,6 +29,7 @@ import DeliveryUI from './components/deliveryUI'
 import ReadyforDelivery from './components/ReadyDeliveryOrders';
 import AdminPRofile from './components/adminProfile'
 import LandingDelivery from './components/LandingDeliveryPage'
+import ViewOrderProducts from './components/ViewOrderProdcuts'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -69,6 +70,7 @@ function App() {
         <Route path='/readyfordelivery' element={<ReadyforDelivery />} />
         <Route path='/adminprofile' element={<AdminPRofile />} />
         <Route path='/landing-delivery' element={<LandingDelivery />} />
+        <Route path='/orders-products' element={<ViewOrderProducts />} />
 
       </Routes>
     </Router>
