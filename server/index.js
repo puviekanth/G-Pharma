@@ -19,6 +19,8 @@ const DeliveryPersonModel = require('./model/DeliveryModel');
 const CartModel = require('./model/CartModel');
 const CheckoutModel = require('./model/CheckoutModel');
 const BillingModel = require('./model/BillingModel');
+const EmployeeModel = require('./model/EmployeeModel');
+const SupplierModel = require('./model/SupplierModel')
 
 
 const app = express();
@@ -843,6 +845,139 @@ app.get('/ProductsOrdersGet', async (req, res) => {
         res.status(500).json({ error: 'Database error' });
     }
 });
+
+//get employees
+app.get('/getemp', (req,res) =>{
+    EmployeeModel.find({})
+    .then(users => res.json(users))
+    .catch(err =>res.json(err))
+})
+
+//get before update
+app.get('/getEmployee/:id', (req, res) => {
+    const userId = req.params.id;
+    EmployeeModel.findById(userId)   // Correct usage here
+        .then(user => {
+            if (user) res.status(200).json(user);
+            else res.status(404).json({ message: 'User not found' });
+        })
+        .catch(err => res.status(404).json({ message: 'Could not find user', error: err }));
+});
+
+//update Employee
+app.put('/updateEmployee/:id', (req, res) => {
+    const userId = req.params.id;
+    EmployeeModel.findByIdAndUpdate(userId, { 
+        name: req.body.name,
+        empID: req.body.empID,
+        email: req.body.email,
+        age: req.body.age,
+        role: req.body.role,
+        contact: req.body.contact
+    }, { new: true })  
+    .then(user => {
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        res.json(user);
+    })
+    .catch(err => res.status(500).json({ message: 'Error updating user', error: err }));
+});
+
+//delete Employee
+app.delete('/deleteEmp/:id',(req,res)=>{
+    const id=req.params.id;
+    EmployeeModel.findByIdAndDelete({_id:id})
+    .then(res => res.json(res))
+    .catch(err=>res.json(err))
+})
+
+
+//create Employee
+app.post("/createEmp",(req, res) =>{
+    console.log(req.body);
+    EmployeeModel.create(req.body)
+    .then(users => res.json(users))
+    .catch(err =>res.json(err))
+});
+
+
+
+// Create customer
+app.post('/addSupplier', async (req, res) => {
+    try {
+        const { id, name, contact, address, email, nic,company } = req.body;
+        const customer = await SupplierModel.create({ id, name, contact, address, email, nic,company });
+        res.status(200).json({ message: 'Customer created successfully', customer });
+    } catch (error) {
+        console.error('Error creating customer:', error);
+        if (error.code === 11000) {
+            return res.status(400).json({ error: 'Email or NIC already exists' });
+        }
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+
+// Fetch all supplier
+app.get('/getSupplier', async (req, res) => {
+    try {
+        const customers = await SupplierModel.find();
+        if (customers.length === 0) {
+            return res.status(404).json({ message: 'No customers found' });
+        }
+        res.status(200).json(customers);
+    } catch (error) {
+        console.error('Error fetching customers:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+
+// Update customer
+app.put('/updateSupplier/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, contact, address, email, nic,company } = req.body;
+    try {
+        const objectID = new ObjectId(id);
+        const updatedCustomer = await SupplierModel.findOneAndUpdate(
+          { _id: objectID},
+            { name, contact, address, email, nic,company },
+            { new: true }
+        );
+        if (!updatedCustomer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+        res.status(200).json({ message: 'Customer updated successfully', updatedCustomer });
+    } catch (error) {
+        console.error('Error updating customer:', error);
+        if (error.code === 11000) {
+            return res.status(400).json({ error: 'Email or NIC already exists' });
+        }
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+
+
+// Delete Supplier
+app.delete('/deleteSupplier/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: 'Invalid customer ID format' });
+        }
+        const customer = await SupplierModel.findOneAndDelete(id);
+        if (!customer) {
+            return res.status(404).json({ message: 'Customer not found' });
+        }
+        res.status(200).json({ message: 'Customer deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting customer:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 
 
     

@@ -7,12 +7,13 @@ const DeliveryPerson = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
   const [newEntry, setNewEntry] = useState({
-    name: '',
-    contact: '',
-    email: '',
-    address: '',
-    dob:'',
-    nic:''
+   id:'',
+   name:'',
+   contact:'',
+   address:'',
+   email:'',
+   nic:'',
+   company:''
   });
   const [isModalVisible, setModalVisible] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
@@ -20,7 +21,7 @@ const DeliveryPerson = () => {
   // Fetch delivery persons from the API fetch('http://localhost:5001/api/delivery-persons') // Update to the new port
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/delivery-persons') // Update to the new port
+    fetch('http://localhost:3000/getSupplier') // Update to the new port
     .then(response => response.json())
     .then(data => {
       console.log("Fetched data on mount:", data); // Debugging log
@@ -42,7 +43,7 @@ const DeliveryPerson = () => {
   const handleSave = () => {
     if (editIndex === null) {
       // Add new entry (POST)
-      fetch('http://localhost:3000/api/delivery-persons', {
+      fetch('http://localhost:3000/addSupplier', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -59,7 +60,7 @@ const DeliveryPerson = () => {
     } else {
       // Update existing entry (PUT)
       const id = data[editIndex]._id;
-      fetch(`http://localhost:3000/api/delivery-persons/${id}`, {
+      fetch(`http://localhost:3000/updateSupplier/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
@@ -93,7 +94,7 @@ const DeliveryPerson = () => {
 
   const handleDelete = (index) => {
     const id = data[index]._id;
-    fetch(`http://localhost:3000/api/delivery-persons/${id}`, {
+    fetch(`http://localhost:3000/deleteSupplier/${id}`, {
       method: 'DELETE'
     })
       .then(() => {
@@ -103,7 +104,7 @@ const DeliveryPerson = () => {
   };
 
   const handleAddNew = () => {
-    setNewEntry({ name: '', contact: '', email: '', address: '' ,dob:'',nic:''});
+    setNewEntry({ name: '', contact: '', email: '', address: '' ,company:'',nic:'',id:''});
     setModalVisible(true);
     setEditIndex(null);
   };
@@ -112,7 +113,7 @@ const DeliveryPerson = () => {
     <div className="delivery-person-page">
        <div className="sidebar">
         <ul>
-        <li><a href='/suppliers'>Suppliers</a></li>
+          <li><a href='/suppliers'>Suppliers</a></li>
           <li><a href='/products'>Products</a></li>
           <li><a href='/employees'>Employee</a></li>
           <li><a href='/orders'>Orders</a></li>
@@ -130,26 +131,27 @@ const DeliveryPerson = () => {
         </div>
       </div>
       <div className="content" style={{marginLeft:'20%'}}>
-        <h1>Delivery Person</h1>
+        <h1>Suppliers</h1>
         <div className="controls">
-          <input
+          {/* <input
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={handleSearchChange}
             className="search-input"
-          />
+          /> */}
           <button className="add-button" onClick={handleAddNew}>Add New +</button>
         </div>
 
         <table className="delivery-person-table">
           <thead>
             <tr>
+              <th>ID</th>
               <th>Name</th>
               <th>Phone Number</th>
               <th>Email</th>
               <th>Address</th>
-              <th>Date Of Birth</th>
+              <th>Company</th>
               <th>NIC</th>
               <th>Update</th>
               <th>Delete</th>
@@ -165,11 +167,12 @@ const DeliveryPerson = () => {
               (item.nic || '').toLowerCase().includes(searchTerm.toLowerCase())
             ).map((item, index) => (
               <tr key={item._id}>
+                <td>{item.id}</td>
                 <td>{item.name}</td>
                 <td>{item.contact}</td>
                 <td>{item.email}</td>
                 <td>{item.address}</td>
-                <td>{item.dob}</td>
+                <td>{item.company}</td>
                 <td>{item.nic}</td>
                 <td><button className="update-button" onClick={() => handleEdit(index)}>Update</button></td>
                 <td><button className="delete-button" onClick={() => handleDelete(index)}>Delete</button></td>
@@ -182,6 +185,14 @@ const DeliveryPerson = () => {
           <div className="modal-overlay">
             <div className="modal-content">
               <h2>{editIndex === null ? 'Add New Entry' : 'Edit Entry'}</h2>
+              <input
+                type="number"
+                name="id"
+                placeholder="Supplier ID"
+                value={newEntry.id}
+                onChange={handleInputChange}
+                className="form-input"
+              />
               <input
                 type="text"
                 name="name"
@@ -215,18 +226,18 @@ const DeliveryPerson = () => {
                 className="form-input"
               />
               <input
-                type="date"
-                name="dob"
-                placeholder="Date of Birth"
-                value={newEntry.dob}
+                type="text"
+                name="nic"
+                placeholder="NIC"
+                value={newEntry.nic}
                 onChange={handleInputChange}
                 className="form-input"
               />
               <input
                 type="text"
-                name="nic"
-                placeholder="NIC"
-                value={newEntry.nic}
+                name="company"
+                placeholder="Company"
+                value={newEntry.company}
                 onChange={handleInputChange}
                 className="form-input"
               />

@@ -1,0 +1,20 @@
+frame{
+    width: 100%;
+    background-color: aqua;
+}
+.heading{
+    padding: 8px;
+    text-align: center;
+    
+    color: #004B87;
+
+}
+.users-btn{
+    font: 1em sans-serif;
+    color:white;
+    width: 100%;
+    background-color: #004B87;
+    border-radius: 10px;
+    border: none;
+
+}
