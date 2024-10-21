@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './NavBar';
 import Footer from './Footer';
 import Product1 from './images/Glutanex-Tablets-100.jpeg';
@@ -10,21 +10,13 @@ import Wheel from './images/Wheel-1.jpg'
 import Sethescope from './images/Littman-1.jpg'
 import Pressure from './images/Rossmax-1.jpg'
 import './Shop.css';
+import axios from 'axios';
 
 function Shop() {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
-    const products = [
-        { id: 1, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 },
-        { id: 2, name: 'Eventone C Cream ', price: 5000, image: Product2 },
-        { id: 3, name: 'Glutanex Tablets - 100g', price: 7000, image: Product1 },
-        { id: 4, name: 'Eventone C Cream ', price: 1000, image: Product2 },
-        { id: 5, name: 'Eventone C Cream ', price: 14000, image: Product2 },
-        { id: 6, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 },
-        { id: 7, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 },
-        { id: 8, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 }
-    ];
+    const [products,setProducts] = useState([]);
 
     const filteredProducts = products.filter(product => {
         const min = minPrice !== '' ? parseInt(minPrice, 10) : 0;
@@ -37,6 +29,17 @@ function Shop() {
         setMaxPrice('');
     };
 
+    useEffect(()=>{
+        axios.get('http://127.0.0.1:3000/getayurvedic')
+        .then(res=>{
+            setProducts(res.data);
+            console.log('Fetched successfully',res);
+        })
+        .catch(err=>{
+            console.log('Could not fetch the products',err);
+        })
+    },[])
+
     return (
         <>
             <Navbar />
@@ -47,16 +50,16 @@ function Shop() {
                     </div>
                     <div className='categories'>
                         <ul>
-                        <li><a href="/Shop/ayurvedic">Ayurvedic Products</a></li>
-            <li><a href="/Shop/beauty">Beauty Products</a></li>
-            <li><a href="/Shop/supports">Body Supports</a></li>
-            <li><a href="/Shop/baby">Baby Care</a></li>
-            <li><a href="/Shop/multivitamins">Multivitamins</a></li>
-            <li><a href="/Shop/machines">Medical Machines</a></li>
-            <li><a href="/Shop/instruments">Medical Instruments</a></li>
-            <li><a href="/Shop/vetenary">Veternary Care</a></li>
-            <li><a href="/Shop/skincare">Skincare Products</a></li>
-            <li><a href="/Shop/sexual-wellness">Sexual Wellness</a></li>
+                        <li><a href="/Shop/ayurvedic" style={{textDecoration:'none'}}>Ayurvedic Products</a></li>
+            <li><a href="/Shop/beauty" style={{textDecoration:'none'}}>Beauty Products</a></li>
+            <li><a href="/Shop/supports" style={{textDecoration:'none'}}>Body Supports</a></li>
+            <li><a href="/Shop/baby" style={{textDecoration:'none'}}>Baby Care</a></li>
+            <li><a href="/Shop/multivitamins" style={{textDecoration:'none'}}>Multivitamins</a></li>
+            <li><a href="/Shop/machines" style={{textDecoration:'none'}}>Medical Machines</a></li>
+            <li><a href="/Shop/instruments" style={{textDecoration:'none'}}>Medical Instruments</a></li>
+            <li><a href="/Shop/vetenary" style={{textDecoration:'none'}}>Veternary Care</a></li>
+            <li><a href="/Shop/skincare" style={{textDecoration:'none'}}>Skincare Products</a></li>
+            <li><a href="/Shop/sexual-wellness" style={{textDecoration:'none'}}>Sexual Wellness</a></li>
                         </ul>
                         <div className='filter-div'>
                             <h3>Filter by Price</h3>
@@ -85,7 +88,7 @@ function Shop() {
                     <div className='container'>
                         {filteredProducts.map(product => (
                             <div className='pro-container' key={product.id}>
-                                <img src={product.image} alt={product.name} className='pro-image' />
+                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' />
                                 <h3 className='pro-name'>{product.name}</h3>
                                 <h4>Rs. {product.price.toLocaleString()}</h4>
                                 <button className='add-to-cart'>Add to Cart</button>

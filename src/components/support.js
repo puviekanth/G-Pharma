@@ -3,6 +3,12 @@ import Navbar from './NavBar';
 import Footer from './Footer';
 import Product1 from './images/Glutanex-Tablets-100.jpeg';
 import Product2 from './images/Eventone-C-Cream-300x300.jpg';
+import Skincare from './images/Skin-1.jpg'
+import Multivitamin from './images/Multy-1.jpg'
+import SexualWellness from './images/Sew-1.jpg'
+import Wheel from './images/Wheel-1.jpg'
+import Sethescope from './images/Littman-1.jpg'
+import Pressure from './images/Rossmax-1.jpg'
 import './Shop.css';
 import axios from 'axios';
 
@@ -10,7 +16,7 @@ function Shop() {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
-    const [products,setProducts] = useState([]);
+    const [products,setProducts] = useState([]); 
 
     const filteredProducts = products.filter(product => {
         const min = minPrice !== '' ? parseInt(minPrice, 10) : 0;
@@ -24,7 +30,7 @@ function Shop() {
     };
 
     useEffect(()=>{
-        axios.get('http://127.0.0.1:3000/getbaby')
+        axios.get('http://127.0.0.1:3000/getsupport')
         .then(res=>{
             setProducts(res.data);
             console.log('Fetched successfully',res);
@@ -51,6 +57,7 @@ function Shop() {
             <li><a href="/Shop/multivitamins">Multivitamins</a></li>
             <li><a href="/Shop/machines">Medical Machines</a></li>
             <li><a href="/Shop/instruments">Medical Instruments</a></li>
+            
             <li><a href="/Shop/vetenary">Veternary Care</a></li>
             <li><a href="/Shop/skincare">Skincare Products</a></li>
             <li><a href="/Shop/sexual-wellness">Sexual Wellness</a></li>

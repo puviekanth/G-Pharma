@@ -12,6 +12,7 @@ import Ayurvedic from './components/ayurvedic'
 import Beauty from './components/beauty'
 import Baby from './components/baby'
 import Machine from './components/machines'
+import Multi from './components/multivitamins'
 import Instrument from './components/instruments'
 import Vetneray from './components/vetneray'
 import Skin from './components/skin'
@@ -34,6 +35,9 @@ import Employee from './components/adminEmployee'
 import AddEmp from './components/addEmployee'
 import UpdateEmp from './components/updateEmployee'
 import Suppliers from './components/SupplierManage'
+import Medi from './components/Medicine'
+import Supports from './components/support'
+import ProductDetailPage from './components/ProductDetails'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -54,8 +58,9 @@ function App() {
         <Route path="/Shop" element={<Shop />} />
         <Route path="/Shop/ayurvedic" element={<Ayurvedic />} />
         <Route path="/Shop/beauty" element={<Beauty />} />
-        <Route path="/Shop/baby" element={<Beauty />} />
-        <Route path="/Shop/multivitamins" element={<Baby />} />
+        <Route path="/Shop/baby" element={<Baby />} />
+        <Route path='/Shop/supports' element={<Supports />} />
+        <Route path="/Shop/multivitamins" element={< Multi/>} />
         <Route path="/Shop/machines" element={<Machine />} />
         <Route path="/Shop/instruments" element={<Instrument />} />
         <Route path="/Shop/vetenary" element={<Vetneray />} />
@@ -79,6 +84,8 @@ function App() {
         <Route path='/create' element={<AddEmp />} />
         <Route path='/updateEmployee/:id' element={<UpdateEmp />} />
         <Route path='/suppliers' element={<Suppliers />} />
+        <Route path='/Shop/medi' element={<Medi />} />
+        <Route path='/product/:id' element={<ProductDetailPage />} />
       </Routes>
     </Router>
   );

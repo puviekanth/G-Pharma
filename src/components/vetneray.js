@@ -1,24 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Navbar from './NavBar';
 import Footer from './Footer';
 import Product1 from './images/Glutanex-Tablets-100.jpeg';
 import Product2 from './images/Eventone-C-Cream-300x300.jpg';
 import './Shop.css';
+import axios from 'axios';
 
 function Shop() {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
 
-    const products = [
-        { id: 1, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 },
-        { id: 2, name: 'Eventone C Cream ', price: 5000, image: Product2 },
-        { id: 3, name: 'Glutanex Tablets - 100g', price: 7000, image: Product1 },
-        { id: 4, name: 'Eventone C Cream ', price: 1000, image: Product2 },
-        { id: 5, name: 'Eventone C Cream ', price: 14000, image: Product2 },
-        { id: 6, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 },
-        { id: 7, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 },
-        { id: 8, name: 'Glutanex Tablets - 100g', price: 15000, image: Product1 }
-    ];
+    const [products,setProducts] = useState([]); 
 
     const filteredProducts = products.filter(product => {
         const min = minPrice !== '' ? parseInt(minPrice, 10) : 0;
@@ -30,6 +22,17 @@ function Shop() {
         setMinPrice('');
         setMaxPrice('');
     };
+
+    useEffect(()=>{
+        axios.get('http://127.0.0.1:3000/getvet')
+        .then(res=>{
+            setProducts(res.data);
+            console.log('Fetched successfully',res);
+        })
+        .catch(err=>{
+            console.log('Could not fetch the products',err);
+        })
+    },[])
 
     return (
         <>
@@ -79,7 +82,7 @@ function Shop() {
                     <div className='container'>
                         {filteredProducts.map(product => (
                             <div className='pro-container' key={product.id}>
-                                <img src={product.image} alt={product.name} className='pro-image' />
+                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' />
                                 <h3 className='pro-name'>{product.name}</h3>
                                 <h4>Rs. {product.price.toLocaleString()}</h4>
                                 <button className='add-to-cart'>Add to Cart</button>

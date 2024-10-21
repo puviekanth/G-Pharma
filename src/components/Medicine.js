@@ -24,7 +24,7 @@ function Shop() {
     };
 
     useEffect(()=>{
-        axios.get('http://127.0.0.1:3000/getbaby')
+        axios.get('http://127.0.0.1:3000/getmedi')
         .then(res=>{
             setProducts(res.data);
             console.log('Fetched successfully',res);
@@ -40,7 +40,7 @@ function Shop() {
             <section className='cat-pro'>
                 <section className='with-categories'>
                     <div className='heading'>
-                        <h1>Shop</h1>
+                        <h1>Shop Medicines</h1>
                     </div>
                     <div className='categories'>
                         <ul>
@@ -82,7 +82,7 @@ function Shop() {
                     <div className='container'>
                         {filteredProducts.map(product => (
                             <div className='pro-container' key={product.id}>
-                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' />
+                                <img src={product.image} alt={product.name} className='pro-image' />
                                 <h3 className='pro-name'>{product.name}</h3>
                                 <h4>Rs. {product.price.toLocaleString()}</h4>
                                 <button className='add-to-cart'>Add to Cart</button>
