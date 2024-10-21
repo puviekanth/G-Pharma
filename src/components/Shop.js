@@ -10,6 +10,7 @@ import Pressure from './images/Rossmax-1.jpg';
 import './Shop.css';
 import NAV from './SecondNavbar';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 function Shop() {
     const [minPrice, setMinPrice] = useState('');
@@ -65,6 +66,12 @@ function Shop() {
         });
     };
 
+
+    const navigate = useNavigate();
+
+const navigatePage = (id) => {
+    navigate(`/product/${id}`);
+};
     return (
         <>
             <Navbar />
@@ -81,6 +88,7 @@ function Shop() {
                             <li><a href="/Shop/supports">Body Supports</a></li>
                             <li><a href="/Shop/baby">Baby Care</a></li>
                             <li><a href="/Shop/multivitamins">Multivitamins</a></li>
+                            <li><a href='/Shop/medi'>Medicines</a></li>
                             <li><a href="/Shop/machines">Medical Machines</a></li>
                             <li><a href="/Shop/instruments">Medical Instruments</a></li>
                             <li><a href="/Shop/vetenary">Veterinary Care</a></li>
@@ -113,7 +121,8 @@ function Shop() {
                 <section className='products'>
                     <div className='container'>
                         {filteredProducts.map(product => (
-                            <div className='pro-container' key={product.id}>
+                            <div className='pro-container' key={product.id} onClick={() => navigatePage(product._id)}>
+
                                 <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' />
                                 <h3 className='pro-name'>{product.name}</h3>
                                 <h4>Rs. {product.price.toLocaleString()}</h4>

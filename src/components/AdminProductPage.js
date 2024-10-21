@@ -13,6 +13,7 @@ const AdminProductPage = () => {
     description: '',
     price: '',
     category: '',
+    quantity:'',
   });
   const [imageFile, setImageFile] = useState(null);
   const [products, setProducts] = useState([]);
@@ -52,6 +53,7 @@ const AdminProductPage = () => {
     formData.append('description', product.description);
     formData.append('price', product.price);
     formData.append('category', product.category);
+    formData.append('quantity',product.quantity);
     if (imageFile) {
       formData.append('image', imageFile);
     }
@@ -83,6 +85,7 @@ const AdminProductPage = () => {
       description: '',
       price: '',
       category: '',
+      quantity:'',
     });
     setImageFile(null);
     setEditIndex(null);
@@ -96,6 +99,7 @@ const AdminProductPage = () => {
       description: selectedProduct.description,
       price: selectedProduct.price,
       category: selectedProduct.category,
+      quantity:selectedProduct.quantity
     });
     setEditIndex(index);
   };
@@ -175,13 +179,34 @@ const AdminProductPage = () => {
             placeholder="Price"
             required
           />
-          <input
-            type="text"
-            name="category"
-            value={product.category}
+          <select
+  name="category"
+  value={product.category}
+  onChange={handleInputChange}
+  className="cat-input-adminProduct"
+  required
+>
+  <option value="">Select a Category</option>
+  <option value="ayurvedic">Ayurvedic Products</option>
+  <option value="beauty">Beauty Products</option>
+  <option value="supports">Body Supports</option>
+  <option value="baby">Baby Care</option>
+  <option value="multivitamins">Multivitamins</option>
+  <option value="medi">Medicines</option>
+  <option value="machines">Medical Machines</option>
+  <option value="instruments">Medical Instruments</option>
+  <option value="vetenary">Veterinary Care</option>
+  <option value="skincare">Skincare Products</option>
+  <option value="sexual-wellness">Sexual Wellness</option>
+</select>
+
+           <input
+            type="number"
+            name="quantity"
+            value={product.quantity}
             onChange={handleInputChange}
             className="cat-input-adminProduct"
-            placeholder="Category"
+            placeholder="Quantity"
             required
           />
           <input
@@ -206,30 +231,31 @@ const AdminProductPage = () => {
           />
           <button className="search-button">Search</button>
         </div>
-        <h3>Product List</h3>
+        <h3 style={{textAlign:'center'}}>Product List</h3>
 
-        <div className="product-list">
+        <div className="product-list" style={{display:'flex',flexWrap:'wrap',justifyContent:'space-around',gap:'10px'}} >
         
           {filteredProducts.length === 0 ? (
             <p>No products added yet.</p>
           ) : (
             filteredProducts.map((prod, index) => (
-              <div key={prod._id} className="product-item">
+              <div key={prod._id} className="product-item" style={{width:'40%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center', marginRight:'20px'}}>
                 <h3>{prod.name}</h3>
-                <p>{prod.description}</p>
-                <p>Price: Rs.{prod.price}</p>
-                <p>Category: {prod.category}</p>
                 {prod.image && (
                   <img 
                     src={`http://localhost:3000/${prod.image}`} 
                     alt={prod.name} 
-                    width="100" 
+                    width="200px" 
                     onClick={() => handleImageClick(`http://localhost:3000/${prod.image}`)} // Open modal on click
                     style={{ cursor: 'pointer' }} // Change cursor to pointer
                   />
                 )}
-                <button onClick={() => handleEditProduct(index)}>Edit</button>
-                <button onClick={() => handleDeleteProduct(prod._id)}>Delete</button>
+                <p style={{textAlign:'justify',fontSize:'14px'}}>{prod.description}</p>
+                <p>Price: Rs.{prod.price}</p>
+                <p>Category: {prod.category}</p>
+               
+                <button onClick={() => handleEditProduct(index)} className='btn btn-success' style={{marginBottom:'10px'}}>Edit</button>
+                <button onClick={() => handleDeleteProduct(prod._id)} className='btn btn-danger'>Delete</button>
               </div>
             ))
           )}

@@ -582,6 +582,7 @@ const productSchema = new mongoose.Schema({
     price: Number,
     category: String,
     image: String,
+    quantity:Number
   });
   
   // Create a model
@@ -610,11 +611,11 @@ const productSchema = new mongoose.Schema({
   
   // Add new product
   app.post('/addproducts', uploadProducts.single('image'), async (req, res) => {
-    const { name, description, price, category } = req.body;
+    const { name, description, price, category,quantity } = req.body;
     const imagePath = req.file ? req.file.path : '';
   
     try {
-      const newProduct = new ProductModel({ name, description, price, category, image: imagePath });
+      const newProduct = new ProductModel({ name, description, price, category, image: imagePath ,quantity});
       await newProduct.save();
       res.status(201).json(newProduct);
     } catch (error) {
@@ -625,7 +626,7 @@ const productSchema = new mongoose.Schema({
   // Update existing product
   app.put('/updateproducts/:id', uploadProducts.single('image'), async (req, res) => {
     const { id } = req.params;
-    const { name, description, price, category } = req.body;
+    const { name, description, price, category,quantity } = req.body;
     const imagePath = req.file ? req.file.path : '';
   
     try {
@@ -979,8 +980,158 @@ app.delete('/deleteSupplier/:id', async (req, res) => {
 });
 
 
+//get ayurvedic
+app.get('/getayurvedic',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'ayurvedic'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
 
-    
+//get medi
+
+app.get('/getmedi',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'medi'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+//getbaby
+app.get('/getbaby',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'baby'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+
+//getbeauty
+app.get('/getbeauty',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'beauty'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+//getinstruments
+
+app.get('/getinstruments',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'instruments'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+
+//getmachine
+app.get('/getmachine',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'machines'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+//getmulti
+app.get('/getmulti',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'multivitamins'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+//getsexual
+
+app.get('/getsexual',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'sexual-wellness'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+}); 
+
+
+//getskin
+app.get('/getskin',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'skincare'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+}); 
+
+
+//getvet
+app.get('/getvet',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'vetenary'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+}); 
+
+
+
+//get support
+
+app.get('/getsupport',async (req,res)=>{
+    try {
+        const products = await ProductModel.find({category:'supports'});
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+}); 
 
 
 
