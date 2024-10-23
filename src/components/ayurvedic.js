@@ -140,8 +140,8 @@ function Shop() {
                             <div className='pro-container' key={product.id} >
 
                             <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' onClick={() => navigatePage(product._id)}/>
-                            <h3 className='pro-name' onClick={() => navigatePage(product._id)}>{product.name}</h3>
-                            <h4 onClick={() => navigatePage(product._id)}>Rs. {product.price.toLocaleString()}</h4>
+                            <h3 className='pro-name' onClick={() => navigatePage(product._id)} >{product.name}</h3>
+                            <h4 onClick={() => navigatePage(product._id)} >Rs. {product.price.toLocaleString()}</h4>
                             <button className='add-to-cart' onClick={() => handleAddToCart(product)}>Add to Cart</button>
                         </div>
                         ))}

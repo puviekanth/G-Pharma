@@ -54,13 +54,14 @@ function Home() {
     return (
         <>
             <NavBar />
-            <section className='body'>
-            <section className='banner'>
+            <section className='body' >
+            <section className='banner' style={{display:'flex',flexDirection:'column',alignItems:'baseline',justifyContent:'center',marginLeft:'20px',width:'97vw'
+            }}>
                 <div className='with-logo'>
-                    <h1>YOUR HEALTH,<br></br>YOUR WEALTH.</h1>
+                    <h1 style={{width:'34vw'}}>YOUR HEALTH,<br></br>YOUR WEALTH.</h1>
                 </div>
                 <h3 className='small-phrase'>Delivering all your life enhancers to your doorstep</h3>
-                <Link to='/Shop' className='shopLink'>Shop</Link>
+                <a href='/shop'><button className='btn btn-primary' style={{width:'150px',borderRadius:'8px'}}>Shop</button></a>
             </section>
 
             <section className='about-section-home'>
@@ -68,10 +69,23 @@ function Home() {
                         <img src={ AboutLogo } alt='about' className='about-pic-home'></img>
                     
                 <div className='about-content-home'>
-                <h1 className='about-home'>About Us</h1>
-                <h3 className='content-home'>Genuine Pharmacy has been dedicated to serving the community with high-quality
-                healthcare products. Our mission is to deliver life-enhancing products to your
-                doorstep, ensuring that your health is our priority.<br></br><br></br>With present busy schedules and traffic situations to customers, we have established our  “Online Pharmacy” service. Customers can log in to “Genuine Pharmacy pharmacy online” Upload the medical Prescription or buy home or  Professional Medical equipment Orthopaedic supports Wheel chairs, from our “Pharmacy Online service”.</h3>
+                <h1 className='about-home' style={{color:'#004085'}}><b>About Us</b></h1>
+                <h4 className='content-home' style={{color:'#000',fontSize:'16px'}}>At Genuine Pharmacy, we are dedicated to providing high-quality healthcare products to our community. Our mission centers around the belief that your health is our top priority. We strive to enhance the lives of our customers by ensuring access to essential healthcare products that meet their needs.
+
+Embracing Modern Convenience with Our Online Pharmacy Service
+
+In today’s fast-paced world, we understand that busy schedules and traffic congestion can make it challenging for customers to visit a pharmacy. To address these concerns and improve accessibility, we have established our Online Pharmacy service.
+
+This innovative platform allows customers to order products and manage their healthcare needs from the comfort of their homes.
+<br /><br />
+Key Features of Our Online Pharmacy Service:
+<br /><br />
+<b>User-Friendly Online Platform</b>: Our website provides a seamless shopping experience for ordering medication and exploring healthcare products.<br /><br />
+<b>Easy Prescription Upload:</b> Customers can conveniently upload their medical prescriptions directly, ensuring accurate and prompt processing.<br /><br />
+<b>Wide Range of Products:</b> We offer both prescription and over-the-counter medicines to cater to various health conditions.<br /><br />
+<b>Medical Equipment</b>: Our online store includes orthopaedic supports and wheelchairs for improved mobility and recovery.<br /><br />
+<b>Timely Delivery</b>: We ensure that your orders are delivered safely to your doorstep.<br /><br />
+<b>Customer Support:</b> Our knowledgeable team is always ready to assist you with any inquiries or concerns.</h4>
                 <a href='/About'><button className='about-readmore-home'>Read more ></button></a>
             </div>
             </div>
@@ -92,6 +106,7 @@ function Home() {
                 </Slider>
             </section>
             </section>
+            
            
 
             < NewArrivals />

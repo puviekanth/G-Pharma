@@ -1,8 +1,14 @@
-import React, { useState,useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './NavBar';
 import Footer from './Footer';
 import Product1 from './images/Glutanex-Tablets-100.jpeg';
 import Product2 from './images/Eventone-C-Cream-300x300.jpg';
+import Skincare from './images/Skin-1.jpg'
+import Multivitamin from './images/Multy-1.jpg'
+import SexualWellness from './images/Sew-1.jpg'
+import Wheel from './images/Wheel-1.jpg'
+import Sethescope from './images/Littman-1.jpg'
+import Pressure from './images/Rossmax-1.jpg'
 import './Shop.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
@@ -10,7 +16,8 @@ import { useNavigate } from 'react-router';
 function Shop() {
     const [minPrice, setMinPrice] = useState('');
     const [maxPrice, setMaxPrice] = useState('');
-
+    const [quantity,setQuantity] = useState('');
+    const [stock,setStock] = useState();
     const [products,setProducts] = useState([]);
 
     const filteredProducts = products.filter(product => {
@@ -83,9 +90,6 @@ function Shop() {
         navigate(`/product/${id}`);
     };
 
-    const [quantity,setQuantity] = useState('');
-    const [stock,seStock] = useState();
-
     return (
         <>
             <Navbar />
@@ -96,16 +100,16 @@ function Shop() {
                     </div>
                     <div className='categories'>
                         <ul>
-                        <li><a href="/Shop/ayurvedic">Ayurvedic Products</a></li>
-            <li><a href="/Shop/beauty">Beauty Products</a></li>
-            <li><a href="/Shop/supports">Body Supports</a></li>
-            <li><a href="/Shop/baby">Baby Care</a></li>
-            <li><a href="/Shop/multivitamins">Multivitamins</a></li>
-            <li><a href="/Shop/machines">Medical Machines</a></li>
-            <li><a href="/Shop/instruments">Medical Instruments</a></li>
-            <li><a href="/Shop/vetenary">Veternary Care</a></li>
-            <li><a href="/Shop/skincare">Skincare Products</a></li>
-            <li><a href="/Shop/sexual-wellness">Sexual Wellness</a></li>
+                        <li><a href="/Shop/ayurvedic" style={{textDecoration:'none'}}>Ayurvedic Products</a></li>
+            <li><a href="/Shop/beauty" style={{textDecoration:'none'}}>Beauty Products</a></li>
+            <li><a href="/Shop/supports" style={{textDecoration:'none'}}>Body Supports</a></li>
+            <li><a href="/Shop/baby" style={{textDecoration:'none'}}>Baby Care</a></li>
+            <li><a href="/Shop/multivitamins" style={{textDecoration:'none'}}>Multivitamins</a></li>
+            <li><a href="/Shop/machines" style={{textDecoration:'none'}}>Medical Machines</a></li>
+            <li><a href="/Shop/instruments" style={{textDecoration:'none'}}>Medical Instruments</a></li>
+            <li><a href="/Shop/vetenary" style={{textDecoration:'none'}}>Veternary Care</a></li>
+            <li><a href="/Shop/skincare" style={{textDecoration:'none'}}>Skincare Products</a></li>
+            <li><a href="/Shop/sexual-wellness" style={{textDecoration:'none'}}>Sexual Wellness</a></li>
                         </ul>
                         <div className='filter-div'>
                             <h3>Filter by Price</h3>
@@ -133,12 +137,13 @@ function Shop() {
                 <section className='products'>
                     <div className='container'>
                         {filteredProducts.map(product => (
-                            <div className='pro-container' key={product.id}>
-                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image'  onClick={() => navigatePage(product._id)}/>
-                                <h3 className='pro-name'  onClick={() => navigatePage(product._id)}>{product.name}</h3>
-                                <h4  onClick={() => navigatePage(product._id)}>Rs. {product.price.toLocaleString()}</h4>
-                                <button className='add-to-cart'>Add to Cart</button>
-                            </div>
+                            <div className='pro-container' key={product.id} >
+
+                            <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' onClick={() => navigatePage(product._id)}/>
+                            <h3 className='pro-name' onClick={() => navigatePage(product._id)} >{product.name}</h3>
+                            <h4 onClick={() => navigatePage(product._id)} >Rs. {product.price.toLocaleString()}</h4>
+                            <button className='add-to-cart' onClick={() => handleAddToCart(product)}>Add to Cart</button>
+                        </div>
                         ))}
                     </div>
                 </section>

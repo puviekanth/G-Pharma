@@ -1,8 +1,13 @@
-nav{
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
+nav {
   top: 0;
   position: sticky;
   z-index: 900;
+  font-family: 'Nanum Gothic', sans-serif;
+  width: 100%;
 }
+
 nav .menu {
   display: none;
   position: absolute;
@@ -22,7 +27,7 @@ nav .menu span {
 }
 
 .navbar-logo img {
-  width: 35px;
+  width: 75px;
   height: auto;
   margin-top: 10px;
   margin-left: 20px;
@@ -57,7 +62,7 @@ nav .menu span {
   margin-top: 20px;
   margin-bottom: 10px;
   background-color: #fff;
-}  
+}
 
 #navbar-links {
   display: flex;
@@ -65,7 +70,6 @@ nav .menu span {
   justify-content: space-around;
   padding: 0; /* Ensure no extra space around the list */
   margin: 0; /* Ensure no extra space around the list */
- 
 }
 
 ul li {
@@ -102,64 +106,25 @@ ul li a:hover::after {
 
 .dropdown-menu {
   display: none;
-}
-
-.with-nav {
-  height: 13vh;
-  background-color: rgb(255, 227, 127);
-  margin-top: -15px;
-}
-.prescription{
-  width: 150px;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 15px;
-  border: 2px solid #000;
-
-}
-#loginbtn{
-  margin-right: -120px;
-  width: 80px;
-  margin-top: 10px;
-  padding: 10px;
-}
-#signupbtn{
-  width: 80px;
-  padding: 10px;
-  margin-top: 10px;
-}
-.prescription:hover{
-  cursor: pointer;
-  border:2px solid #fff;
-  background-color: rgb(255, 227, 127);
-}
-.dropdown {
-  position: relative;
-}
-
-.dropdown-toggle::after {
-
-  font-size: 12px;
-}
-
-.dropdown-menu {
-  display: none;
   position: absolute;
   background-color: white;
-  min-width: 160px;
+  min-width: 250px; /* Increased minimum width */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   z-index: 1000;
+  display: flex; /* Change to flex for horizontal alignment */
+  flex-direction: row; /* Align items horizontally */
 }
 
 .dropdown-menu li {
   list-style: none;
-  padding: 8px 16px;
+  padding: 12px 20px; /* Increased padding for larger size */
 }
 
 .dropdown-menu li a {
   color: black;
   text-decoration: none;
   display: block;
+  font-size: 16px; /* Increased font size */
 }
 
 .dropdown-menu li a:hover {
@@ -167,5 +132,47 @@ ul li a:hover::after {
 }
 
 .dropdown:hover .dropdown-menu {
-  display: block;
+  display: flex; /* Ensure it displays as flex on hover */
+}
+
+.with-nav {
+  height: 13vh;
+  background-color: #f4f4f4;
+  margin-top: -15px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.prescription {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 2px solid #000;
+}
+
+#loginbtn {
+  margin-right: -120px;
+  width: 80px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#signupbtn {
+  width: 80px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.prescription:hover {
+  cursor: pointer;
+  border: 2px solid #fff;
+  background-color: rgb(255, 227, 127);
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  font-size: 12px;
 }

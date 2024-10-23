@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './NavBar';
 import Footer from './Footer';
-import Logo from './images/Screenshot 2024-08-02 203142.png';
+import Logo from './images/Screenshot_2024-08-02_203142-removebg-preview.png';
 import './Login.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -43,11 +43,11 @@ function Login() {
         <>
             <Navbar />
             <div className='login-container'>
-                <div className='withLOGO'>
-                    <img src={Logo} alt='logo' className='logo' />
+                <div className='withLOGO' style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
+                    <img src={Logo} alt='logo' className='logo' style={{marginLeft:'5px'}} />
                     <div className='company-name'>
-                        <h1>G E N U I N E</h1>
-                        <h2>P h a r m a c y</h2>
+                        <h1><b>G E N U I N E</b></h1>
+                        <h2><b>P h a r m a c y</b></h2>
                     </div>
                 </div>
                 <form onSubmit={handleSubmit} className='login-form'>

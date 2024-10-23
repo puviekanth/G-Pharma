@@ -181,7 +181,7 @@ function Payment() {
                     ) : fetchError ? (
                         <p className="error-message">{fetchError}</p>
                     ) : (
-                        <table className='order-summary-table'>
+                        <table className='order-summary-table' style={{display:'block'}}>
                             <thead>
                                 <tr>
                                     <th>Product</th>

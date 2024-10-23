@@ -548,29 +548,6 @@ app.get('/searchprescription', async (req, res) => {
 });
 
 
-app.get('/getreadyfordelivery',async(req,res)=>{
-    try {
-        const prescription = await PrescriptionModel.find({deliveryStatus:'Ready For Delivery'});
-        console.log(prescription);
-
-    if(!prescription){
-        return res.status(500).json({error:'Did not find any prescriptions ready for delivery'});
-    }
-     const prescriptionData = prescription.map(prescription => ({
-            orderID: prescription._id,
-            username: prescription.Username,
-            userContact: prescription.Contact,
-            useremail: prescription.email,
-            PatientName: prescription.PatientName,
-            DeliveryAddress: prescription.DeliveryAddress,
-            DeliveryCity: prescription.DeliveryCity,
-        }));
-
-        return res.status(200).json(prescriptionData);
-    } catch (error) {
-        return res.status(500).json({error:'Backend error',error});
-    }
-});
 
 
 
@@ -1333,6 +1310,59 @@ app.delete('/deleteAdmin', authenticateJWT, async (req, res) => {
     } catch (error) {
         console.log('Failed to delete user', error);
         return res.status(500).json({ error: 'Failed to delete user.' });
+    }
+});
+
+
+//get ready to deliver prescriptions
+app.get('/getreadyfordelivery',async(req,res)=>{
+    try {
+        const prescription = await PrescriptionModel.find({deliveryStatus:'Ready For Delivery'});
+        console.log(prescription);
+
+    if(!prescription){
+        return res.status(500).json({error:'Did not find any prescriptions ready for delivery'});
+    }
+     const prescriptionData = prescription.map(prescription => ({
+            orderID: prescription._id,
+            username: prescription.Username,
+            userContact: prescription.Contact,
+            useremail: prescription.email,
+            PatientName: prescription.PatientName,
+            DeliveryAddress: prescription.DeliveryAddress,
+            DeliveryCity: prescription.DeliveryCity,
+        }));
+
+        return res.status(200).json(prescriptionData);
+    } catch (error) {
+        return res.status(500).json({error:'Backend error',error});
+    }
+});
+
+
+
+
+//get ready to deliver products
+app.get('/getproductsreadyfordelivery',async(req,res)=>{
+    try {
+        const prescription = await BillingModel.find({status:'Completed'});
+        console.log(prescription);
+
+    if(!prescription){
+        return res.status(500).json({error:'Did not find any prescriptions ready for delivery'});
+    }
+     const prescriptionData = prescription.map(prescription => ({
+            orderID: prescription._id,
+            username: prescription.Username,
+            userContact: prescription.Contact,
+            useremail: prescription.email,
+            DeliveryAddress: prescription.DeliveryAddress,
+            DeliveryCity: prescription.DeliveryCity,
+        }));
+
+        return res.status(200).json(prescriptionData);
+    } catch (error) {
+        return res.status(500).json({error:'Backend error',error});
     }
 });
 
