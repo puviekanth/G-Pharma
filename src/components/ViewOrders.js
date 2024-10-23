@@ -55,9 +55,11 @@ const handleOrderDelete=(orderID)=>{
 
 const generatePDF = () => {
     const element = document.createElement("div");
+
+    const completedOrders = prescriptionOrderDetails.filter(order => order.status === 'Completed');
     
     // Create a list of orders in HTML format
-    prescriptionOrderDetails.forEach(order => {
+    completedOrders.forEach(order => {
         const orderDiv = document.createElement("div");
         orderDiv.innerHTML = `
             <p><strong>Order ID:</strong> ${order.orderID}</p>
