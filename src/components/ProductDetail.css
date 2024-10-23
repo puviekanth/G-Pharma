@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
+.prod-ind-page{
+    font-family:'Nanum Gothic',sans-serif ;
+    background-color: #e7e8e9;
+    height: 100vh;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.prod-ind-img{
+    width: 20vw;
+    height: auto;
+    margin-left: 10px;
+}
+.img-det-ind{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80vw;
+    height: 56vh;
+}
+.input-btn{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+}
+.prod-ind-details{
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+}
+.ind-desc{
+    text-align: justify;
+    width: 61vw;
+    margin-left:30px ;
+}
+.input-qty-prod{
+    border: 2px solid #004085;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 6vh;
+    margin-bottom: 10px;
+    width: 125px;
+}
+.img-det-cont{
+    background-color: #fff;
+    width:60vw;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+.delivery-prod-info{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+}
+.warranty-prod-info{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.del-info{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    width: 18vw;
+   
+    
+    background-color: #fafafaa7;
+} 
+.del-info p{
+    font-size: 16px;
+    padding: 5px;
+   
+}
+.prod-ind-det-del{
+     display: flex;
+    align-items: center;
+    justify-content: center; 
+    ;
+}

@@ -68,10 +68,10 @@ const handleOrderProcessing = (orderID) => {
                 <section className='interface'>
                     <div className='products-prescription-nav'>
                         <div className='prescrip'>
-                            <p className='prescription-orders'><a href='#'>Prescriptions</a></p>
+                        <p className='prescription-orders' style={{backgroundColor:'#004085',padding:'20px'}}><a href='/orders' style={{color:'#fff'}}>Prescriptions</a></p>
                         </div>
                         <div className='prod'>
-                            <p className='product-orders'><a href='#'>Products</a></p>
+                            <p className='product-orders' style={{backgroundColor:'#f1f1f1'}}><a href='/orders-products' style={{color:'#000'}}>Products</a></p>
                         </div>
                     </div>
                     <div className='search-order'>
@@ -79,7 +79,7 @@ const handleOrderProcessing = (orderID) => {
                     </div>
                     <div className='process-complete'>
                         <div className='new-process'>
-                        <a href='/orders'><p className='new-prescriptions'>New</p></a>
+                        <a href='/orders' style={{color:'#000'}}><p className='new-prescriptions'>New</p></a>
                         </div>
                        <div className='processing' >
                        <a href='/prescripion-processing'><p className='processing-prescriptions'>Processing</p></a>

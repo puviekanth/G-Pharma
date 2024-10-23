@@ -3,9 +3,10 @@ import User from './images/icons8-user-64.png';
 import Signout from './images/icons8-sign-out-64.png'
 import Img1 from './images/img3.jpg';
 import Img2 from './images/pexels-n-voitkevich-7526012.jpg';
-import Img3 from './images/about1.jpg';
+// import Img3 from 'C:/Users/sanud/OneDrive/Desktop/Sliit/G-Pharma-main/G-Pharma/src/components/images/about1.jpg';
 import './ViewOrders.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import html2pdf from 'html2pdf.js'
 
 import axios from 'axios';
 
@@ -52,15 +53,44 @@ const handleOrderDelete=(orderID)=>{
     })
 }
 
+const generatePDF = () => {
+    const element = document.createElement("div");
+    
+    // Create a list of orders in HTML format
+    prescriptionOrderDetails.forEach(order => {
+        const orderDiv = document.createElement("div");
+        orderDiv.innerHTML = `
+            <p><strong>Order ID:</strong> ${order.orderID}</p>
+            <p><strong>User Name:</strong> ${order.username}</p>
+            <p><strong>Patient Name:</strong> ${order.PatientName}</p>
+            <p><strong>Prescriptions:</strong> ${order.prescriptions.join(', ')}</p>
+            <p><strong>Duration:</strong> ${order.Duration}</p>
+            <p><strong>Status:</strong> ${order.status}</p>
+            <hr />
+        `;
+        element.appendChild(orderDiv);
+    });
+
+    const opt = {
+        margin:       0.5,
+        filename:     'Orders.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(opt).save();
+};
+
 
     return (
         <>
             <section className='orders'>
             <div className="sidebar">
         <ul>
-        <li><a href='/suppliers'>Suppliers</a></li>
+          <li>Suppliers</li>
           <li><a href='/products'>Products</a></li>
-          <li><a href='/employees'>Employee</a></li>
+          <li>Delivery</li>
+          <li>Employee</li>
           <li><a href='/orders'>Orders</a></li>
           <li><a href='/landing-delivery'>Delivery Person</a></li>
         </ul>
@@ -78,11 +108,11 @@ const handleOrderDelete=(orderID)=>{
 
                 <section className='interface'>
                     <div className='products-prescription-nav'>
-                        <div className='prescrip' >
-                            <p className='prescription-orders-pres'  style={{backgroundColor:'#004085',padding:'10px'}}><a href='/orders' style={{color:'#fff'}}>Prescriptions</a></p>
+                        <div className='prescrip'>
+                            <p className='prescription-orders' style={{backgroundColor:'#004085',padding:'20px'}}><a href='/orders' style={{color:'#fff'}}>Prescriptions</a></p>
                         </div>
-                        <div className='prod'   >
-                            <p className='product-orders-pres' style={{backgroundColor:'#f1f1f1',padding:'10px'}}><a href='/orders-products'>Products</a></p>
+                        <div className='prod'>
+                            <p className='product-orders' style={{backgroundColor:'#f1f1f1',padding:'20px'}}><a href='/orders-products' style={{color:'#000'}}>Products</a></p>
                         </div>
                     </div>
                     <div className='search-order'>

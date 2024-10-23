@@ -4,6 +4,8 @@ import User from './images/icons8-user-64.png';
 import Signout from './images/icons8-sign-out-64.png';
 import ImageModal from './ImageModal'; // Import the modal
 import './AdminProductPage.css';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const AdminProductPage = () => {
   const [product, setProduct] = useState({
@@ -20,6 +22,26 @@ const AdminProductPage = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedImage, setSelectedImage] = useState(null); // State for selected image
+
+  const generatePDFReport = () => {
+    const doc = new jsPDF();
+    const tableColumn = ["Product Name", "Price", "Category", "Available Stock"];
+    const tableRows = [];
+
+    filteredProducts.forEach((product) => {
+      const productData = [
+        product.name,
+        `Rs.${product.price}`,
+        product.category,
+        product.quantity || 0, // Ensure remainingstock is displayed correctly
+      ];
+      tableRows.push(productData);
+    });
+
+    doc.autoTable(tableColumn, tableRows, { startY: 20 });
+    doc.text("Product Report", 14, 15);
+    doc.save("product_report.pdf");
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -265,6 +287,9 @@ const AdminProductPage = () => {
         {selectedImage && (
           <ImageModal imageUrl={selectedImage} onClose={handleModalClose} />
         )}
+        <button onClick={generatePDFReport} style={{ marginTop: '20px' }}>
+          Download PDF Report
+        </button>
       </div>
     </div>
   );

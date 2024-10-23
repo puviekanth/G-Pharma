@@ -826,7 +826,7 @@ app.get('/ProductsOrdersGet', async (req, res) => {
         const prescriptions = await BillingModel.find({status:'New'}); // Get all prescriptions
         console.log(prescriptions);
         if (!prescriptions.length) {
-            return res.status(400).json({ error: 'No Prescriptions found' });
+            return res.status(400).json({ error: 'No Order found' });
         }
 
         const prescriptionData = prescriptions.map(prescription => ({
@@ -846,6 +846,55 @@ app.get('/ProductsOrdersGet', async (req, res) => {
         res.status(500).json({ error: 'Database error' });
     }
 });
+
+app.put('/updateOrderStatusProduct/:id',async (req,res)=>{
+    try{
+        const {id} = req.params;
+    const {status} = req.body;
+
+    const productOrder = await BillingModel.findByIdAndUpdate(
+        {_id:id},
+        {status:status},
+        {new:true}
+    );
+    
+    if(!productOrder){
+        return res.status(500).json({error:'No such order exists'});
+    }
+    return res.status(200).json({message:'Updated Sucessfully'});
+    }
+    catch(error){
+        return res.status(500).json({error:'Server side error when fetching the product',err});
+    }
+});
+
+app.get('/ProductsOrdersGetCompleted', async (req, res) => {
+    try {
+        const prescriptions = await BillingModel.find({status:'Completed'}); // Get all prescriptions
+        console.log(prescriptions);
+        if (!prescriptions.length) {
+            return res.status(400).json({ error: 'No Order found' });
+        }
+
+        const prescriptionData = prescriptions.map(prescription => ({
+            orderID: prescription._id,
+            username: prescription.name,
+            userContact: prescription.contact,
+            useremail: prescription.email,
+            DeliveryAddress: prescription.address,
+            DeliveryCity: prescription.city,
+            Quantity: prescription.quantity,
+            Date : prescription.date,
+            cartItems:prescription.cartItems
+        }));
+
+        res.status(200).json(prescriptionData);
+    } catch (error) {
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+
 
 //get employees
 app.get('/getemp', (req,res) =>{
@@ -1134,13 +1183,158 @@ app.get('/getsupport',async (req,res)=>{
 }); 
 
 
+//get individual products
+
+app.get('/getindividualproduct', async (req, res) => {
+    try {
+        const { id } = req.query; // Use query to get the id
+
+        const product = await ProductModel.findOne({ _id: id });
+
+        if (!product) {
+            return res.status(200).json({ error: 'No product found' });
+        }
+        console.log(product);
+        return res.status(200).json(product);
+    }
+    catch (err) {
+        console.log('Error fetching product:', err);
+        return res.status(500).json({ error: 'Server side error', err });
+    }
+});
+
+
+app.get('/getrelatedproduct',async (req,res)=>{
+    try {
+        const products = await ProductModel.find();
+    if(!products){
+        return res.status(500).json({error:'No products found'});
+    }
+    return res.status(200).json(products);
+    } catch (error) {
+        return res.status(500).json({error:'Something went wrong in the server side'})
+    }
+});
+
+app.put('/updatestock', async (req, res) => {
+    try {
+        const { id } = req.query; // Get the product ID from the query
+        const { quantity } = req.body; // Get the quantity to subtract from the request body
+
+        // Find the product by its ID
+        const product = await ProductModel.findById(id);
+
+        if (!product) {
+            return res.status(404).json({ error: 'No product found' });
+        }
+
+        // Calculate the new quantity
+        const newQuantity = product.quantity - quantity;
+
+        // Make sure the new quantity is not less than zero
+        if (newQuantity < 0) {
+            return res.status(400).json({ error: 'Insufficient stock' });
+        }
+
+        // Update the product with the new quantity
+        product.quantity = newQuantity;
+        await product.save();
+
+        console.log(product);
+        return res.status(200).json(product.quantity); // Return the updated quantity
+    } catch (err) {
+        console.log('Error updating product:', err);
+        return res.status(500).json({ error: 'Server-side error', err });
+    }
+});
+
+
 
 
   
+app.put('/reduceoneitem', async (req, res) => {
+    try {
+        const { id } = req.query; // Use query to get the id
+        
+        const product = await ProductModel.findOne(
+            { _id: id }
+    );
+
+        if (!product) {
+            return res.status(200).json({ error: 'No product found' });
+        }
+        const newQuantity = product.quantity-1;
+        if (newQuantity < 0) {
+            return res.status(400).json({ error: 'Insufficient stock' });
+        }
+        product.quantity = newQuantity;
+        await product.save();
+        console.log(product);
+        return res.status(200).json(product.quantity);
+    }
+    catch (err) {
+        console.log('Error fetching product:', err);
+        return res.status(500).json({ error: 'Server side error', err });
+    }
+});
 
 
+//Profile route
+app.get('/Admin',authenticateJWT, async (req,res)=>{
+    try {
+        const email = req.user.email;
+        const currentUser = await AdminModel.findOne({email:email});
+        if(!currentUser){
+            return res.status(500).json({error:'No Record Exists'});
+        }
+       return res.status(201).json({
+            name:currentUser.name,
+            email:currentUser.email,
+            contact:currentUser.contact,
+            address : currentUser.address,
+            nic : currentUser.nic
+        });
+    } catch (error) {
+        return res.status(500).json({error:'Failed to retrieve user data'});
+    }
+})
 
 
+//profile update route
+app.post('/updateAdmin', authenticateJWT, async (req, res) => {
+    try {
+        const email = req.user.email; 
+        const { name, contact, address } = req.body;
+        const updatedUser = await AdminModel.findOneAndUpdate(
+            { email: email },  
+            { name, contact, address },
+            { new: true }  
+        );
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'User Not Found' });
+        }
+        return res.status(200).json({ message: 'User Updated Successfully', updatedUser });
+    } catch (error) {
+        console.log('Error updating profile', error);
+        return res.status(500).json({ error: 'Failed to update profile' });
+    }
+});
+
+//delete user
+app.delete('/deleteAdmin', authenticateJWT, async (req, res) => {
+    try {
+        const email = req.user.email; // Extracted from the JWT token
+        const deleteUser = await AdminModel.findOneAndDelete({ email });
+
+        if (!deleteUser) {
+            return res.status(500).json({ error: 'No user found' });
+        }
+        return res.status(200).json({ message: 'User deleted successfully' });
+    } catch (error) {
+        console.log('Failed to delete user', error);
+        return res.status(500).json({ error: 'Failed to delete user.' });
+    }
+});
 
 
 

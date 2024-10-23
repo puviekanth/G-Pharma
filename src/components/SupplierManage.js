@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import User from './images/icons8-user-64.png'
 import Signout from './images/icons8-sign-out-64.png'
 import './LandingDeliveryPage.css';
+import { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
+
+
 
 const DeliveryPerson = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -17,6 +21,17 @@ const DeliveryPerson = () => {
   });
   const [isModalVisible, setModalVisible] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+
+  // Function to generate PDF
+  const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.text("Supplier Report", 14, 10);
+    doc.autoTable({
+        head: [['Supplier ID', 'Supplier Name', 'Company', 'Email']],
+        body: data.map(user => [user.id, user.name, user.company, user.email]),
+    });
+    doc.save("Supplier_Report.pdf");
+};
 
   // Fetch delivery persons from the API fetch('http://localhost:5001/api/delivery-persons') // Update to the new port
 
@@ -180,6 +195,17 @@ const DeliveryPerson = () => {
             ))}
           </tbody>
         </table>
+        <button 
+          className="users-btn"
+          onClick={generatePDF} 
+          style={{
+            padding: '10px 60px',
+            marginTop: '20px',
+            cursor: 'pointer'
+          }}
+        >
+          Generate PDF Report
+        </button>
 
         {isModalVisible && (
           <div className="modal-overlay">

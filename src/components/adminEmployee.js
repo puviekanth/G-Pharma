@@ -4,10 +4,23 @@ import Signout from './images/icons8-sign-out-64.png'
 import './LandingDeliveryPage.css';
 import { Link,useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 const Emp = () => {
     const[users, setUsers]=useState([])
     const navigate = useNavigate();
+
+    const generatePDF = () => {
+      const doc = new jsPDF();
+      doc.text("Employee Report", 14, 10);
+      doc.autoTable({
+          head: [['Name', 'EmpID', 'Role', 'Age']],
+          body: users.map(user => [user.name, user.empID, user.role, user.age]),
+      });
+      doc.save("employee_report.pdf");
+  };
+
 
     useEffect(() => {
         axios.get('http://127.0.0.1:3000/getemp')
@@ -87,6 +100,10 @@ const Emp = () => {
                     }
           </tbody>
         </table>
+        <div className="button-container">
+            <button className='btn-gen' onClick={generatePDF}>Generate Report</button>
+        </div>
+
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import './NavBar.css';
 import logo from './images/Blue_and_White_Flat_Illustrative_Health_Products_Logo-removebg-preview.png';
 import OnlineSupport from './images/icons8-online-support-64.png'
@@ -26,6 +26,11 @@ function Navbar() {
     setIsLoggedIn(loggedInStatus);
     setActiveLink(location.pathname);
   }, [location.pathname]);
+
+  const handleSignout = () =>{
+    localStorage.removeItem('token');
+    
+  }
 return(
 <>
   <nav>
@@ -46,10 +51,10 @@ return(
                     <a href='mailto:genuinepharmaceuticals@gmail.com' className='email-id'>genuinepharmaceuticals@gmail.com</a>
                 </div>
                 </div>
-                <form className='search-form'>
-                    <input type='text' className='search-bar' value={search} onChange={(e)=>{setSearch(e.target.value)}} placeholder='Search Products'/>
-                    <img src={Search} className='search-icon' alt='search'/>
-                </form>
+                <div className='profile-cart'>
+                   <a href='/Profile'><img width="35" height="35" src="https://img.icons8.com/fluency-systems-filled/50/228BE6/user.png" alt="user"/></a>
+                   <a href='/cart'><img width="35" height="35" src="https://img.icons8.com/glyph-neue/64/228BE6/shopping-cart.png" alt="shopping-cart"/></a>
+                </div>
             </section>
     </div>
     
@@ -87,16 +92,12 @@ onClick={() => setMenuOpen(!menuOpen)}
 <li className={`navbar-item ${activeLink === '/Contact' ? 'active' : ''}`}>
   <a href="/Contact">Contact Us</a>
 </li>
-<li className={`navbar-item ${activeLink === '/Profile' ? 'active' : ''}`}>
-  <a href="/Profile">Profile</a>
-</li>
-<li className={`navbar-item ${activeLink === '/Cart' ? 'active' : ''}`}>
-  <a href="/cart">Cart</a>
 
-</li>
 
 {isLoggedIn ? (
+    <>
     <a href="/Add-prescription"><button className="prescription">Add Prescription</button></a>
+    <a href='/Login'><button className='signout' onClick={handleSignout}>Sign Out</button></a></>
   ) : (
     <><a href="/Login"><button className="prescription" id='loginbtn'>Login</button></a><a href='/signup'><button className='prescription'id='signupbtn'>Sign Up</button></a></>
   )}
