@@ -5,6 +5,7 @@ import Product1 from './images/Glutanex-Tablets-100.jpeg';
 import Product2 from './images/Eventone-C-Cream-300x300.jpg';
 import './Shop.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 function Shop() {
     const [minPrice, setMinPrice] = useState('');
@@ -33,6 +34,57 @@ function Shop() {
             console.log('Could not fetch the products',err);
         })
     },[])
+
+
+    const handleAddToCart = (product) => {
+        if (product.quantity > 0) {
+            
+            const token = localStorage.getItem('token');
+            if(!token){
+                console.error('No token found, please login');
+                return;
+            }
+            const userEmail = JSON.parse(atob(token.split('.')[1])).email;
+            axios.post('http://127.0.0.1:3000/addtocart', { 
+                ProductName: product.name,
+                email:userEmail,
+                ProductPrice: product.price,
+                ProductQuantity:1,
+                Subtotal:product.price*1,
+                Image:product.image
+            },{
+                headers: { Authorization: `Bearer ${token}` } // Send the token in the headers
+            })
+            .then(response => {
+                console.log('Added to cart successfully', response);
+                handleChangequantity(product._id);
+            })
+            .catch(error => {
+                console.log('Error adding to cart', error);
+            });
+        } else {
+            console.log("Out of Stock");
+        }
+    };
+
+    const handleChangequantity = (id) =>{
+        axios.put(`http://127.0.0.1:3000/reduceoneitem?id=${id}`)
+        .then(res=>{
+            setQuantity(res.data)
+            console.log('Updated successfully');
+            console.log(stock);
+        })
+        .catch(err=>{
+            console.log('Error updating the product',err);
+        })
+    }
+    const navigate = useNavigate();
+    const navigatePage = (id) => {
+        navigate(`/product/${id}`);
+    };
+
+    const [quantity,setQuantity] = useState('');
+    const [stock,seStock] = useState();
 
     return (
         <>
@@ -82,9 +134,9 @@ function Shop() {
                     <div className='container'>
                         {filteredProducts.map(product => (
                             <div className='pro-container' key={product.id}>
-                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' />
-                                <h3 className='pro-name'>{product.name}</h3>
-                                <h4>Rs. {product.price.toLocaleString()}</h4>
+                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image'  onClick={() => navigatePage(product._id)}/>
+                                <h3 className='pro-name'  onClick={() => navigatePage(product._id)}>{product.name}</h3>
+                                <h4  onClick={() => navigatePage(product._id)}>Rs. {product.price.toLocaleString()}</h4>
                                 <button className='add-to-cart'>Add to Cart</button>
                             </div>
                         ))}

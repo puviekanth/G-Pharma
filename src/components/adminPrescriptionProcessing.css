@@ -1,4 +1,8 @@
 /* Sidebar styles */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+.orders{
+    font-family:'Nanum Gothic',sans-serif ;
+}
 .sidebar {
     width: 250px;
     background-color: #004085; /* Darker blue for sidebar */

@@ -38,6 +38,7 @@ import Suppliers from './components/SupplierManage'
 import Medi from './components/Medicine'
 import Supports from './components/support'
 import ProductDetailPage from './components/ProductDetails'
+import CompletedProducts from './components/completed-product-orders'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -80,12 +81,13 @@ function App() {
         <Route path='/adminprofile' element={<AdminPRofile />} />
         <Route path='/landing-delivery' element={<LandingDelivery />} />
         <Route path='/orders-products' element={<ViewOrderProducts />} />
-        <Route path='/employee' element={<Employee />} />
+        <Route path='/employees' element={<Employee />} />
         <Route path='/create' element={<AddEmp />} />
         <Route path='/updateEmployee/:id' element={<UpdateEmp />} />
         <Route path='/suppliers' element={<Suppliers />} />
         <Route path='/Shop/medi' element={<Medi />} />
         <Route path='/product/:id' element={<ProductDetailPage />} />
+        <Route path='/completed-orders-products' element={<CompletedProducts />} />
       </Routes>
     </Router>
   );

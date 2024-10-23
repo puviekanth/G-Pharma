@@ -6,6 +6,8 @@ import Img2 from './images/pexels-n-voitkevich-7526012.jpg';
 import Img3 from './images/about1.jpg';
 import './ViewOrderProducts.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 import axios from 'axios';
 
@@ -22,24 +24,43 @@ function ViewOrders() {
 
     const [ProductnOrderDetails, setProductOrderDetails] = useState([]);
 
+    const generatePDF = () => {
+        const doc = new jsPDF();
+        doc.text("Prescription Sales Report", 14, 10);
+    
+        // Flatten the data structure to accommodate multiple cart items for each order
+        const tableData = ProductnOrderDetails.flatMap(order =>
+            order.cartItems.map(item => [
+                order.username,      // Customer Name
+                order.useremail,     // Email
+                order.userContact,   // Contact
+                order.DeliveryAddress,   // Delivery Address
+                order.DeliveryCity,      // Delivery City
+                item.ProductName,   // Product Name
+                item.ProductQuantity, // Product Quantity
+                item.Subtotal    // Subtotal
+            ])
+        );
+    
+        // Create the table using autoTable
+        doc.autoTable({
+            head: [['Customer Name', 'Email', 'Contact', 'Delivery Address', 'Delivery City', 'Product', 'Quantity', 'Subtotal']],
+            body: tableData,
+        });
+    
+        // Save the PDF with a specific file name
+        doc.save("Prescriptions.pdf");
+    };
+    
+    
+
 useEffect(() => {
    fetchproducts();
 }, []);
 
-const handleOrderProcessing = (orderID) => {
-    
-    axios.put(`http://127.0.0.1:3000/updateOrderStatusProduct/${orderID}`,{status:'Completed'})
-    .then(response =>{
-        console.log(response);
-        fetchproducts();
-    })
-    .catch(error =>{
-        console.log(error);
-    })
-}
 
 const fetchproducts = () =>{
-    axios.get('http://127.0.0.1:3000/ProductsOrdersGet')
+    axios.get('http://127.0.0.1:3000/ProductsOrdersGetCompleted')
     .then(response => {
         setProductOrderDetails(response.data); // Now stores an array
     })
@@ -85,15 +106,16 @@ const fetchproducts = () =>{
                     </div>
                     <div className='search-order'>
                     <a href='/SearchProducts'> <button  className='btn btn-success mt-3' style={{'marginBottom':'20px'}}>Search ...</button></a>
+                    <btton className='btn btn-primary' onClick={generatePDF} style={{marginBottom:'5px',marginLeft:'20px'}}>Generate Report</btton>
                     </div>
                     <div className='process-complete'>
-                    <div className='new-view' >
-                        <a href='/orders'>
-                            <p className='orders-products'>New</p>
+                    <div className='new-view' style={{backgroundColor:'#f1f1f1'}} >
+                        <a href='/orders' style={{color:'#000'}}>
+                            <p className='orders-products' >New</p>
                         </a>
                     </div>
-                       <div className='completed-view'>
-                       <a href='/completed-orders-products'><p className='completed-prescriptions-view'>Completed</p></a>
+                       <div className='completed-view' style={{backgroundColor:'#004085'}}>
+                       <a href='/completed-orders-products'style={{color:'#fff'}} ><p className='completed-prescriptions-view'style={{color:'#fff'}} >Completed</p></a>
                        </div>
                     </div>
                     <h2 className='topic' style={{fontWeight:'bold',textAlign:'center',color:'#004085'}}>Products Orders</h2>
@@ -145,10 +167,7 @@ const fetchproducts = () =>{
                     </tbody>
                 </div>
             </div>
-            <div className='btns'>
-                <button className="btn btn-success mt-3" onClick={()=>{handleOrderProcessing(order.orderID)}} >Complete</button>
-                
-            </div>
+           
         </div>
     ))
 ) : (

@@ -7,6 +7,8 @@ import Img3 from './images/about1.jpg';
 import 'bootstrap/dist/css/bootstrap.min.css';
  import './adminPrescriptionProcessing.css';
 import axios from 'axios';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 function CompletedOrders() {
     const [selectedImage, setSelectedImage] = useState(null);
@@ -30,6 +32,24 @@ useEffect(() => {
             console.log('Server error', error);
         });
 }, []);
+
+const generatePDF = () => {
+    const doc = new jsPDF();
+    doc.text("Prescription Sales Report", 14, 10);
+    doc.autoTable({
+        head: [['Customer Name', 'Email', 'Contact', 'Patient Name', 'Patient Age', 'Delivery Address', 'Delivery City']],
+        body: prescriptionOrderDetails.map(user => [
+            user.username, 
+            user.useremail, 
+            user.userContact, // Added userContact field
+            user.PatientName, 
+            user.PatientAge, 
+            user.DeliveryAddress, 
+            user.DeliveryCity
+        ]),
+    });
+    doc.save("Prescriptions.pdf");
+};
 
 
 
@@ -60,30 +80,32 @@ useEffect(() => {
                 <section className='interface'>
                     <div className='products-prescription-nav'>
                         <div className='prescrip'>
-                            <p className='prescription-orders'><a href='#'>Prescriptions</a></p>
+                        <p className='prescription-orders' style={{backgroundColor:'#004085',padding:'20px'}}><a href='/orders' style={{color:'#fff'}}>Prescriptions</a></p>
                         </div>
                         <div className='prod'>
-                            <p className='product-orders'><a href='#'>Products</a></p>
+                            <p className='product-orders' style={{backgroundColor:'#f1f1f1',padding:'20px'}}><a href='/orders-products' style={{color:'#000'}}>Products</a></p>
                         </div>
                     </div>
-                    <div className='search-order'>
+                    <div className='search-order' style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
                        <a href='/SearchPrescription'> <button  className='btn btn-success mt-3'>Search ...</button></a>
+                       <button onClick={generatePDF} style={{ marginTop: '15px',marginLeft:'20px' }}>Download PDF Report</button>
                     </div>
                     <div className='process-complete'>
                         <div className='new' style={{backgroundColor:'#f1f1f1',border:'1px solid #004085'}}>
                         <a href='/orders' style={{textDecoration:'none',color:'#000'}}><p className='new-prescriptions'>New</p></a>
                         </div>
                        <div className='processing' style={{backgroundColor:'#f1f1f1',border:'1px solid #004085'}} >
-                       <a href='/prescripion-processing'  style={{textDecoration:'none',color:'#000'}}><p className='processing-prescriptions' style={{color:'#000'}}>Processing</p></a>
+                       <a href='/prescription-processing'  style={{textDecoration:'none',color:'#000'}}><p className='processing-prescriptions' style={{color:'#000'}}>Processing</p></a>
                        </div>
                        <div className='completed' style={{ backgroundColor: '#004085' }}>
-                       <a href='/completed-orders'><p className='completed-prescriptions'>Completed</p></a>
+                       <a href='/completed-orders' style={{color:'#fff'}}><p className='completed-prescriptions' style={{color:'#fff'}}>Completed</p></a>
                        </div>
                     </div>
-                    <h2 className='topic'>Prescription Orders</h2>
+                    <h2 className='topic' style={{textAlign:'center',fontWeight:'bold',color:'#004085'}}>Prescription Orders</h2>
+                 
                     {prescriptionOrderDetails.length > 0 ? (
     prescriptionOrderDetails.map((order, index) => (
-        <div className='order-cont' key={index}>
+        <div className='order-contt' key={index}>
             <div className='img-details'>
                 <div className='images-cont'>
                 {Array.isArray(order.prescriptions) && order.prescriptions.length > 0 ? (
@@ -107,7 +129,7 @@ useEffect(() => {
     </div>
 
                 {/* Order details */}
-                <div className='admin-Order-details'>
+                <div className='admin-Order-details' style={{display:'flex',flexDirection:'column',alignItems:'baseline',justifyContent:'center'}}>
                     <p className='Order-id'>Order ID: {order.orderID}</p>
                     <p className='User-name'>User Name: {order.username}</p>
                     <p className='User-email'>User Email: {order.useremail}</p>
