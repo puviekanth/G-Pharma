@@ -1,41 +1,64 @@
-.about-us-section{
-    font-family:   'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: #000;
+.about-us-section {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.with-heading {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.topic {
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+.about-us-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .image-container {
-    margin-top: 5%;
-    width: 30%; /* Adjust width based on your layout */
-    height: 20%; /* Adjust height based on your layout */
-    overflow: hidden;
+    flex: 1;
+    min-width: 300px; /* Adjust for smaller screens */
     position: relative;
+    overflow: hidden;
 }
 
 .transition-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Makes sure the image covers the entire container */
-    transition: opacity 1s ease-in-out; /* Smooth transition effect */
-}
-.about-content{
-    width: 50%;
-    margin-left: 20px;
-    margin-top: 5%;
-}
-.about-us-div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.with-heading{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    height: auto;
+    transition: transform 0.5s ease;
 }
 
-.topic{
-    color: #000;
-    font-size: 48px;
-    margin-top: 15%;
+.image-container:hover .transition-image {
+    transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.about-content {
+    flex: 1;
+    min-width: 300px; /* Adjust for smaller screens */
+    padding: 20px;
+    text-align: left;
+}
+
+.about-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 0;
+    text-align: justify; /* Justify text for better readability */
+}
+
+.about-content strong {
+    color: #e74c3c; /* Accent color for strong text */
 }

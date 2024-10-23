@@ -25,7 +25,7 @@ function About(){
         <NavBar />
         <section className='about-us-section'>
         <div className='with-heading'>
-             <h1 className='topic'>About Us</h1>
+             <h1 className='topic' style={{color:'#004085'}}>About Us</h1>
             <div className='about-us-div'>
                 
                 <div className='image-container'>

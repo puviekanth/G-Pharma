@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar';
 import Footer from './Footer';
-import './Profile.css';
 import Logo from './images/Blue_and_White_Flat_Illustrative_Health_Products_Logo-removebg-preview.png';
-import Product1 from './images/Glutanex-Tablets-100.jpeg';
-import Product2 from './images/Eventone-C-Cream-300x300.jpg';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import User from './images/icons8-user-64.png'
-import Signout from './images/icons8-sign-out-64.png'
-
+import User from './images/icons8-user-64.png';
+import Signout from './images/icons8-sign-out-64.png';
 
 function Profile() {
     const [isEditing, setIsEditing] = useState(false);
@@ -21,7 +17,6 @@ function Profile() {
         address: '',
         nic: ''
     });
-    
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -32,45 +27,38 @@ function Profile() {
                 headers: { Authorization: `Bearer ${token}` }
             })
                 .then(response => {
-                    setUserDetails(response.data); // Set the user details correctly
+                    setUserDetails(response.data);
                 })
                 .catch(error => {
                     if (error.response && error.response.status === 500) {
                         navigate('/Login');
                     } else {
                         console.log('Failed to fetch user details', error);
-                        
                     }
                 });
         }
     }, [navigate]);
 
     const handleSave = () => {
-
         const token = localStorage.getItem('token');
         axios.post('http://127.0.0.1:3000/updateAdmin', {
             name: userDetails.name,
             contact: userDetails.contact,
             address: userDetails.address,
-            email:userDetails.email
+            email: userDetails.email
         }, {
-            headers: { Authorization: `Bearer ${token}` } // Send the token in the headers
+            headers: { Authorization: `Bearer ${token}` }
         })
-        .then(response =>{
-            
-            console.log('User Updated Successfully',response);
+        .then(response => {
+            console.log('User Updated Successfully', response);
             setIsEditing(false);
-
-           
         })
-        .catch(err=>{
-            console.log('Something went wrong',err);
-        })
-        
-       
+        .catch(err => {
+            console.log('Something went wrong', err);
+        });
     };
 
-    const handlesignout =() =>{
+    const handlesignout = () => {
         localStorage.removeItem('token');
         navigate('/Login');
     }
@@ -79,115 +67,142 @@ function Profile() {
         const token = localStorage.getItem('token');
         axios.delete('http://127.0.0.1:3000/deleteAdmin', {
             headers: { Authorization: `Bearer ${token}` },
-            data: { email: userDetails.email } // Include email in the `data` field
+            data: { email: userDetails.email }
         })
         .then(response => {
-            localStorage.removeItem('token'); // Remove token after successful deletion
+            localStorage.removeItem('token');
             console.log('User Deleted Successfully', response);
-            navigate('/Signup'); // Redirect to Signup page after account deletion
+            navigate('/Signup');
         })
         .catch(error => {
             console.log('Something went wrong', error);
         });
     };
-    
-    
-    
 
     return (
         <>
             <div className="sidebar">
-                <ul>
-                    <li>Suppliers</li>
-                    <li><a href='/products'>Products</a></li>
-                    <li>Employee</li>
-                    <li><a href='/orders'>Orders</a></li>
-                    <li><a href='/landing-delivery'>Delivery Person</a></li>
-                </ul>
-                <div className="icon">
-                    <div className="profile-icon">
-                        <a href='/adminprofile'>
-                            <img src={User} alt='Admin Profile' className='profile-icon-pro' />
-                        </a>
+        <ul>
+        <li><a href='/suppliers'>Suppliers</a></li>
+          <li><a href='/products'>Products</a></li>
+          <li><a href='/employees'>Employee</a></li>
+          <li><a href='/orders'>Orders</a></li>
+          <li><a href='/landing-delivery'>Delivery Person</a></li>
+        </ul>
+        <div className="icon">
+          <div className="profile-icon">
+            <a href='/adminprofile'>
+              <img src={User} alt='Admin Profile' className='profile-icon-pro' />
+            </a>
+          </div>
+          <a href='/Login'>
+            <img src={Signout} alt='Sign Out' className='signout-icon-pro' />
+          </a>
+        </div>
+      </div>
+            <section style={{ marginLeft: '280px', padding: '40px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', marginBottom: '30px' }}>
+                    <div style={{ marginRight: '20px' }}>
+                        <img src={Logo} alt="profile-pix" style={{ width: '100px', borderRadius: '50%' }} />
                     </div>
-                    <a href='/Login'>
-                        <img src={Signout} alt='Sign Out' className='signout-icon-pro' />
-                    </a>
+                    <div>
+                        <button onClick={handlesignout} style={{
+                            backgroundColor: '#ff4d4d',
+                            color: '#fff',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer',
+                            marginRight: '10px'
+                        }}>Sign Out</button>
+                        <button onClick={handleDelete} style={{
+                            backgroundColor: '#ff4d4d',
+                            color: '#fff',
+                            padding: '10px 20px',
+                            border: 'none',
+                            borderRadius: '5px',
+                            cursor: 'pointer'
+                        }}>Delete Account</button>
+                    </div>
                 </div>
-            </div>
-            <section className="profile-section" style={{marginLeft:'30px'}}>
-                <div className="img-details">
-                    <div className="img-logout">
-                        <div className="profile-pic-div">
-                            <img src={Logo} alt="profile-pix" className="profile-pic" />
-                        </div>
-                        <button className="sign-out" onClick={handlesignout}>Sign Out</button>
-                        <button className="delete-btn" onClick={handleDelete} >Delete Account</button>
-                    </div>
-                    <div className="user-details">
-                        <h2>Profile Details</h2>
-                        <table className="user-details">
-                            <tbody>
-                                <tr>
-
-                                    <td>Name</td>
-                                    <td> {isEditing ? (
-                                            <input className="name" value={userDetails.name} onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })} />
-                                        ) : (
-                                            <span>{userDetails.name}</span>
-                                        )}
-                                        </td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>
-                                        {isEditing ? (
-                                            <input type="email" className="email" value={userDetails.email} onChange={(e) => setUserDetails({ ...userDetails, email: e.target.value })} disabled/>
-                                        ) : (
-                                            <span>{userDetails.email}</span>
-                                        )}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Contact</td>
-                                    <td>
-                                        {isEditing ? (
-                                            <input type="number" className="contact" value={userDetails.contact} onChange={(e) => setUserDetails({ ...userDetails, contact: e.target.value })} />
-                                        ) : (
-                                            <span>{userDetails.contact}</span>
-                                        )}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Address</td>
-                                    <td>
-                                        {isEditing ? (
-                                            <textarea className="address" value={userDetails.address} onChange={(e) => setUserDetails({ ...userDetails, address: e.target.value })} />
-                                        ) : (
-                                            <span>{userDetails.address}</span>
-                                        )}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>NIC Number</td>
-                                    <td><input className="nic" type="text" value={userDetails.nic} disabled /></td>
-                                </tr>
-                               
-                               
-                                <tr>
+                <div style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '10px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+                    <h2 style={{ marginBottom: '20px' }}>Profile Details</h2>
+                    <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <tbody>
+                            <tr style={{ borderBottom: '1px solid #f0f0f0' }}>
+                                <td style={{ padding: '10px 0', fontWeight: 'bold' }}>Name</td>
+                                <td>
                                     {isEditing ? (
-                                        <td colSpan="2"><button onClick={handleSave} className="btn-save">Save</button></td>
+                                        <input value={userDetails.name} onChange={(e) => setUserDetails({ ...userDetails, name: e.target.value })} style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }} />
                                     ) : (
-                                        <td colSpan="2"><button onClick={() => setIsEditing(true)} className="btn-edit">Edit</button></td>
+                                        <span>{userDetails.name}</span>
                                     )}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                </td>
+                            </tr>
+                            <tr style={{ borderBottom: '1px solid #f0f0f0' }}>
+                                <td style={{ padding: '10px 0', fontWeight: 'bold' }}>Email</td>
+                                <td>
+                                    {isEditing ? (
+                                        <input type="email" value={userDetails.email} disabled style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                                    ) : (
+                                        <span>{userDetails.email}</span>
+                                    )}
+                                </td>
+                            </tr>
+                            <tr style={{ borderBottom: '1px solid #f0f0f0' }}>
+                                <td style={{ padding: '10px 0', fontWeight: 'bold' }}>Contact</td>
+                                <td>
+                                    {isEditing ? (
+                                        <input type="number" value={userDetails.contact} onChange={(e) => setUserDetails({ ...userDetails, contact: e.target.value })} style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                                    ) : (
+                                        <span>{userDetails.contact}</span>
+                                    )}
+                                </td>
+                            </tr>
+                            <tr style={{ borderBottom: '1px solid #f0f0f0' }}>
+                                <td style={{ padding: '10px 0', fontWeight: 'bold' }}>Address</td>
+                                <td>
+                                    {isEditing ? (
+                                        <textarea value={userDetails.address} onChange={(e) => setUserDetails({ ...userDetails, address: e.target.value })} style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                                    ) : (
+                                        <span>{userDetails.address}</span>
+                                    )}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{ padding: '10px 0', fontWeight: 'bold' }}>NIC Number</td>
+                                <td>
+                                    <input type="text" value={userDetails.nic} disabled style={{ width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }} />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colSpan="2" style={{ textAlign: 'center', paddingTop: '20px' }}>
+                                    {isEditing ? (
+                                        <button onClick={handleSave} style={{
+                                            backgroundColor: '#4caf50',
+                                            color: '#fff',
+                                            padding: '10px 20px',
+                                            border: 'none',
+                                            borderRadius: '5px',
+                                            cursor: 'pointer',
+                                            marginRight: '10px'
+                                        }}>Save Changes</button>
+                                    ) : (
+                                        <button onClick={() => setIsEditing(true)} style={{
+                                            backgroundColor: '#008cba',
+                                            color: '#fff',
+                                            padding: '10px 20px',
+                                            border: 'none',
+                                            borderRadius: '5px',
+                                            cursor: 'pointer'
+                                        }}>Edit Profile</button>
+                                    )}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-               
             </section>
-            <Footer />
         </>
     );
 }

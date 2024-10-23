@@ -99,7 +99,7 @@ const navigatePage = (id) => {
             <section className='cat-pro'>
                 <section className='with-categories'>
                     <div className='heading'>
-                        <h1>Shop</h1>
+                        <h1 style={{marginTop:'20px',color:'#004085'}}>Shop</h1>
                     </div>
                     <div className='categories'>
                         <ul>
@@ -115,8 +115,8 @@ const navigatePage = (id) => {
                             <li><a href="/Shop/skincare">Skincare Products</a></li>
                             <li><a href="/Shop/sexual-wellness">Sexual Wellness</a></li>
                         </ul>
-                        <div className='filter-div'>
-                            <h3>Filter by Price</h3>
+                        <div className='filter-div' style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',marginLeft:'40px'}}>
+                            <h4 style={{color:'#004085'}}><b>Filter By Price</b></h4>
                             <div className='price-filter'>
                                 <input
                                     type="number"
@@ -124,6 +124,7 @@ const navigatePage = (id) => {
                                     placeholder='Min Price'
                                     value={minPrice}
                                     onChange={(e) => setMinPrice(e.target.value)}
+                                    style={{width:'100px'}}
                                 />
                                 <input
                                     type="number"
@@ -131,23 +132,29 @@ const navigatePage = (id) => {
                                     placeholder='Max Price'
                                     value={maxPrice}
                                     onChange={(e) => setMaxPrice(e.target.value)}
+                                    style={{width:'100px'}}
                                 />
                             </div>
-                            <button className='apply-filter'>Apply Filter</button>
+                            <button className='apply-filter' >Apply Filter</button>
                             <button className='remove-filter' onClick={handleReset}>Remove Filter</button>
                         </div>
                     </div>
                 </section>
                 <section className='products'>
                     <div className='container'>
-                        {filteredProducts.map(product => (
-                            <div className='pro-container' key={product.id} >
-
-                                <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt={product.name} className='pro-image' onClick={() => navigatePage(product._id)}/>
-                                <h3 className='pro-name' onClick={() => navigatePage(product._id)}>{product.name}</h3>
-                                <h4 onClick={() => navigatePage(product._id)}>Rs. {product.price.toLocaleString()}</h4>
-                                <button className='add-to-cart' onClick={() => handleAddToCart(product)}>Add to Cart</button>
-                            </div>
+                        {filteredProducts.map((product) => (
+                            
+                                <div className='pro-container'  style={{ border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0,0,0,0.1)', width: '220px', textAlign: 'center', transition: 'transform 0.2s' }}> {/* Adjusted width */}
+                                    <img src={`http://localhost:3000/${product.image.replace(/\\/g, '/')}`} alt='' className='pro-image-home' style={{ width: '80%', height: 'auto' }} />
+                                    <h3 className='pro-name' style={{ fontSize: '1.2rem', margin: '15px 0', color: '#555' }}>{product.name}</h3>
+                                    <h4 style={{ fontSize: '1.2rem', color: '#333' }}>Rs. {product.price.toLocaleString()}</h4>
+                                    <button className='add-to-cart' onClick={() => handleAddToCart(product)} style={{ backgroundColor: '#004085', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '5px', cursor: 'pointer', fontSize: '1rem', marginBottom: '15px', transition: 'background-color 0.3s' }} 
+                                        onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#004085'} 
+                                        onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#004085'}
+                                    >
+                                        Add to Cart
+                                    </button>
+                                </div>
                         ))}
                     </div>
                 </section>

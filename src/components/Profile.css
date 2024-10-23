@@ -1,116 +1,147 @@
-.profile-pic{
-  margin-top:15vh;
+/* Overall styling */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
+  color: #333;
+  margin: 0;
+  padding: 20px;
 }
-.img-logout{
+
+/* Profile section */
+.profile-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
-.sign-out{
-  margin-top: 15vh;
-  padding: 10px;
-  border-radius: 10px;
-  background: rgb(255, 227, 127);;
-  border:4px solid #fff;
-  font-size: 14px;
-  width: 120px;
-}
-.sign-out:hover{
-  cursor: pointer;
-  border:3px solid rgb(255, 227, 127);
-  background:transparent;
-  animation: pulse 1s infinite;
-}
-.user-details{
-  display: flex;
-  flex-direction: column;
-  align-items: baseline;
-  justify-content: center;
-}
-.img-details{
+
+/* Profile image and logout area */
+.img-details {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-} 
-.btn-edit{
-  width: 70px;
-  margin-left: 10vw;
-  margin-top: 20px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Profile picture styling */
+.profile-pic-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.profile-pic {
+  width: 200px;
+  height: auto;
+ 
+}
+
+/* Buttons styling */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-out, .delete-btn, .btn-save, .btn-edit {
+  background-color: #3498db; /* Button color */
+  color: white;
+  border: none;
+  border-radius: 4px;
   padding: 10px;
-  border-radius: 10px;
-  background: transparent;
-  border:4px solid rgb(255, 227, 127);
-}
-.btn-edit:hover{
+  margin: 5px 0;
   cursor: pointer;
-  background-color: rgb(255, 227, 127);
-  border: 4px solid #fff;
+  transition: background-color 0.3s;
 }
 
+.sign-out:hover, .delete-btn:hover, .btn-save:hover, .btn-edit:hover {
+  background-color: #2980b9; /* Darker shade on hover */
+}
 
+/* User details section */
+.user-details {
+  flex: 1;
+}
 
-.btn-save{
-  width: 70px;
-  margin-left: 10vw;
-  margin-top: 20px;
+.user-details h2 {
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+/* Table styling */
+.user-details table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-details td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.user-details input,
+.user-details textarea {
+  width: 100%;
   padding: 10px;
-  border-radius: 10px;
-  background: rgb(255, 227, 127);;
-  border:4px solid #fff;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  transition: border-color 0.3s;
 }
-.btn-save:hover{
-  cursor: pointer;
-  background-color: transparent;
-  border: 4px solid rgb(255, 227, 127);
+
+.user-details input:focus,
+.user-details textarea:focus {
+  border-color: #3498db; /* Highlight border on focus */
 }
-.name, .email, .contact , .nic, .address{
-  width:200px;
-  padding: 5px;
-  font-size: 14px;
+
+/* Order summary */
+.order-summary-all {
+  width: 100%;
+  max-width: 1200px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 }
-.order-img{
-  width: 100px;
+
+.individual-orders h3 {
+  margin-bottom: 10px;
+}
+
+/* Order table */
+.individual-orders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-products {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-img {
+  width: 80px;
   height: auto;
 }
-.order-Summary-all{
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: center;
- margin-top: 5%;
-}
-.individual-orders{
-  margin-top: 3%;
-}
-.individual-orders tbody{
-  background-color: rgb(246, 244, 244);;
-}
-.delete-btn{
-  margin-top: 10vh;
-  padding: 10px;
-  border-radius: 10px;
-  background: rgb(254, 149, 147);;
-  border:4px solid #fff;
-  font-size: 14px;
-  width: 200px;
-  font-weight: bold;
-}
-.delete-btn:hover{
-  cursor: pointer;
-  animation: pulse 1s infinite;
-}
-.view-orders{
-  margin-top: 3vh;
-  padding: 10px;
-  border-radius: 10px;
-  background: rgb(255, 227, 127);;
-  border:4px solid #fff;
-  font-size: 14px;
-  width: 250px;
-}
-.view-orders:hover{
-  cursor: pointer;
-}
 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .img-details {
+      flex-direction: column;
+      align-items: center;
+  }
 
+  .profile-pic-div {
+      margin-bottom: 20px;
+  }
+
+  .action-buttons {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+  }
+}

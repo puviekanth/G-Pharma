@@ -103,13 +103,14 @@ function AddPrescription() {
        
             <form onSubmit={handleSubmit} className='prescription-form'>
                 
-                <h3>Please Select 3 clear images of your prescription before uploading</h3>
+                <h3 style={{fontSize:'18px'}}>Please Select 3 clear images of your prescription before uploading</h3>
                 <input
                     type='file'
                     multiple
                     className='prescription-upload'
                     accept='.jpg,.jpeg,.png'
                     onChange={handleFileChange}
+                    style={{border:'2px dashed #004085',padding:'10px'}}
                 />
 
                 {/* Display selected images */}
@@ -126,15 +127,15 @@ function AddPrescription() {
                     ))}
                 </div>
 
-               <h2>Personal Information</h2>
+               <h2 style={{marginTop:'20px'}}>Personal Information</h2>
                <div className='email'>
-                        <p>As part of security, your email will be recorded</p>
+                        <p style={{fontSize:'16px'}}>As part of security, your email will be recorded</p>
                         <input className='email-input' type='email' value={email} onChange={(e)=>{setEmail(e.target.value)}} disabled />
                     </div>
                
                 <div className='name-contact'>
                 <div className='name'>
-                    <p>Your Name</p>
+                    <p style={{fontSize:'16px'}} >Your Name</p>
                     <input className='name-input' type='text' value={name} onChange={(e)=>{setName(e.target.value)}} required />
                 </div>
                 <div className='contact'>
@@ -142,7 +143,7 @@ function AddPrescription() {
                         <input className='contact-input' type='number' value={contact} onChange={(e)=>{setContact(e.target.value)}} required />
                     </div>
                 </div>
-                <h2>Prescription Information</h2>
+                <h2 style={{marginTop:'20px'}}>Prescription Information</h2>
                 <div className='patient-info'>
                     <div className='patient-name'>
                         <p>Patient Name</p>
@@ -156,7 +157,7 @@ function AddPrescription() {
                 </div>
                 
                  <div className='gender'>
-                    <p>Patient Gender</p>
+                    <p style={{marginTop:'20px'}}>Patient Gender</p>
                     <input className='gender-input' type='radio' name='gender' value='Male' onChange={(e)=>{setGenderSelectedOption(e.target.value)}} /><label>Male</label>
                     <input className='gender-input' type='radio' name='gender' value='Female' onChange={(e)=>{setGenderSelectedOption(e.target.value)}} /><label>Female</label>
                 </div>
@@ -165,32 +166,28 @@ function AddPrescription() {
                     <input className='allergy-input' type='radio' name='allergy' value='Yes' onChange={(e)=>{setAllergySelectedOption(e.target.value)}}/><label>Yes</label>
                     <input className='allergy-input' type='radio' name='allergy' value='No' onChange={(e)=>{setAllergySelectedOption(e.target.value)}} /><label>No</label>
                 </div>
-                <h2>Delivery Information</h2>
+                <h2 style={{marginTop:'20px'}}>Delivery Information</h2>
                 <div className='delivery-info'>
-                <div className='delivery-address'>
+                <div className='delivery-address' style={{marginTop:'20px'}}>
                     <p>Your Delivery Address</p>
                     <input className='delivery-address-input' type='text' value={delivery} onChange={(e)=>{setDelivery(e.target.value)}} required />
                 </div>
-                <div className='delivery-city'>
+                <div className='delivery-city' style={{marginTop:'20px'}}>
                     <p>Delivery City</p>
                     <input className='delivery-city-input' type='text' value={city} onChange={(e)=>{setCity(e.target.value)}} required />
                 </div>
                 </div>
-                <div className='duration'>
+                <div className='duration' style={{marginTop:'20px'}}>
                     <p>The Duration Medicine Needed for </p>
                     <input type='text' className='duration-input' value={duration} onChange={(e)=>{setDuration(e.target.value)}} required />
                 </div>
 
                     
                
-                {/* Display error message if any */}
-                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-                {/* Only show the Submit button if there are no errors */}
-                {successMSG && <p className='success'>{successMSG}</p>}
+                
                 {!errorMessage && ( 
                    
-                    <button type='submit' className='upload-btn'>Upload</button>
+                    <button type='submit' className='upload-btn' style={{width:'200px',backgroundColor:'#004085',color:'#fff'}}>Upload</button>
                 )}
             </form>
 
