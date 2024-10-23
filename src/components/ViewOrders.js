@@ -6,6 +6,7 @@ import Img2 from './images/pexels-n-voitkevich-7526012.jpg';
 import Img3 from './images/about1.jpg';
 import './ViewOrders.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import html2pdf from 'html2pdf.js';
 
 import axios from 'axios';
 
@@ -52,6 +53,34 @@ const handleOrderDelete=(orderID)=>{
     })
 }
 
+const generatePDF = () => {
+    const element = document.createElement("div");
+    
+    // Create a list of orders in HTML format
+    prescriptionOrderDetails.forEach(order => {
+        const orderDiv = document.createElement("div");
+        orderDiv.innerHTML = `
+            <p><strong>Order ID:</strong> ${order.orderID}</p>
+            <p><strong>User Name:</strong> ${order.username}</p>
+            <p><strong>Patient Name:</strong> ${order.PatientName}</p>
+            <p><strong>Prescriptions:</strong> ${order.prescriptions.join(', ')}</p>
+            <p><strong>Duration:</strong> ${order.Duration}</p>
+            <p><strong>Status:</strong> ${order.status}</p>
+            <hr />
+        `;
+        element.appendChild(orderDiv);
+    });
+
+    const opt = {
+        margin:       0.5,
+        filename:     'Orders.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(opt).save();
+};
+
 
     return (
         <>
@@ -87,6 +116,7 @@ const handleOrderDelete=(orderID)=>{
                     </div>
                     <div className='search-order'>
                     <a href='/SearchPrescription'> <button  className='btn btn-success mt-3' style={{'marginBottom':'20px'}}>Search ...</button></a>
+                    <button className='btn btn-primary mt-3' style={{ 'marginLeft': '20px' }} onClick={generatePDF}>Download PDF</button>
                     </div>
                     <div className='process-complete'>
                     <div className='new-view' >
