@@ -1,0 +1,111 @@
+.contact-us {
+    background-color: #f9f9f9; /* Light background for contrast */
+    padding: 50px 20px;
+}
+
+.contact-us-div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contact-details {
+    flex: 1;
+    min-width: 300px; /* Ensure minimum width */
+}
+
+.contact-info {
+    margin-top: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.map-container {
+    margin-top: 20px;
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 300px; /* Ensure minimum width */
+}
+
+.input-field, .textarea-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc; /* Soft border */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s;
+}
+
+.input-field:focus, .textarea-field:focus {
+    border-color: #007bff; /* Highlight on focus */
+}
+
+.send-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+.error-message, .success {
+    color: red; /* Error messages */
+    font-size: 0.9em;
+}
+
+.success {
+    color: green; /* Success messages */
+}
+
+.contact-others {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.branches {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.branch {
+    flex: 1;
+    min-width: 200px; /* Ensure minimum width for each branch */
+    margin: 20px;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.branch-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.branch-info h3 {
+    margin: 10px 0;
+}
+
+.branch-info p {
+    margin: 5px 0;
+}

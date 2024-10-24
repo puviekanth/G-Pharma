@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
+.footer{
+    margin-top: 10%;
+    background-color: rgb(189, 185, 180);
+    padding: 20px;
+    background-color: #f1f1f1;
+    height: 110vh;
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
+
+  
+  table {
+    margin-top: 5%;
+    border-collapse: collapse;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  
+  td {
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    
+  }
+  
+  td:hover {
+    background-color: #e2e2e2;
+  }
+
+  .footer-logo{
+    width: 150px;
+    height: auto;
+   padding-left: 50px;
+   margin-top: -15%;
+   display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+  }
+
+
+.logo-name{
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    margin-top: 10%;
+    width: 300px;
+}
+
+
+.logo-with-name-only{
+    margin-left: 5%;
+}
+
+.location{
+    width: 20px;
+    height: auto;
+    
+}
+
+.address{
+    margin-top: 6%;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.address h4{
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+.address h4 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.address h4 a:hover{
+    text-decoration: underline;
+}
+
+
+.mobile{
+    width: 20px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.phone{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.phone h4{
+    font-size: 14px;
+}
+
+
+.phone h4 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.phone h4 a:hover{
+    text-decoration: underline;
+}
+
+.emaill{
+    width: 20px;
+    height: auto;
+}
+
+.mail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mail h4{
+    margin-left: 10px;
+    font-size: 14px;
+}
+.mail h4 a{
+    text-decoration: none;
+    color: #000;
+}
+
+.mail h4 a:hover{
+    text-decoration: underline;
+}
+.social-media-links{
+    margin-top:40px
+}
+
+.fb{
+    
+    width: 30px;
+    height: auto;
+}
+
+.insta{
+    margin-left: 40px;
+    width: 30px;
+    height: auto;
+}
+
+.wtsp{
+    margin-left: 40px;
+    width: 30px;
+    height: auto;
+}
+
+.footer-info-blocks{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.about-block{
+    margin-left: 40px;
+    width: 20%;
+    margin-top: 6%;
+}
+
+.about-block h3{
+    text-align: center;
+    font-size: 16px;
+}
+
+.about-block p{
+    text-align: justify;
+}
+
+.links-footer{
+    margin-left: 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 11%;
+
+}
+.link-item{
+    text-decoration: none;
+    list-style: none;
+    margin-top: 15px;
+    
+}
+
+
+.links-footer h3{
+    text-align: left;
+    padding-right: 10px;
+    margin-left: -50px;
+    font-size: 16px;
+}
+.link-item a{
+    text-decoration:none;
+    color: #000;
+}
+
+.link-item a:hover{
+    
+    color: #004085;
+}
+
+.branches-block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+    
+}
+.branches-block h3{
+    font-size: 16px;
+}
+
+.branch-item{
+    list-style: none;
+    margin-top: 20px;
+}
+
+.branch-item a{
+    
+    text-decoration: none;
+    color: #000;
+}
+
+
+
+.branch-item a:hover{
+    
+    color:#004085;
+}
+
+.cp{
+    width: 100%;
+    margin-top: 7%;
+    text-align: center;
+    background-color: #bdbbbb9a;
+    padding: 10px;
+    font-size: 14px;
+
+}
+.location-branch{
+    width: 20px;
+    height: auto;
+}
+

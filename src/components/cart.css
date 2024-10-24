@@ -1,0 +1,125 @@
+/* General Styles */
+.cart-section {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.cart-div {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Table Styles */
+table {
+    width: 150%;
+    border-collapse: collapse;
+}
+
+thead {
+    background-color: #004085;
+    color: white;
+}
+th{
+    margin-left: 20px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1; /* Hover effect for rows */
+}
+
+.cart-pro-img {
+    width: 70px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Cancel Button */
+.cancel {
+    cursor: pointer;
+    width: 20px;
+    height: auto;
+    transition: transform 0.2s;
+}
+
+.cancel:hover {
+    transform: scale(1.2); /* Scale on hover for better interactivity */
+}
+
+/* Quantity Input */
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    transition: border-color 0.2s;
+}
+
+.quantity-input:focus {
+    border-color: #007bff;
+}
+
+/* Total Section */
+.total {
+    max-width: 400px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.total h3 {
+    text-align: center;
+    color: #333;
+}
+
+.sub-table {
+    width: 100%;
+}
+
+.sub-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.pay-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 20px auto; /* Center button */
+}
+
+.pay-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+@media (max-width: 768px) {
+    .cart-div {
+        padding: 10px;
+    }
+
+    .total {
+        width: 100%;
+    }
+
+    .quantity-input {
+        width: 50px; /* Adjust for smaller screens */
+    }
+}

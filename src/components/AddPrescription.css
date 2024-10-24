@@ -1,0 +1,123 @@
+.prescription-form{
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
+    margin-top: 10px;
+    height: 190vh;
+}
+
+
+ p{
+    text-align: center;
+    font-size: 18px;
+    
+}
+.email{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2%;
+}
+.name-contact{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.email-input,.duration-input{
+    width: 350px;
+    height: 40px;
+    background-color: rgb(246, 244, 244);
+    border: none;
+}
+.name{
+    margin-left: -10%;
+}
+.contact{
+    margin-left: 10%;
+}
+.name-input,.contact-input,.patient-name-input,.patient-age-input,.delivery-address-input,.delivery-city-input{
+    width: 230px;
+    background-color: rgb(246, 244, 244);
+    border: none;
+}
+.patient-age-input,.patient-name-input,.delivery-address-input,.delivery-city-input,.duration-input{
+    height: 30px;
+    border-radius: 5px;
+}
+.patient-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.patient-name-input{
+    margin-right: 10px;
+}
+.patient-age-input{
+    margin-left: 10px;
+}
+.gender{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.gender-input{
+    margin-left: 20px;
+}
+.allergy{
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top:2%;
+}
+.allergy-input{
+    margin-left: 20px;
+}
+.delivery-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.delivery-address-input{
+    margin-right: 10px;
+}
+.delivery-city-input{
+    margin-left:10px
+}
+.prescription-img{
+    width: 350px;
+    height: auto;
+}
+.ul{
+    list-style: circle;
+    width: 400px;
+}
+ .presc{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+.disclaimer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: -20%;
+}
+.upload-btn{
+    background-color: rgb(255, 227, 127);
+    border-radius: 10px;
+    width: 100px;
+    padding: 10px;
+    border: none;
+    margin-top: 20px;
+}
+.upload-btn:hover{
+    cursor: pointer;
+    animation: pulse 1s infinite;
+}
+

@@ -1,0 +1,150 @@
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+    background-color: #004085; /* Darker blue for sidebar */
+    padding: 20px;
+    height: 100%;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #f8f9fa;
+    color: #004085;
+    text-align: center;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.sidebar ul li:hover {
+    background-color: #e9ecef; /* Light gray on hover */
+    color: #004085;
+}
+
+/* Icon styles */
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+
+.icon img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.icon img:hover {
+    transform: scale(1.1);
+}
+
+/* Interface styles */
+.order-cont {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 15px 0;
+    width: calc(100% - 40px);
+}
+
+.img-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+/* Image Styling */
+.images-cont img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.images-cont img:hover {
+    transform: scale(1.05);
+}
+
+/* Order Details */
+.admin-Order-details {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.admin-Order-details p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+}
+
+/* Buttons */
+.btns .btn {
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.btns .btn:hover {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Modal Styling */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .orders {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .interface {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,130 @@
+/* src/components/Login.css */
+
+
+
+.login-container {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   display: flex;
+   justify-content: center;
+   align-items:center;
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+  
+   height: 100vh;
+  
+  
+  }
+  
+  .login-form {
+   display: flex;
+   flex-direction: column;
+   align-items:center;
+   justify-content: center;
+   height:85vh;
+   width: 400px;
+   background-color: rgba(128, 126, 126, 0.562); 
+   padding: 50px;
+   border-radius: 10px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.473);
+   margin-left: 10%;;
+   margin-top: 20%;
+   margin-bottom: 60px;
+  }
+  
+  .login-form h2 {
+   margin-bottom:40px;
+  }
+  
+  
+  
+  .login-form label {
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 10px;
+   width: 100%;
+  }
+  
+  
+.login-form input{
+   padding: 8px;
+   font-size: 14px;
+   width: 300px;
+   margin-bottom: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+  } 
+
+  
+  
+  .login-form button {
+   padding: 10px;
+   font-size: 14px;
+   width: 100%;
+   background-color: #007bff;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   margin-top: 10%;
+   
+  }
+
+  .login-form button a{
+    text-decoration: none;
+    color: #fff;
+  }
+  
+  .login-form button:hover {
+   background-color: #0056b3;
+  }
+  
+  .login-name{
+   color: #fff;
+   font-size: 30px;
+   margin-top: 18%;
+  }
+  
+  .genuine {
+    font-size: 40px;
+  }
+  
+  .pharmacy{
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .logo{
+    height: 100px;
+    width: 100px;
+    margin-left: 24%;
+  }
+  .Login-link{
+      margin-top: 7%;
+  }
+
+  .email-input{
+    margin-top: -5%;
+    padding: 10px;
+   font-size: 14px;
+   margin-bottom: 10px;
+   border: 1px solid #ccc;
+   border-radius: 5px;
+  }
+  .withLOGO{
+    margin-top: 10%;
+  }
+  .error{
+    background-color: #ff5757;
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .success{
+    background-color: #65ff60;
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+  }
