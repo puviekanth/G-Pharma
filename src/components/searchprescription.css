@@ -1,0 +1,85 @@
+.prescription-or-product{
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 35vw;
+    margin-top: 10vh;
+}
+.prescripton-type-order{
+    width: 150px;
+    background-color: #004085;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+.product-type-order{
+    width: 150px;
+    background-color: #fff;
+    border: 2px solid #004085;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+.product-type-order:hover{
+    cursor: pointer;
+    width: 150px;
+    background-color: rgb(255, 227, 127);
+    border:none;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    
+}
+.searchIcon{
+    width: 30px;
+    height: auto;
+    margin-left: 10px;
+}
+.order-search-input{
+    width: 300px;
+}
+.top-part{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+.searchIcon:hover{
+    cursor: pointer;
+    padding: 5px;
+    background-color: rgb(244, 244, 244);
+}
+
+.img1{
+    width: 200px;
+    height: auto;
+}
+.img-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.pres-details p{
+    font-size: 14px;
+}
+.pres-details{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    margin-left: 5vw;
+}
+.orders-cont{
+    width: 80vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.9);
+    border-radius: 10px;
+    margin-left: 20vw;
+    padding-bottom: 10vh;
+}

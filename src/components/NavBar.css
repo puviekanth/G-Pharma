@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
+
+nav {
+  top: 0;
+  position: sticky;
+  z-index: 900;
+  font-family: 'Nanum Gothic', sans-serif;
+  width: 100%;
+}
+
+nav .menu {
+  display: none;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.5rem;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2.25rem;
+  height: 2rem;
+}
+
+nav .menu span {
+  height: 0.4rem;
+  width: 100%;
+  background-color: rgb(255, 227, 127);
+  border-radius: 0.2rem;
+}
+
+.navbar-logo img {
+  width: 75px;
+  height: auto;
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.navbar-logo h2 {
+  font-size: 1.75vw;
+}
+
+.navbar-logo a {
+  text-decoration: none;
+  color: #000;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.second-navbar2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.name-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+#navbar-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0; /* Ensure no extra space around the list */
+  margin: 0; /* Ensure no extra space around the list */
+}
+
+ul li {
+  list-style: none;
+  margin-bottom: 20px;
+  margin-top: 25px;
+  position: relative; /* Necessary for the underline effect */
+}
+
+ul li a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  position: relative; /* Necessary for the underline effect */
+}
+
+/* Pseudo-element for the underline effect */
+ul li a::after {
+  margin-top: 5px;
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background-color: #000;
+  left: 0;
+  bottom: -2px;
+  transition: width 0.3s ease-out; /* Controls the animation speed */
+}
+
+/* Hover effect to expand the underline */
+ul li a:hover::after {
+  width: 100%;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 250px; /* Increased minimum width */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  display: flex; /* Change to flex for horizontal alignment */
+  flex-direction: row; /* Align items horizontally */
+}
+
+.dropdown-menu li {
+  list-style: none;
+  padding: 12px 20px; /* Increased padding for larger size */
+}
+
+.dropdown-menu li a {
+  color: black;
+  text-decoration: none;
+  display: block;
+  font-size: 16px; /* Increased font size */
+}
+
+.dropdown-menu li a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex; /* Ensure it displays as flex on hover */
+}
+
+.with-nav {
+  height: 13vh;
+  background-color: #f4f4f4;
+  margin-top: -15px;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.prescription {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 15px;
+  border: 2px solid #000;
+}
+
+#loginbtn {
+  margin-right: -120px;
+  width: 80px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+#signupbtn {
+  width: 80px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.prescription:hover {
+  cursor: pointer;
+  animation: pulse 1s infinite;
+  
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle::after {
+  font-size: 12px;
+}

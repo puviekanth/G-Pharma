@@ -1,0 +1,87 @@
+.payment-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa; /* Light background color */
+}
+
+.billing-info {
+  flex: 1;
+  padding: 20px;
+  border-right: 1px solid #dee2e6; /* Divider between sections */
+}
+
+.order-summary {
+  flex: 1;
+  padding: 20px;
+  background-color: #ffffff; /* White background for order summary */
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.billing-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.billing-name {
+  margin-bottom: 20px;
+  font-size: 24px; /* Larger font for section title */
+}
+
+.input-error {
+  border-color: #dc3545; /* Red border for error inputs */
+}
+
+.error-message {
+  color: #dc3545; /* Red color for error messages */
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #007bff; /* Change border color on focus */
+}
+
+.order-summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.order-summary-table th,
+.order-summary-table td {
+  padding: 10px;
+  border: 1px solid #dee2e6;
+  text-align: left;
+}
+
+.order-summary-table th {
+  background-color: #004085; /* Light gray for header */
+}
+
+.pay-btn {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #007bff; /* Primary button color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pay-btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+}
+
